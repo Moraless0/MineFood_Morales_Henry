@@ -1,5 +1,19 @@
 /* MineFood — estilos base inspirados en Minecraft */
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600&display=swap');
+
+/* Fuentes locales de Minecraft */
+@font-face {
+  font-family: 'Minecraft';
+  src: url('../assets/fonts/minecraft_font_esp/minecraft_fot_esp.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Minecrafter';
+  src: url('../assets/fonts/minecrafter/Minecrafter.Reg.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 :root {
   --grass-green: #5D9E43;
@@ -21,8 +35,8 @@
   --inventory-slot: #8B8B8B;
   --inventory-border: #373737;
 
-  --font-heading: 'Press Start 2P', cursive;
-  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Minecrafter', cursive;
+  --font-body: 'Minecraft', sans-serif;
   --border-pixel: 3px solid var(--coal-black);
   --shadow-block: 4px 4px 0 rgba(0,0,0,0.25);
   --shadow-inset: inset 2px 2px 0 rgba(255,255,255,0.15), inset -2px -2px 0 rgba(0,0,0,0.25);
