@@ -26,10 +26,10 @@
 }
 
 .loading-screen__progress {
-  width: 400px;
-  height: 20px;
-  background: #1a0606;
-  border: 3px solid #4a1a1a;
+  width: 500px;
+  height: 30px;
+  background: #1a1a1a;
+  border: 3px solid #3a3a3a;
   border-radius: 2px;
   margin: 0 auto 20px;
   overflow: hidden;
