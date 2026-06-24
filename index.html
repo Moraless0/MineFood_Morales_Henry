@@ -12,30 +12,65 @@
   <canvas id="bg-canvas"></canvas>
   <div class="bg-fallback" id="bg-fallback"></div>
 
-  <div class="overlay">
-    <div class="login-card">
-      <div class="login-card__logo">🍽️ MineFood</div>
-      <p class="login-card__subtitle">Administra pedidos, inventario y reportes desde un panel inspirado en Minecraft.</p>
-
-      <form class="login-form">
-        <label class="mc-label" for="usuario">Usuario</label>
-        <input id="usuario" class="mc-input" type="text" placeholder="chef.minefood" required>
-
-        <label class="mc-label" for="contrasena">Contraseña</label>
-        <input id="contrasena" class="mc-input" type="password" placeholder="••••••••" required>
-
-        <button type="submit" class="mc-button">Entrar al dashboard</button>
-        <button type="button" class="mc-button mc-button--secondary">Ver menú</button>
-      </form>
-
-      <p class="login-card__footer">Prototipo educativo inspirado en Minecraft. No es un producto oficial.</p>
+  <div class="minecraft-menu">
+    <div class="minecraft-menu__logo">
+      <img src="assets/images/minecraft_title.png" alt="MineFood" class="minecraft-menu__logo-img">
     </div>
+    
+    <div class="minecraft-menu__buttons">
+      <button class="minecraft-button" id="btn-login">Iniciar Sesión</button>
+      <button class="minecraft-button" id="btn-dashboard">Dashboard</button>
+      <button class="minecraft-button" id="btn-inventory">Inventario</button>
+      <button class="minecraft-button" id="btn-dishes">Platillos</button>
+      <button class="minecraft-button" id="btn-orders">Pedidos</button>
+      <button class="minecraft-button" id="btn-reports">Reportes</button>
+      <button class="minecraft-button minecraft-button--secondary" id="btn-options">Opciones</button>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="login-modal" id="login-modal">
+      <div class="login-modal__content">
+        <button class="login-modal__close" id="close-modal">×</button>
+        <h2 class="login-modal__title">Iniciar Sesión</h2>
+        <form class="login-form">
+          <label class="mc-label" for="usuario">Usuario</label>
+          <input id="usuario" class="mc-input" type="text" placeholder="chef" required>
+
+          <label class="mc-label" for="contrasena">Contraseña</label>
+          <input id="contrasena" class="mc-input" type="password" placeholder="123456" required>
+
+          <button type="submit" class="mc-button">Entrar</button>
+        </form>
+      </div>
+    </div>
+
+    <p class="minecraft-menu__footer">MineFood - Prototipo educativo</p>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
   <script src="js/background.js"></script>
   <script src="js/auth.js"></script>
   <script>
+    // Manejar modal de login
+    const loginModal = document.getElementById('login-modal');
+    const btnLogin = document.getElementById('btn-login');
+    const closeModal = document.getElementById('close-modal');
+
+    btnLogin.addEventListener('click', () => {
+      loginModal.style.display = 'flex';
+    });
+
+    closeModal.addEventListener('click', () => {
+      loginModal.style.display = 'none';
+    });
+
+    loginModal.addEventListener('click', (e) => {
+      if (e.target === loginModal) {
+        loginModal.style.display = 'none';
+      }
+    });
+
+    // Manejar formulario de login
     const loginForm = document.querySelector('.login-form');
     if (loginForm) {
       loginForm.addEventListener('submit', (event) => {
@@ -49,6 +84,40 @@
         } else {
           alert('Usuario o contraseña incorrectos. Intenta con: chef / 123456');
         }
+      });
+    }
+
+    // Manejar botones de navegación (requieren login)
+    const navButtons = ['btn-dashboard', 'btn-inventory', 'btn-dishes', 'btn-orders', 'btn-reports'];
+    const pages = {
+      'btn-dashboard': 'dashboard.html',
+      'btn-inventory': 'inventory.html',
+      'btn-dishes': 'dishes.html',
+      'btn-orders': 'orders.html',
+      'btn-reports': 'reports.html'
+    };
+
+    navButtons.forEach(btnId => {
+      const btn = document.getElementById(btnId);
+      if (btn) {
+        btn.addEventListener('click', () => {
+          // Verificar si hay sesión activa (simple check)
+          const currentUser = Auth.getCurrentUser();
+          if (currentUser) {
+            window.location.href = pages[btnId];
+          } else {
+            alert('Debes iniciar sesión primero');
+            loginModal.style.display = 'flex';
+          }
+        });
+      }
+    });
+
+    // Botón de opciones
+    const btnOptions = document.getElementById('btn-options');
+    if (btnOptions) {
+      btnOptions.addEventListener('click', () => {
+        alert('Opciones del menú - Funcionalidad en desarrollo');
       });
     }
   </script>
