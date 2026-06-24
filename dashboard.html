@@ -10,84 +10,112 @@
 <body>
   <div class="app-container">
     <aside class="sidebar">
-      <div class="sidebar__logo">🌱 MineFood</div>
-      <nav class="sidebar__nav">
-        <a href="dashboard.html" class="sidebar__item active">📊 Dashboard</a>
-        <a href="inventory.html" class="sidebar__item">📦 Inventario</a>
-        <a href="dishes.html" class="sidebar__item">🍽️ Platillos</a>
-        <a href="orders.html" class="sidebar__item">🧾 Pedidos</a>
-        <a href="reports.html" class="sidebar__item">📈 Reportes</a>
-      </nav>
+      <div class="sidebar__logo">�️ MineFood HQ</div>
+      <ul class="sidebar__nav">
+        <li class="nav-item active"><a href="dashboard.html"><span class="nav-item__icon">🏠</span> Dashboard</a></li>
+        <li class="nav-item"><a href="inventory.html"><span class="nav-item__icon">📦</span> Inventario</a></li>
+        <li class="nav-item"><a href="dishes.html"><span class="nav-item__icon">🍽️</span> Platillos</a></li>
+        <li class="nav-item"><a href="orders.html"><span class="nav-item__icon">🧾</span> Pedidos</a></li>
+        <li class="nav-item"><a href="reports.html"><span class="nav-item__icon">�</span> Reportes</a></li>
+      </ul>
       <div class="sidebar__footer">
-        <a href="index.html" class="sidebar__item sidebar__item--logout">🚪 Salir</a>
+        <a href="index.html" class="mc-button mc-button--stone" style="width:100%">Salir</a>
       </div>
     </aside>
 
-    <main class="main-content">
+    <div class="main-wrapper">
       <header class="topbar">
-        <h1 class="topbar__title">Dashboard</h1>
+        <div class="topbar__left">
+          <button class="hamburger" aria-label="Abrir menú">
+            <span></span><span></span><span></span>
+          </button>
+          <span class="topbar__title">Dashboard principal</span>
+        </div>
         <div class="topbar__actions">
-          <button class="mc-button">+ Nuevo Pedido</button>
+          <span class="mc-badge">👤 Chef Aldeano</span>
         </div>
       </header>
 
-      <div class="content">
-        <div class="alert alert--warning">
-          ⚠️ Alerta: remolacha y champiñones bajos en stock
+      <main class="main-content">
+        <div class="page-header">
+          <h1>🏠 Dashboard Principal</h1>
+          <a href="create-order.html" class="mc-button">+ Nuevo pedido</a>
         </div>
 
-        <div class="stats-grid">
-          <div class="stat-card">
-            <div class="stat-card__icon">📦</div>
-            <div class="stat-card__value">102</div>
-            <div class="stat-card__label">Insumos</div>
+        <div class="mc-alert mc-alert--warning">
+          ⚠️ La remolacha y los champiñones están por debajo del stock mínimo.
+        </div>
+
+        <div class="grid-4">
+          <div class="mc-card">
+            <div class="mc-stat-card">
+              <div class="mc-slot">📦</div>
+              <div>
+                <div class="mc-stat-card__value">102</div>
+                <div class="mc-stat-card__label">Insumos en stock</div>
+              </div>
+            </div>
           </div>
-          <div class="stat-card">
-            <div class="stat-card__icon">🧾</div>
-            <div class="stat-card__value">2</div>
-            <div class="stat-card__label">Pedidos hoy</div>
+          <div class="mc-card">
+            <div class="mc-stat-card">
+              <div class="mc-slot">🧾</div>
+              <div>
+                <div class="mc-stat-card__value">2</div>
+                <div class="mc-stat-card__label">Pedidos pendientes</div>
+              </div>
+            </div>
           </div>
-          <div class="stat-card">
-            <div class="stat-card__icon">🍽️</div>
-            <div class="stat-card__value">6</div>
-            <div class="stat-card__label">Platillos</div>
+          <div class="mc-card">
+            <div class="mc-stat-card">
+              <div class="mc-slot">🍽️</div>
+              <div>
+                <div class="mc-stat-card__value">6</div>
+                <div class="mc-stat-card__label">Platillos activos</div>
+              </div>
+            </div>
           </div>
-          <div class="stat-card">
-            <div class="stat-card__icon">💰</div>
-            <div class="stat-card__value">$138.50</div>
-            <div class="stat-card__label">Ventas hoy</div>
+          <div class="mc-card">
+            <div class="mc-stat-card">
+              <div class="mc-slot">💰</div>
+              <div>
+                <div class="mc-stat-card__value">$138.50</div>
+                <div class="mc-stat-card__label">Ventas hoy</div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="grid-2">
-          <div class="card">
-            <h3 class="card__title">🔥 Platillos más vendidos</h3>
-            <ul class="list">
-              <li class="list__item">Jugo melón x3</li>
-              <li class="list__item">Estofado x2</li>
-              <li class="list__item">Pastel x2</li>
+        <div class="grid-2" style="margin-top:24px;">
+          <div class="mc-card">
+            <div class="mc-card__title">🔥 Platillos más vendidos</div>
+            <ul class="mc-list">
+              <li class="mc-list__item"><span>🍹 Jugo de Melón Pixelado</span><span class="mc-badge">3</span></li>
+              <li class="mc-list__item"><span>🍄 Estofado de Champiñones</span><span class="mc-badge">2</span></li>
+              <li class="mc-list__item"><span>🍰 Pastel de Bayas Dulces</span><span class="mc-badge">2</span></li>
+              <li class="mc-list__item"><span>🍲 Sopa del Bosque</span><span class="mc-badge">1</span></li>
             </ul>
           </div>
-          <div class="card">
-            <h3 class="card__title">🚨 Insumos bajos</h3>
-            <ul class="list">
-              <li class="list__item">Champiñones: 5kg</li>
-              <li class="list__item">Remolacha: 6kg</li>
+          <div class="mc-card">
+            <div class="mc-card__title">🚨 Insumos bajos</div>
+            <ul class="mc-list">
+              <li class="mc-list__item"><span>🍄 Champiñones — 5 kg</span><span class="mc-badge mc-badge--alert">Bajo</span></li>
+              <li class="mc-list__item"><span>🍠 Remolacha — 6 kg</span><span class="mc-badge mc-badge--alert">Bajo</span></li>
             </ul>
+            <a href="inventory.html" class="mc-button mc-button--secondary" style="margin-top:12px;">Ver inventario</a>
           </div>
         </div>
 
-        <div class="quick-actions">
-          <h3 class="quick-actions__title">⚡ Accesos rápidos</h3>
-          <div class="quick-actions__grid">
-            <a href="inventory.html" class="quick-action">📦 Inventario</a>
-            <a href="dishes.html" class="quick-action">🍽️ Platillos</a>
-            <a href="orders.html" class="quick-action">🧾 Pedidos</a>
-            <a href="reports.html" class="quick-action">📈 Reportes</a>
+        <div class="mc-card" style="margin-top:24px;">
+          <div class="mc-card__title">⚡ Accesos rápidos</div>
+          <div class="quick-actions">
+            <a href="inventory.html" class="mc-button mc-button--secondary">Inventario</a>
+            <a href="dishes.html" class="mc-button mc-button--secondary">Platillos</a>
+            <a href="orders.html" class="mc-button mc-button--secondary">Pedidos</a>
+            <a href="reports.html" class="mc-button mc-button--secondary">Reportes</a>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </div>
   </div>
 </body>
 </html>

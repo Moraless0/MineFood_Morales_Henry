@@ -1,8 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600&display=swap');
+
 :root {
-  --color-bg: #f5f5f5;
-  --color-text: #333;
-  --color-primary: #4CAF50;
-  --font-main: system-ui, sans-serif;
+  --grass-green: #5D9E43;
+  --grass-dark: #3A6E2B;
+  --dirt-brown: #6B4F3B;
+  --wood-brown: #8B5A2B;
+  --wood-dark: #5C3A1B;
+  --stone-gray: #7D7D7D;
+  --stone-dark: #4A4A4A;
+  --leaf-green: #4C8F36;
+  --water-blue: #3F76E4;
+  --sun-yellow: #F9D71C;
+  --berry-red: #C23B3B;
+  --danger-red: #B02E26;
+  --success-green: #5EA818;
+  --warning-yellow: #F9D71C;
+  --coal-black: #1A1A1A;
+  --cloud-white: #F5F3EE;
+  --inventory-slot: #A3A3A3;
+  --inventory-border: #373737;
+
+  --font-heading: 'Press Start 2P', cursive;
+  --font-body: 'Inter', sans-serif;
+  --border-pixel: 3px solid var(--coal-black);
+  --shadow-block: 4px 4px 0 rgba(0,0,0,0.25);
+  --shadow-inset: inset 2px 2px 0 rgba(255,255,255,0.1), inset -2px -2px 0 rgba(0,0,0,0.35);
 }
 
 * {
@@ -11,74 +33,38 @@
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
-  font-family: var(--font-main);
-  background: var(--color-bg);
-  color: var(--color-text);
-  position: relative;
-  min-height: 100vh;
-  overflow: hidden;
+  font-family: var(--font-body);
+  color: var(--coal-black);
+  background-color: var(--grass-dark);
+  background-image:
+    linear-gradient(45deg, var(--grass-green) 25%, transparent 25%, transparent 75%, var(--grass-green) 75%, var(--grass-green)),
+    linear-gradient(45deg, var(--grass-green) 25%, transparent 25%, transparent 75%, var(--grass-green) 75%, var(--grass-green));
+  background-size: 32px 32px;
+  background-position: 0 0, 16px 16px;
 }
 
-#bg-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
+img {
+  max-width: 100%;
+  image-rendering: pixelated;
 }
 
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(5px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+a {
+  color: var(--water-blue);
+  text-decoration: none;
 }
 
-.login-container {
-  max-width: 400px;
-  padding: 2rem;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+a:hover {
+  text-decoration: underline;
 }
 
-.login-container h1 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.login-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.login-form input {
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 1rem;
-}
-
-.login-form button {
-  padding: 0.75rem;
-  background: var(--color-primary);
-  color: white;
+button {
+  font-family: inherit;
   border: none;
-  border-radius: 4px;
-  font-size: 1rem;
+  background: none;
   cursor: pointer;
-}
-
-.login-form button:hover {
-  opacity: 0.9;
 }
