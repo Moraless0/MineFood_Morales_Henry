@@ -30,25 +30,19 @@
 
   camera.position.set(0, 0, 0);
 
-  // Rotación inicial aleatoria
-  const initialRotY = Math.random() * Math.PI * 2;
-  const initialRotX = (Math.random() - 0.5) * Math.PI * 0.5;
-  camera.rotation.y = initialRotY;
-  camera.rotation.x = initialRotX;
-
   const startTime = Date.now();
 
   function animate() {
     requestAnimationFrame(animate);
-    const t = (Date.now() - startTime) * 0.0001;
+    const t = (Date.now() - startTime) * 0.00003;
 
-    // Movimiento ondulado suave estilo Minecraft - sin influencia del mouse
-    const targetRotY = t * 0.3;
-    const targetRotX = Math.sin(t * 0.8) * 0.1 + Math.cos(t * 0.3) * 0.05;
+    // Movimiento hacia la derecha estilo Minecraft - rotación positiva en Y
+    const targetRotY = t * 0.9;
+    const targetRotX = Math.sin(t * 1.15) * 0.02;
 
-    // Lerp suave para movimiento fluido
-    camera.rotation.y += (targetRotY - camera.rotation.y) * 0.01;
-    camera.rotation.x += (targetRotX - camera.rotation.x) * 0.01;
+    // Lerp más rápido para movimiento más perceptible
+    camera.rotation.y += (targetRotY - camera.rotation.y) * 0.008;
+    camera.rotation.x += (targetRotX - camera.rotation.x) * 0.008;
 
     renderer.render(scene, camera);
   }
