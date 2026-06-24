@@ -30,24 +30,19 @@
 
   camera.position.set(0, 0, 0);
 
-  let mouseX = 0;
-  let mouseY = 0;
-  document.addEventListener('mousemove', (e) => {
-    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-    mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-  });
-
   const startTime = Date.now();
 
   function animate() {
     requestAnimationFrame(animate);
-    const t = (Date.now() - startTime) * 0.00005;
+    const t = (Date.now() - startTime) * 0.0001;
 
-    const targetRotY = t * 0.2;
-    const targetRotX = Math.sin(t * 0.5) * 0.04;
+    // Movimiento ondulado suave estilo Minecraft - sin influencia del mouse
+    const targetRotY = t * 0.3;
+    const targetRotX = Math.sin(t * 0.8) * 0.1 + Math.cos(t * 0.3) * 0.05;
 
-    camera.rotation.y += (targetRotY + mouseX * 0.05 - camera.rotation.y) * 0.02;
-    camera.rotation.x += (targetRotX + mouseY * 0.03 - camera.rotation.x) * 0.02;
+    // Lerp suave para movimiento fluido
+    camera.rotation.y += (targetRotY - camera.rotation.y) * 0.01;
+    camera.rotation.x += (targetRotX - camera.rotation.x) * 0.01;
 
     renderer.render(scene, camera);
   }
