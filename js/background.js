@@ -6,6 +6,16 @@
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
+  const loader = new THREE.CubeTextureLoader();
+  const cubeTexture = loader
+    .setPath('assets/imagenes-minecraft/')
+    .load([
+      'panorama_1.png', 'panorama_3.png',
+      'panorama_4.png', 'panorama_5.png',
+      'panorama_0.png', 'panorama_2.png'
+    ]);
+  scene.background = cubeTexture;
+
   camera.position.set(0, 0, 0);
 
   let mouseX = 0;
