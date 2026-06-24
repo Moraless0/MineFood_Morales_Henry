@@ -245,18 +245,7 @@ html, body {
 }
 
 .mc-form-group {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
   margin-bottom: 16px;
-}
-
-.mc-form-icon {
-  width: 32px;
-  height: 32px;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
-  margin-top: 4px;
 }
 
 .mc-button-icon {
@@ -264,15 +253,6 @@ html, body {
   height: 16px;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
-}
-
-.login-modal__icon {
-  width: 24px;
-  height: 24px;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
-  margin: 0 auto 12px;
-  display: block;
 }
 
 /* Modal de login */
