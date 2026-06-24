@@ -10,16 +10,22 @@
   <canvas id="bg-canvas"></canvas>
   <div class="overlay">
     <div class="login-container">
-    <h1>MineFood</h1>
-    <form class="login-form">
-      <input type="text" placeholder="Usuario" required>
-      <input type="password" placeholder="Contraseña" required>
-      <button type="submit">Iniciar sesión</button>
-    </form>
-  </div>
+      <h1>MineFood</h1>
+      <form class="login-form">
+        <input type="text" placeholder="Usuario" required>
+        <input type="password" placeholder="Contraseña" required>
+        <button type="submit">Iniciar sesión</button>
+      </form>
+    </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
-  <script src="background.js"></script>
+  <script src="js/background.js"></script>
+  <script>
+    document.querySelector('.login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      window.location.href = 'dashboard.html';
+    });
+  </script>
 </body>
 </html>
