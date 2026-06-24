@@ -30,12 +30,6 @@
     
     <div class="minecraft-menu__buttons">
       <button class="minecraft-button" id="btn-login">Iniciar Sesión</button>
-      <button class="minecraft-button" id="btn-dashboard">Dashboard</button>
-      <button class="minecraft-button" id="btn-inventory">Inventario</button>
-      <button class="minecraft-button" id="btn-dishes">Platillos</button>
-      <button class="minecraft-button" id="btn-orders">Pedidos</button>
-      <button class="minecraft-button" id="btn-reports">Reportes</button>
-      <button class="minecraft-button minecraft-button--secondary" id="btn-options">Opciones</button>
     </div>
 
     <!-- Login Modal -->
@@ -56,6 +50,7 @@
     </div>
 
     <p class="minecraft-menu__footer">MineFood - Henry Morales</p>
+    <a href="https://github.com/Moraless0" target="_blank" class="minecraft-menu__github">GitHub</a>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
@@ -109,40 +104,6 @@
         } else {
           alert('Usuario o contraseña incorrectos. Intenta con: chef / 123456');
         }
-      });
-    }
-
-    // Manejar botones de navegación (requieren login)
-    const navButtons = ['btn-dashboard', 'btn-inventory', 'btn-dishes', 'btn-orders', 'btn-reports'];
-    const pages = {
-      'btn-dashboard': 'dashboard.html',
-      'btn-inventory': 'inventory.html',
-      'btn-dishes': 'dishes.html',
-      'btn-orders': 'orders.html',
-      'btn-reports': 'reports.html'
-    };
-
-    navButtons.forEach(btnId => {
-      const btn = document.getElementById(btnId);
-      if (btn) {
-        btn.addEventListener('click', () => {
-          // Verificar si hay sesión activa (simple check)
-          const currentUser = Auth.getCurrentUser();
-          if (currentUser) {
-            window.location.href = pages[btnId];
-          } else {
-            alert('Debes iniciar sesión primero');
-            loginModal.style.display = 'flex';
-          }
-        });
-      }
-    });
-
-    // Botón de opciones
-    const btnOptions = document.getElementById('btn-options');
-    if (btnOptions) {
-      btnOptions.addEventListener('click', () => {
-        alert('Opciones del menú - Funcionalidad en desarrollo');
       });
     }
   </script>
