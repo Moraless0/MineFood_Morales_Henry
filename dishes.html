@@ -3,93 +3,122 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Platillos - MineFood</title>
+  <title>Platillos — MineFood</title>
   <link rel="stylesheet" href="styles/base.css">
   <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="styles/minecraft-theme.css">
+  <link rel="stylesheet" href="styles/responsive.css">
 </head>
 <body>
   <div class="app-container">
     <aside class="sidebar">
-      <div class="sidebar__logo">🌱 MineFood</div>
-      <nav class="sidebar__nav">
-        <a href="dashboard.html" class="sidebar__item">📊 Dashboard</a>
-        <a href="inventory.html" class="sidebar__item">📦 Inventario</a>
-        <a href="dishes.html" class="sidebar__item active">🍽️ Platillos</a>
-        <a href="orders.html" class="sidebar__item">🧾 Pedidos</a>
-        <a href="reports.html" class="sidebar__item">📈 Reportes</a>
-      </nav>
+      <div class="sidebar__logo">🍽️ MineFood</div>
+      <ul class="sidebar__nav">
+        <li class="nav-item"><a href="dashboard.html"><span class="nav-item__icon">🏠</span> Dashboard</a></li>
+        <li class="nav-item"><a href="inventory.html"><span class="nav-item__icon">📦</span> Inventario</a></li>
+        <li class="nav-item"><a href="dishes.html"><span class="nav-item__icon">🍽️</span> Platillos</a></li>
+        <li class="nav-item"><a href="orders.html"><span class="nav-item__icon">🧾</span> Pedidos</a></li>
+        <li class="nav-item"><a href="reports.html"><span class="nav-item__icon">📊</span> Reportes</a></li>
+      </ul>
       <div class="sidebar__footer">
-        <a href="index.html" class="sidebar__item sidebar__item--logout">🚪 Salir</a>
+        <a href="index.html" class="mc-button mc-button--stone" style="width: 100%;">Salir</a>
       </div>
     </aside>
 
-    <main class="main-content">
+    <div class="sidebar-overlay"></div>
+
+    <div class="main-wrapper">
       <header class="topbar">
-        <h1 class="topbar__title">🍽️ Platillos</h1>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <button class="hamburger"><span></span><span></span><span></span></button>
+          <span class="topbar__title">Gestión de Platillos</span>
+        </div>
         <div class="topbar__actions">
-          <button class="mc-button">+ Agregar Platillo</button>
+          <span class="mc-badge">👤 Chef Aldeano</span>
         </div>
       </header>
 
-      <div class="content">
-        <div class="dishes-grid">
-          <div class="dish-card">
-            <div class="dish-card__icon">🥕</div>
-            <div class="dish-card__name">Ensalada de Zanahoria</div>
-            <div class="dish-card__price">$12.50</div>
-            <div class="dish-card__actions">
-              <button class="btn-small">Editar</button>
-              <button class="btn-small btn-danger">Eliminar</button>
-            </div>
+      <main class="main-content">
+        <div class="page-header">
+          <h1>🍽️ Platillos</h1>
+          <button class="mc-button" data-modal-open="modal-dish">+ Agregar platillo</button>
+        </div>
+
+        <div class="mc-inventory-grid">
+          <div class="mc-inventory-item">
+            <div class="mc-slot">🥕</div>
+            <div class="mc-inventory-item__name">Ensalada de Zanahoria Dorada</div>
+            <div class="mc-inventory-item__meta">$12.50</div>
+            <button class="mc-button mc-button--secondary" data-modal-open="modal-dish">Editar</button>
           </div>
-          <div class="dish-card">
-            <div class="dish-card__icon">🍄</div>
-            <div class="dish-card__name">Estofado de Champiñones</div>
-            <div class="dish-card__price">$15.00</div>
-            <div class="dish-card__actions">
-              <button class="btn-small">Editar</button>
-              <button class="btn-small btn-danger">Eliminar</button>
-            </div>
+          <div class="mc-inventory-item">
+            <div class="mc-slot">🍄</div>
+            <div class="mc-inventory-item__name">Estofado de Champiñones</div>
+            <div class="mc-inventory-item__meta">$15.00</div>
+            <button class="mc-button mc-button--secondary" data-modal-open="modal-dish">Editar</button>
           </div>
-          <div class="dish-card">
-            <div class="dish-card__icon">🍞</div>
-            <div class="dish-card__name">Pan Integral</div>
-            <div class="dish-card__price">$8.00</div>
-            <div class="dish-card__actions">
-              <button class="btn-small">Editar</button>
-              <button class="btn-small btn-danger">Eliminar</button>
-            </div>
+          <div class="mc-inventory-item">
+            <div class="mc-slot">🍞</div>
+            <div class="mc-inventory-item__name">Pan del Aldeano</div>
+            <div class="mc-inventory-item__meta">$8.00</div>
+            <button class="mc-button mc-button--secondary" data-modal-open="modal-dish">Editar</button>
           </div>
-          <div class="dish-card">
-            <div class="dish-card__icon">🍰</div>
-            <div class="dish-card__name">Pastel de Zanahoria</div>
-            <div class="dish-card__price">$18.00</div>
-            <div class="dish-card__actions">
-              <button class="btn-small">Editar</button>
-              <button class="btn-small btn-danger">Eliminar</button>
-            </div>
+          <div class="mc-inventory-item">
+            <div class="mc-slot">🍰</div>
+            <div class="mc-inventory-item__name">Pastel de Bayas Dulces</div>
+            <div class="mc-inventory-item__meta">$18.00</div>
+            <button class="mc-button mc-button--secondary" data-modal-open="modal-dish">Editar</button>
           </div>
-          <div class="dish-card">
-            <div class="dish-card__icon">🍲</div>
-            <div class="dish-card__name">Sopa de Remolacha</div>
-            <div class="dish-card__price">$13.50</div>
-            <div class="dish-card__actions">
-              <button class="btn-small">Editar</button>
-              <button class="btn-small btn-danger">Eliminar</button>
-            </div>
+          <div class="mc-inventory-item">
+            <div class="mc-slot">🍲</div>
+            <div class="mc-inventory-item__name">Sopa del Bosque Encantado</div>
+            <div class="mc-inventory-item__meta">$13.50</div>
+            <button class="mc-button mc-button--secondary" data-modal-open="modal-dish">Editar</button>
           </div>
-          <div class="dish-card">
-            <div class="dish-card__icon">🍹</div>
-            <div class="dish-card__name">Jugo de Melón</div>
-            <div class="dish-card__price">$6.00</div>
-            <div class="dish-card__actions">
-              <button class="btn-small">Editar</button>
-              <button class="btn-small btn-danger">Eliminar</button>
-            </div>
+          <div class="mc-inventory-item">
+            <div class="mc-slot">🍹</div>
+            <div class="mc-inventory-item__name">Jugo de Melón Pixelado</div>
+            <div class="mc-inventory-item__meta">$7.00</div>
+            <button class="mc-button mc-button--secondary" data-modal-open="modal-dish">Editar</button>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="mc-modal" id="modal-dish">
+    <div class="mc-modal__box">
+      <div class="mc-modal__header">🍽️ Agregar / Editar Platillo</div>
+      <div class="mc-modal__body">
+        <div class="mc-form-group">
+          <label class="mc-label">Nombre del platillo</label>
+          <input type="text" class="mc-input" placeholder="Nombre pixelado">
+        </div>
+        <div class="mc-form-group">
+          <label class="mc-label">Descripción</label>
+          <input type="text" class="mc-input" placeholder="Descripción breve">
+        </div>
+        <div class="grid-2">
+          <div class="mc-form-group">
+            <label class="mc-label">Precio</label>
+            <input type="number" class="mc-input" placeholder="0.00" step="0.01">
+          </div>
+          <div class="mc-form-group">
+            <label class="mc-label">Icono</label>
+            <input type="text" class="mc-input" placeholder="Ej: 🥕">
           </div>
         </div>
       </div>
-    </main>
+      <div class="mc-modal__footer">
+        <button class="mc-button mc-button--secondary" data-modal-close="modal-dish">Cancelar</button>
+        <button class="mc-button">Guardar platillo</button>
+      </div>
+    </div>
   </div>
+
+  <script src="js/navigation.js"></script>
+  <script src="js/modals.js"></script>
+  <script src="js/data-demo.js"></script>
 </body>
 </html>

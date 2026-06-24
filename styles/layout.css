@@ -1,4 +1,4 @@
-/* MineFood dashboard layout inspired by Minecraft Vegan Restaurant */
+/* MineFood — layout principal */
 
 .app-container {
   display: flex;
@@ -14,18 +14,21 @@
   flex-direction: column;
   position: fixed;
   top: 0;
-  bottom: 0;
   left: 0;
-  z-index: 10;
+  bottom: 0;
+  z-index: 100;
 }
 
 .sidebar__logo {
   padding: 20px 16px;
   font-family: var(--font-heading);
-  font-size: 13px;
+  font-size: 14px;
   color: #fff;
   text-shadow: 2px 2px 0 #000;
   border-bottom: 4px solid var(--wood-dark);
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .sidebar__nav {
@@ -37,10 +40,6 @@
 }
 
 .nav-item {
-  margin: 0;
-}
-
-.nav-item a {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -50,13 +49,22 @@
   color: #fff;
   text-transform: uppercase;
   border-left: 4px solid transparent;
+  transition: background 0.1s;
+  cursor: pointer;
 }
 
-.nav-item:hover a {
+.nav-item a {
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-item:hover {
   background: rgba(0, 0, 0, 0.2);
 }
 
-.nav-item.active a {
+.nav-item.active {
   background: var(--grass-green);
   border-left-color: var(--sun-yellow);
   color: var(--coal-black);
@@ -65,12 +73,12 @@
 .nav-item__icon {
   width: 28px;
   height: 28px;
-  background: var(--inventory-slot);
-  border: 3px solid var(--inventory-border);
-  box-shadow: var(--shadow-inset);
   display: flex;
   align-items: center;
   justify-content: center;
+  background: var(--inventory-slot);
+  border: 3px solid var(--inventory-border);
+  box-shadow: var(--shadow-inset);
   font-size: 14px;
 }
 
@@ -79,11 +87,15 @@
   border-top: 4px solid var(--wood-dark);
 }
 
+.sidebar-overlay {
+  display: none;
+}
+
 .main-wrapper {
   flex: 1;
-  margin-left: 240px;
   display: flex;
   flex-direction: column;
+  margin-left: 240px;
   min-height: 100vh;
 }
 
@@ -97,13 +109,7 @@
   padding: 0 20px;
   position: sticky;
   top: 0;
-  z-index: 9;
-}
-
-.topbar__left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  z-index: 90;
 }
 
 .topbar__title {
@@ -116,7 +122,7 @@
 .topbar__actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .hamburger {
@@ -125,20 +131,21 @@
   border: var(--border-pixel);
   box-shadow: var(--shadow-block);
   padding: 8px;
+  cursor: pointer;
 }
 
 .hamburger span {
   display: block;
-  width: 22px;
+  width: 24px;
   height: 4px;
   background: #fff;
-  margin: 3px 0;
+  margin: 4px 0;
 }
 
 .main-content {
   flex: 1;
-  background: var(--cloud-white);
   padding: 24px;
+  background: var(--cloud-white);
   min-height: calc(100vh - 64px);
 }
 
@@ -146,9 +153,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
   margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .page-header h1 {
@@ -156,154 +163,26 @@
   color: var(--coal-black);
 }
 
-.mc-alert {
-  border: 4px solid var(--stone-dark);
-  background: #fff7d6;
-  color: #7f5c00;
-  padding: 14px 18px;
-  font-family: var(--font-body);
-  box-shadow: var(--shadow-block);
-  margin-bottom: 24px;
-}
-
-.mc-alert--warning {
-  border-color: var(--sun-yellow);
-}
-
 .grid-4 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
 
 .grid-2 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 }
 
-.mc-card {
-  background: var(--cloud-white);
-  border: 4px solid var(--wood-dark);
-  box-shadow: var(--shadow-block);
-  padding: 16px;
-}
-
-.mc-card__title {
-  font-family: var(--font-heading);
-  font-size: 12px;
-  margin-bottom: 12px;
-}
-
-.mc-stat-card {
-  display: flex;
-  align-items: center;
+.grid-1 {
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 16px;
-}
-
-.mc-slot {
-  width: 60px;
-  height: 60px;
-  background: var(--inventory-slot);
-  border: 4px solid var(--inventory-border);
-  box-shadow: var(--shadow-inset);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-}
-
-.mc-stat-card__value {
-  font-size: 24px;
-  font-weight: 600;
-  color: var(--coal-black);
-}
-
-.mc-stat-card__label {
-  font-size: 12px;
-  color: rgba(0,0,0,0.7);
-}
-
-.mc-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.mc-list__item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 14px;
-}
-
-.quick-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.mc-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-family: var(--font-heading);
-  font-size: 10px;
-  text-transform: uppercase;
-  color: #fff;
-  background: var(--grass-green);
-  border: 3px solid var(--coal-black);
-  box-shadow: var(--shadow-block);
-  padding: 12px 16px;
-  cursor: pointer;
-  user-select: none;
-}
-
-.mc-button:hover {
-  filter: brightness(1.08);
-}
-
-.mc-button:active {
-  transform: translate(3px, 3px);
-  box-shadow: none;
-}
-
-.mc-button--secondary {
-  background: var(--wood-brown);
-}
-
-.mc-button--stone {
-  background: var(--stone-gray);
-}
-
-.mc-badge {
-  font-family: var(--font-heading);
-  font-size: 9px;
-  padding: 4px 8px;
-  border: 2px solid var(--coal-black);
-  background: var(--stone-gray);
-  color: #fff;
-}
-
-.mc-badge--alert {
-  background: var(--danger-red);
-}
-
-@media (max-width: 960px) {
-  .sidebar {
-    position: fixed;
-    transform: translateX(-100%);
-  }
-
-  .main-wrapper {
-    margin-left: 0;
-  }
-
-  .hamburger {
-    display: block;
-  }
 }

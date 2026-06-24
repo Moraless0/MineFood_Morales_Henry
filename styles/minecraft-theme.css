@@ -1,0 +1,153 @@
+/* MineFood — utilidades temáticas */
+
+.bg-grass { background: var(--grass-green); }
+.bg-dirt { background: var(--dirt-brown); }
+.bg-stone { background: var(--stone-gray); }
+.bg-wood { background: var(--wood-brown); }
+.bg-water { background: var(--water-blue); }
+
+.text-white { color: #fff; }
+.text-dark { color: var(--coal-black); }
+
+.mc-inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 16px;
+}
+
+.mc-inventory-item {
+  background: var(--cloud-white);
+  border: 4px solid var(--wood-dark);
+  box-shadow: var(--shadow-block);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  transition: transform 0.1s;
+}
+
+.mc-inventory-item:hover {
+  transform: translateY(-3px);
+}
+
+.mc-inventory-item__name {
+  font-family: var(--font-heading);
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.mc-inventory-item__meta {
+  font-size: 12px;
+  color: var(--stone-dark);
+}
+
+.mc-order-summary {
+  background: var(--cloud-white);
+  border: 4px solid var(--wood-dark);
+  box-shadow: var(--shadow-block);
+  padding: 16px;
+  position: sticky;
+  top: 80px;
+}
+
+.mc-order-summary__title {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+
+.mc-order-summary__total {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 3px solid var(--stone-dark);
+  text-align: right;
+}
+
+.mc-order-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 2px dashed var(--stone-gray);
+}
+
+.mc-order-item__qty {
+  font-family: var(--font-heading);
+  font-size: 9px;
+  color: var(--stone-dark);
+}
+
+.mc-quantity {
+  display: inline-flex;
+  align-items: center;
+  border: 3px solid var(--coal-black);
+  box-shadow: var(--shadow-block);
+}
+
+.mc-quantity button {
+  width: 32px;
+  height: 32px;
+  background: var(--wood-brown);
+  border: none;
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 12px;
+}
+
+.mc-quantity input {
+  width: 40px;
+  text-align: center;
+  border: none;
+  font-family: var(--font-heading);
+  font-size: 10px;
+  background: var(--cloud-white);
+  height: 32px;
+}
+
+.mc-chart-bar {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 160px;
+  padding: 12px;
+  background: var(--stone-dark);
+  border: 4px solid var(--coal-black);
+  box-shadow: var(--shadow-block);
+}
+
+.mc-chart-bar__item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 40px;
+}
+
+.mc-chart-bar__bar {
+  width: 100%;
+  background: var(--grass-green);
+  border: 3px solid var(--coal-black);
+  position: relative;
+}
+
+.mc-chart-bar__bar::after {
+  content: attr(data-value);
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-heading);
+  font-size: 8px;
+  color: var(--coal-black);
+}
+
+.mc-chart-bar__label {
+  font-family: var(--font-heading);
+  font-size: 8px;
+  text-align: center;
+}

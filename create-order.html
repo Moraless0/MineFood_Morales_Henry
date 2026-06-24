@@ -3,132 +3,118 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crear Pedido - MineFood</title>
+  <title>Crear pedido — MineFood</title>
   <link rel="stylesheet" href="styles/base.css">
   <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="styles/minecraft-theme.css">
+  <link rel="stylesheet" href="styles/responsive.css">
 </head>
 <body>
   <div class="app-container">
     <aside class="sidebar">
-      <div class="sidebar__logo">🌱 MineFood</div>
-      <nav class="sidebar__nav">
-        <a href="dashboard.html" class="sidebar__item">📊 Dashboard</a>
-        <a href="inventory.html" class="sidebar__item">📦 Inventario</a>
-        <a href="dishes.html" class="sidebar__item">🍽️ Platillos</a>
-        <a href="orders.html" class="sidebar__item">🧾 Pedidos</a>
-        <a href="reports.html" class="sidebar__item">📈 Reportes</a>
-      </nav>
+      <div class="sidebar__logo">🍽️ MineFood</div>
+      <ul class="sidebar__nav">
+        <li class="nav-item"><a href="dashboard.html"><span class="nav-item__icon">🏠</span> Dashboard</a></li>
+        <li class="nav-item"><a href="inventory.html"><span class="nav-item__icon">📦</span> Inventario</a></li>
+        <li class="nav-item"><a href="dishes.html"><span class="nav-item__icon">🍽️</span> Platillos</a></li>
+        <li class="nav-item"><a href="orders.html"><span class="nav-item__icon">🧾</span> Pedidos</a></li>
+        <li class="nav-item"><a href="reports.html"><span class="nav-item__icon">📊</span> Reportes</a></li>
+      </ul>
       <div class="sidebar__footer">
-        <a href="index.html" class="sidebar__item sidebar__item--logout">🚪 Salir</a>
+        <a href="index.html" class="mc-button mc-button--stone" style="width: 100%;">Salir</a>
       </div>
     </aside>
 
-    <main class="main-content">
+    <div class="sidebar-overlay"></div>
+
+    <div class="main-wrapper">
       <header class="topbar">
-        <h1 class="topbar__title">🛒 Crear Pedido</h1>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <button class="hamburger"><span></span><span></span><span></span></button>
+          <span class="topbar__title">Crear pedido</span>
+        </div>
         <div class="topbar__actions">
-          <button class="mc-button mc-button--secondary">Cancelar</button>
+          <a href="orders.html" class="mc-button mc-button--secondary">Volver a pedidos</a>
         </div>
       </header>
 
-      <div class="content">
-        <div class="create-order-layout">
-          <div class="dishes-selection">
-            <h2 class="section-title">Seleccionar Platillos</h2>
-            <div class="dishes-grid">
-              <div class="dish-card dish-card--selectable">
-                <div class="dish-card__icon">🥕</div>
-                <div class="dish-card__name">Ensalada de Zanahoria</div>
-                <div class="dish-card__price">$12.50</div>
-                <div class="dish-card__quantity">
-                  <button class="qty-btn qty-btn--minus">-</button>
-                  <span class="qty-value">0</span>
-                  <button class="qty-btn qty-btn--plus">+</button>
+      <main class="main-content">
+        <div class="page-header">
+          <h1>🧾 Nuevo pedido</h1>
+        </div>
+
+        <div class="grid-2" style="align-items: flex-start;">
+          <div>
+            <h2 class="mc-card__title">Seleccionar platillos</h2>
+            <div class="mc-inventory-grid">
+              <div class="mc-inventory-item">
+                <div class="mc-slot">🥕</div>
+                <div class="mc-inventory-item__name">Ensalada de Zanahoria</div>
+                <div class="mc-inventory-item__meta">$12.50</div>
+                <div class="mc-quantity">
+                  <button>-</button>
+                  <input type="text" value="0" readonly>
+                  <button>+</button>
                 </div>
-                <div class="dish-card__stock">Stock: OK</div>
               </div>
-              <div class="dish-card dish-card--selectable">
-                <div class="dish-card__icon">🍄</div>
-                <div class="dish-card__name">Estofado de Champiñones</div>
-                <div class="dish-card__price">$15.00</div>
-                <div class="dish-card__quantity">
-                  <button class="qty-btn qty-btn--minus">-</button>
-                  <span class="qty-value">0</span>
-                  <button class="qty-btn qty-btn--plus">+</button>
+              <div class="mc-inventory-item">
+                <div class="mc-slot">🍄</div>
+                <div class="mc-inventory-item__name">Estofado de Champiñones</div>
+                <div class="mc-inventory-item__meta">$15.00</div>
+                <div class="mc-quantity">
+                  <button>-</button>
+                  <input type="text" value="0" readonly>
+                  <button>+</button>
                 </div>
-                <div class="dish-card__stock">Stock: OK</div>
               </div>
-              <div class="dish-card dish-card--selectable">
-                <div class="dish-card__icon">🍞</div>
-                <div class="dish-card__name">Pan Integral</div>
-                <div class="dish-card__price">$8.00</div>
-                <div class="dish-card__quantity">
-                  <button class="qty-btn qty-btn--minus">-</button>
-                  <span class="qty-value">0</span>
-                  <button class="qty-btn qty-btn--plus">+</button>
+              <div class="mc-inventory-item">
+                <div class="mc-slot">🍞</div>
+                <div class="mc-inventory-item__name">Pan del Aldeano</div>
+                <div class="mc-inventory-item__meta">$8.00</div>
+                <div class="mc-quantity">
+                  <button>-</button>
+                  <input type="text" value="0" readonly>
+                  <button>+</button>
                 </div>
-                <div class="dish-card__stock">Stock: OK</div>
               </div>
-              <div class="dish-card dish-card--selectable">
-                <div class="dish-card__icon">🍰</div>
-                <div class="dish-card__name">Pastel de Zanahoria</div>
-                <div class="dish-card__price">$18.00</div>
-                <div class="dish-card__quantity">
-                  <button class="qty-btn qty-btn--minus">-</button>
-                  <span class="qty-value">0</span>
-                  <button class="qty-btn qty-btn--plus">+</button>
+              <div class="mc-inventory-item">
+                <div class="mc-slot">🍰</div>
+                <div class="mc-inventory-item__name">Pastel de Bayas Dulces</div>
+                <div class="mc-inventory-item__meta">$18.00</div>
+                <div class="mc-quantity">
+                  <button>-</button>
+                  <input type="text" value="0" readonly>
+                  <button>+</button>
                 </div>
-                <div class="dish-card__stock">Stock: OK</div>
-              </div>
-              <div class="dish-card dish-card--selectable">
-                <div class="dish-card__icon">🍲</div>
-                <div class="dish-card__name">Sopa de Remolacha</div>
-                <div class="dish-card__price">$13.50</div>
-                <div class="dish-card__quantity">
-                  <button class="qty-btn qty-btn--minus">-</button>
-                  <span class="qty-value">0</span>
-                  <button class="qty-btn qty-btn--plus">+</button>
-                </div>
-                <div class="dish-card__stock dish-card__stock--low">Stock: Bajo</div>
-              </div>
-              <div class="dish-card dish-card--selectable">
-                <div class="dish-card__icon">🍹</div>
-                <div class="dish-card__name">Jugo de Melón</div>
-                <div class="dish-card__price">$6.00</div>
-                <div class="dish-card__quantity">
-                  <button class="qty-btn qty-btn--minus">-</button>
-                  <span class="qty-value">0</span>
-                  <button class="qty-btn qty-btn--plus">+</button>
-                </div>
-                <div class="dish-card__stock">Stock: OK</div>
               </div>
             </div>
           </div>
 
-          <div class="order-summary">
-            <div class="order-summary__card">
-              <h2 class="section-title">🧾 Resumen del Pedido</h2>
-              <div class="order-summary__field">
-                <label>Mesa:</label>
-                <input type="number" class="mc-input" value="1" min="1">
-              </div>
-              <div class="order-summary__items">
-                <div class="empty-state">No hay items seleccionados</div>
-              </div>
-              <div class="order-summary__total">
-                <span>Total:</span>
-                <span class="total-value">$0.00</span>
-              </div>
-              <div class="order-summary__notes">
-                <label>Notas:</label>
-                <textarea class="mc-textarea" placeholder="Notas adicionales..."></textarea>
-              </div>
-              <button class="mc-button mc-button--full">Confirmar Pedido</button>
+          <aside class="mc-order-summary">
+            <div class="mc-order-summary__title">Resumen del pedido</div>
+            <div class="mc-form-group">
+              <label class="mc-label">Mesa</label>
+              <input type="number" class="mc-input" value="3" min="1">
             </div>
-          </div>
+            <div class="mc-order-item">
+              <div class="mc-order-item__info">Estofado de Champiñones</div>
+              <div class="mc-order-item__qty">x2</div>
+            </div>
+            <div class="mc-order-item">
+              <div class="mc-order-item__info">Jugo de Melón Pixelado</div>
+              <div class="mc-order-item__qty">x1</div>
+            </div>
+            <div class="mc-order-summary__total">Total: $43.50</div>
+            <button class="mc-button" style="width: 100%; margin-top: 12px;">Confirmar pedido</button>
+          </aside>
         </div>
-      </div>
-    </main>
+      </main>
+    </div>
   </div>
+
+  <script src="js/navigation.js"></script>
+  <script src="js/modals.js"></script>
+  <script src="js/data-demo.js"></script>
 </body>
 </html>
