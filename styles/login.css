@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600&display=swap');
+
+:root {
+  --grass-green: #5D9E43;
+  --wood-brown: #8B5A2B;
+  --wood-dark: #4C2E12;
+  --stone-gray: #7D7D7D;
+  --stone-dark: #3E3E3E;
+  --coal-black: #0f0f14;
+  --font-heading: 'Press Start 2P', cursive;
+  --font-body: 'Inter', sans-serif;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-body);
+  color: #fff;
+  background: var(--coal-black);
+}
+
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.bg-fallback {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(circle at top, #1a281d 0%, #090a0f 70%);
+  display: none;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 36px;
+  background: rgba(20, 20, 25, 0.65);
+  border: 4px solid rgba(92, 58, 27, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 24px 65px rgba(0, 0, 0, 0.65), inset 0 0 0 2px rgba(255, 255, 255, 0.06);
+  text-align: center;
+  animation: slideUp 0.9s ease-out;
+}
+
+.login-card__logo {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  color: #fff;
+  margin-bottom: 10px;
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.75);
+}
+
+.login-card__subtitle {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.78);
+  margin-bottom: 28px;
+}
+
+.mc-label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 8px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
+}
+
+.mc-input {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+  font-size: 15px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.35);
+  border: 3px solid var(--wood-dark);
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mc-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.mc-input:focus {
+  border-color: var(--grass-green);
+  box-shadow: 0 0 12px rgba(93, 158, 67, 0.35);
+}
+
+.mc-button {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 12px;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #fff;
+  background: linear-gradient(180deg, var(--grass-green) 0%, #3a7428 100%);
+  border: 3px solid #214016;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 6px 0 #1b2d12, 0 10px 20px rgba(0, 0, 0, 0.45);
+  transition: transform 0.1s, filter 0.2s, box-shadow 0.1s;
+}
+
+.mc-button:hover {
+  filter: brightness(1.08);
+}
+
+.mc-button:active {
+  transform: translateY(5px);
+  box-shadow: 0 0 0 #1b2d12, 0 4px 12px rgba(0, 0, 0, 0.45);
+}
+
+.mc-button--secondary {
+  background: linear-gradient(180deg, var(--stone-gray) 0%, var(--stone-dark) 100%);
+  border-color: #2d2d2d;
+  box-shadow: 0 6px 0 #232323, 0 10px 20px rgba(0, 0, 0, 0.45);
+}
+
+.login-card__footer {
+  margin-top: 18px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 28px 24px;
+  }
+
+  .login-card__logo {
+    font-size: 18px;
+  }
+
+  .mc-button {
+    font-size: 10px;
+  }
+}

@@ -5,27 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MineFood</title>
   <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/login.css">
 </head>
 <body>
   <canvas id="bg-canvas"></canvas>
+  <div class="bg-fallback" id="bg-fallback"></div>
+
   <div class="overlay">
-    <div class="login-container">
-      <h1>MineFood</h1>
+    <div class="login-card">
+      <div class="login-card__logo">🍽️ MineFood</div>
+      <p class="login-card__subtitle">Administra pedidos, inventario y reportes desde un panel inspirado en Minecraft.</p>
+
       <form class="login-form">
-        <input type="text" placeholder="Usuario" required>
-        <input type="password" placeholder="Contraseña" required>
-        <button type="submit">Iniciar sesión</button>
+        <label class="mc-label" for="usuario">Usuario</label>
+        <input id="usuario" class="mc-input" type="text" placeholder="chef.minefood" required>
+
+        <label class="mc-label" for="contrasena">Contraseña</label>
+        <input id="contrasena" class="mc-input" type="password" placeholder="••••••••" required>
+
+        <button type="submit" class="mc-button">Entrar al dashboard</button>
+        <button type="button" class="mc-button mc-button--secondary">Ver menú</button>
       </form>
+
+      <p class="login-card__footer">Prototipo educativo inspirado en Minecraft. No es un producto oficial.</p>
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
   <script src="js/background.js"></script>
   <script>
-    document.querySelector('.login-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      window.location.href = 'dashboard.html';
-    });
+    const loginForm = document.querySelector('.login-form');
+    if (loginForm) {
+      loginForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        window.location.href = 'dashboard.html';
+      });
+    }
   </script>
 </body>
 </html>
