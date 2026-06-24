@@ -30,6 +30,12 @@
 
   camera.position.set(0, 0, 0);
 
+  // Rotación inicial aleatoria
+  const initialRotY = Math.random() * Math.PI * 2;
+  const initialRotX = (Math.random() - 0.5) * Math.PI * 0.5;
+  camera.rotation.y = initialRotY;
+  camera.rotation.x = initialRotX;
+
   const startTime = Date.now();
 
   function animate() {
