@@ -39,9 +39,9 @@
 .loading-screen__bar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #5a1a1a 0%, #8a2a2a 50%, #5a1a1a 100%);
+  background: linear-gradient(90deg, #a0a0a0 0%, #ffffff 50%, #a0a0a0 100%);
   animation: loading 3s ease-out forwards;
-  box-shadow: 0 0 10px rgba(138, 42, 42, 0.5);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 .loading-screen__text {
