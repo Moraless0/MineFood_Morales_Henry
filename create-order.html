@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear Pedido - MineFood</title>
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/layout.css">
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="sidebar__logo">🌱 MineFood</div>
+      <nav class="sidebar__nav">
+        <a href="dashboard.html" class="sidebar__item">📊 Dashboard</a>
+        <a href="inventory.html" class="sidebar__item">📦 Inventario</a>
+        <a href="dishes.html" class="sidebar__item">🍽️ Platillos</a>
+        <a href="orders.html" class="sidebar__item">🧾 Pedidos</a>
+        <a href="reports.html" class="sidebar__item">📈 Reportes</a>
+      </nav>
+      <div class="sidebar__footer">
+        <a href="index.html" class="sidebar__item sidebar__item--logout">🚪 Salir</a>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <h1 class="topbar__title">🛒 Crear Pedido</h1>
+        <div class="topbar__actions">
+          <button class="mc-button mc-button--secondary">Cancelar</button>
+        </div>
+      </header>
+
+      <div class="content">
+        <div class="create-order-layout">
+          <div class="dishes-selection">
+            <h2 class="section-title">Seleccionar Platillos</h2>
+            <div class="dishes-grid">
+              <div class="dish-card dish-card--selectable">
+                <div class="dish-card__icon">🥕</div>
+                <div class="dish-card__name">Ensalada de Zanahoria</div>
+                <div class="dish-card__price">$12.50</div>
+                <div class="dish-card__quantity">
+                  <button class="qty-btn qty-btn--minus">-</button>
+                  <span class="qty-value">0</span>
+                  <button class="qty-btn qty-btn--plus">+</button>
+                </div>
+                <div class="dish-card__stock">Stock: OK</div>
+              </div>
+              <div class="dish-card dish-card--selectable">
+                <div class="dish-card__icon">🍄</div>
+                <div class="dish-card__name">Estofado de Champiñones</div>
+                <div class="dish-card__price">$15.00</div>
+                <div class="dish-card__quantity">
+                  <button class="qty-btn qty-btn--minus">-</button>
+                  <span class="qty-value">0</span>
+                  <button class="qty-btn qty-btn--plus">+</button>
+                </div>
+                <div class="dish-card__stock">Stock: OK</div>
+              </div>
+              <div class="dish-card dish-card--selectable">
+                <div class="dish-card__icon">🍞</div>
+                <div class="dish-card__name">Pan Integral</div>
+                <div class="dish-card__price">$8.00</div>
+                <div class="dish-card__quantity">
+                  <button class="qty-btn qty-btn--minus">-</button>
+                  <span class="qty-value">0</span>
+                  <button class="qty-btn qty-btn--plus">+</button>
+                </div>
+                <div class="dish-card__stock">Stock: OK</div>
+              </div>
+              <div class="dish-card dish-card--selectable">
+                <div class="dish-card__icon">🍰</div>
+                <div class="dish-card__name">Pastel de Zanahoria</div>
+                <div class="dish-card__price">$18.00</div>
+                <div class="dish-card__quantity">
+                  <button class="qty-btn qty-btn--minus">-</button>
+                  <span class="qty-value">0</span>
+                  <button class="qty-btn qty-btn--plus">+</button>
+                </div>
+                <div class="dish-card__stock">Stock: OK</div>
+              </div>
+              <div class="dish-card dish-card--selectable">
+                <div class="dish-card__icon">🍲</div>
+                <div class="dish-card__name">Sopa de Remolacha</div>
+                <div class="dish-card__price">$13.50</div>
+                <div class="dish-card__quantity">
+                  <button class="qty-btn qty-btn--minus">-</button>
+                  <span class="qty-value">0</span>
+                  <button class="qty-btn qty-btn--plus">+</button>
+                </div>
+                <div class="dish-card__stock dish-card__stock--low">Stock: Bajo</div>
+              </div>
+              <div class="dish-card dish-card--selectable">
+                <div class="dish-card__icon">🍹</div>
+                <div class="dish-card__name">Jugo de Melón</div>
+                <div class="dish-card__price">$6.00</div>
+                <div class="dish-card__quantity">
+                  <button class="qty-btn qty-btn--minus">-</button>
+                  <span class="qty-value">0</span>
+                  <button class="qty-btn qty-btn--plus">+</button>
+                </div>
+                <div class="dish-card__stock">Stock: OK</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="order-summary">
+            <div class="order-summary__card">
+              <h2 class="section-title">🧾 Resumen del Pedido</h2>
+              <div class="order-summary__field">
+                <label>Mesa:</label>
+                <input type="number" class="mc-input" value="1" min="1">
+              </div>
+              <div class="order-summary__items">
+                <div class="empty-state">No hay items seleccionados</div>
+              </div>
+              <div class="order-summary__total">
+                <span>Total:</span>
+                <span class="total-value">$0.00</span>
+              </div>
+              <div class="order-summary__notes">
+                <label>Notas:</label>
+                <textarea class="mc-textarea" placeholder="Notas adicionales..."></textarea>
+              </div>
+              <button class="mc-button mc-button--full">Confirmar Pedido</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
