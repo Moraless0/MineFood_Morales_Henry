@@ -18,7 +18,7 @@
 }
 
 .loading-screen__logo {
-  width: 300px;
+  width: 400px;
   height: auto;
   image-rendering: pixelated;
   margin-bottom: 30px;
@@ -84,11 +84,12 @@
 
 @media (max-width: 480px) {
   .loading-screen__logo {
-    width: 200px;
+    width: 250px;
   }
 
   .loading-screen__progress {
-    width: 280px;
+    width: 320px;
+    height: 25px;
   }
 }
 
