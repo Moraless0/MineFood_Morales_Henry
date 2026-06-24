@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - MineFood</title>
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/layout.css">
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="sidebar__logo">🌱 MineFood</div>
+      <nav class="sidebar__nav">
+        <a href="dashboard.html" class="sidebar__item active">📊 Dashboard</a>
+        <a href="inventory.html" class="sidebar__item">📦 Inventario</a>
+        <a href="dishes.html" class="sidebar__item">🍽️ Platillos</a>
+        <a href="orders.html" class="sidebar__item">🧾 Pedidos</a>
+        <a href="reports.html" class="sidebar__item">📈 Reportes</a>
+      </nav>
+      <div class="sidebar__footer">
+        <a href="index.html" class="sidebar__item sidebar__item--logout">🚪 Salir</a>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <h1 class="topbar__title">Dashboard</h1>
+        <div class="topbar__actions">
+          <button class="mc-button">+ Nuevo Pedido</button>
+        </div>
+      </header>
+
+      <div class="content">
+        <div class="alert alert--warning">
+          ⚠️ Alerta: remolacha y champiñones bajos en stock
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-card__icon">📦</div>
+            <div class="stat-card__value">102</div>
+            <div class="stat-card__label">Insumos</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__icon">🧾</div>
+            <div class="stat-card__value">2</div>
+            <div class="stat-card__label">Pedidos hoy</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__icon">🍽️</div>
+            <div class="stat-card__value">6</div>
+            <div class="stat-card__label">Platillos</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__icon">💰</div>
+            <div class="stat-card__value">$138.50</div>
+            <div class="stat-card__label">Ventas hoy</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3 class="card__title">🔥 Platillos más vendidos</h3>
+            <ul class="list">
+              <li class="list__item">Jugo melón x3</li>
+              <li class="list__item">Estofado x2</li>
+              <li class="list__item">Pastel x2</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3 class="card__title">🚨 Insumos bajos</h3>
+            <ul class="list">
+              <li class="list__item">Champiñones: 5kg</li>
+              <li class="list__item">Remolacha: 6kg</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="quick-actions">
+          <h3 class="quick-actions__title">⚡ Accesos rápidos</h3>
+          <div class="quick-actions__grid">
+            <a href="inventory.html" class="quick-action">📦 Inventario</a>
+            <a href="dishes.html" class="quick-action">🍽️ Platillos</a>
+            <a href="orders.html" class="quick-action">🧾 Pedidos</a>
+            <a href="reports.html" class="quick-action">📈 Reportes</a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
