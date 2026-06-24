@@ -12,6 +12,17 @@
   <canvas id="bg-canvas"></canvas>
   <div class="bg-fallback" id="bg-fallback"></div>
 
+  <!-- Pantalla de carga estilo Minecraft -->
+  <div class="loading-screen" id="loading-screen">
+    <div class="loading-screen__content">
+      <img src="assets/images/minefood.png" alt="MineFood" class="loading-screen__logo">
+      <div class="loading-screen__progress">
+        <div class="loading-screen__bar"></div>
+      </div>
+      <p class="loading-screen__text">Cargando...</p>
+    </div>
+  </div>
+
   <div class="minecraft-menu">
     <div class="minecraft-menu__logo">
       <img src="assets/images/minefood_title.png" alt="MineFood" class="minecraft-menu__logo-img">
@@ -44,13 +55,27 @@
       </div>
     </div>
 
-    <p class="minecraft-menu__footer">MineFood - Prototipo educativo</p>
+    <p class="minecraft-menu__footer">MineFood - Henry Morales</p>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
   <script src="js/background.js"></script>
   <script src="js/auth.js"></script>
   <script>
+    // Pantalla de carga - solo mostrar la primera vez
+    const loadingScreen = document.getElementById('loading-screen');
+    const FIRST_VISIT_KEY = 'minefood_first_visit';
+
+    if (!localStorage.getItem(FIRST_VISIT_KEY)) {
+      localStorage.setItem(FIRST_VISIT_KEY, 'true');
+      // La pantalla de carga se muestra automáticamente y desaparece con la animación CSS
+    } else {
+      // Ocultar pantalla de carga si ya visitó antes
+      if (loadingScreen) {
+        loadingScreen.style.display = 'none';
+      }
+    }
+
     // Manejar modal de login
     const loginModal = document.getElementById('login-modal');
     const btnLogin = document.getElementById('btn-login');

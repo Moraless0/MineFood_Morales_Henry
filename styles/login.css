@@ -1,5 +1,97 @@
 /* MineFood - Menú estilo Minecraft */
 
+/* Pantalla de carga estilo Minecraft */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #2d0a0a;
+  animation: fadeOut 0.5s ease-out 2s forwards;
+}
+
+.loading-screen__content {
+  text-align: center;
+  animation: slideUp 0.8s ease-out;
+}
+
+.loading-screen__logo {
+  width: 300px;
+  height: auto;
+  image-rendering: pixelated;
+  margin-bottom: 30px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+.loading-screen__progress {
+  width: 400px;
+  height: 20px;
+  background: #1a0606;
+  border: 3px solid #4a1a1a;
+  border-radius: 2px;
+  margin: 0 auto 20px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.loading-screen__bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #5a1a1a 0%, #8a2a2a 50%, #5a1a1a 100%);
+  animation: loading 2s ease-out forwards;
+  box-shadow: 0 0 10px rgba(138, 42, 42, 0.5);
+}
+
+.loading-screen__text {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  color: #e0e0e0;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+
+@keyframes loading {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .loading-screen__logo {
+    width: 200px;
+  }
+
+  .loading-screen__progress {
+    width: 280px;
+  }
+}
+
 html, body {
   height: 100%;
   overflow: hidden;
@@ -14,7 +106,7 @@ html, body {
   width: 100%;
   height: 100%;
   z-index: 0;
-  filter: blur(4px);
+  filter: blur(9px);
 }
 
 .bg-fallback {
