@@ -13,26 +13,24 @@
   };
 
   function renderOrdersTable(filter = '') {
-    const tbody = document.getElementById('orders-table-body');
-    if (!tbody) return;
+    const grid = document.getElementById('orders-grid');
+    if (!grid) return;
 
     let orders = Orders.getAll();
 
-    // Filtrar por estado si se selecciona
     if (filter) {
       orders = orders.filter(order => order.status === filter);
     }
 
     if (orders.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="7" class="mc-empty-state">No hay pedidos con este filtro. Crea un pedido nuevo para empezar.</td></tr>';
+      grid.innerHTML = '<div class="mc-empty-state">No hay pedidos con este filtro. Crea un pedido nuevo para empezar.</div>';
       return;
     }
 
-    tbody.innerHTML = orders.map(order => {
+    grid.innerHTML = orders.map(order => {
       const statusInfo = statusMap[order.status] || { text: order.status, class: '' };
       const statusBadge = `<span class="mc-badge ${statusInfo.class}">${statusInfo.text}</span>`;
       
-      // Generar detalle de items
       const itemsDetail = order.items.map(item => {
         const dish = Dishes.getByCode(item.code);
         const dishName = dish ? dish.name : item.code;
@@ -40,18 +38,17 @@
       }).join(', ');
 
       return `
-        <tr>
-          <td data-label="ID">${order.id}</td>
-          <td data-label="Mesa">${order.table || order.customer || 'N/A'}</td>
-          <td data-label="Estado">${statusBadge}</td>
-          <td data-label="Pago">${getPaymentMethodLabel(order.paymentMethod)}</td>
-          <td data-label="Total">$${order.total.toFixed(2)}</td>
-          <td data-label="Detalle">${itemsDetail}</td>
-          <td data-label="Acciones">
-            <button class="mc-button mc-button--small mc-button--secondary" onclick="updateOrderStatus('${order.id}')">Actualizar</button>
-            <button class="mc-button mc-button--small mc-button--danger" onclick="deleteOrder('${order.id}')">Eliminar</button>
-          </td>
-        </tr>
+        <div class="mc-inventory-item">
+          <div class="mc-inventory-item__name">${order.id}</div>
+          <div class="mc-inventory-item__meta">${order.table || order.customer || 'N/A'}</div>
+          <div style="display: flex; align-items: center; gap: 6px; margin: 4px 0;">
+            ${statusBadge}
+          </div>
+          <div class="mc-inventory-item__meta">$${order.total.toFixed(2)}</div>
+          <div class="mc-inventory-item__meta" style="font-size: 10px;">${itemsDetail}</div>
+          <button class="mc-button mc-button--secondary" onclick="updateOrderStatus('${order.id}')">Actualizar</button>
+          <button class="mc-button mc-button--danger" onclick="deleteOrder('${order.id}')" style="margin-top: 8px;">Eliminar</button>
+        </div>
       `;
     }).join('');
   }
