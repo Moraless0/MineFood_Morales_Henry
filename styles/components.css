@@ -273,6 +273,13 @@
   border-bottom: none;
 }
 
+.mc-list__icon {
+  width: 20px;
+  height: 20px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
 .mc-table-wrapper {
   width: 100%;
   overflow-x: auto;
