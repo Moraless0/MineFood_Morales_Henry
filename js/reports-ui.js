@@ -1,62 +1,58 @@
 // UI para reportes dinámicos basados en datos reales
 
-document.addEventListener('DOMContentLoaded', function() {
+function getPaidOrders() {
+  return Orders.getAll().filter(order => order.status === 'paid');
+}
+
+function formatCurrency(value) {
+  return `$${Number(value || 0).toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+}
+
+function refreshReports() {
   updateReportStats();
   updateTopDishes();
   updateIngredientUsage();
-});
+}
 
-// Actualizar cuando la vista de reportes se active
+document.addEventListener('DOMContentLoaded', refreshReports);
+
 window.addEventListener('viewChange', function(e) {
   if (e.detail.viewId === 'view-reports') {
-    updateReportStats();
-    updateTopDishes();
-    updateIngredientUsage();
+    refreshReports();
   }
 });
 
+window.addEventListener('reportsChanged', refreshReports);
+
 function updateReportStats() {
-  const stats = Orders.getStats();
-  const orders = Orders.getAll();
-
-  // Ventas totales
-  const salesValue = document.querySelector('.mc-stat-card__value');
-  if (salesValue && salesValue.parentElement.querySelector('.mc-stat-card__label')?.textContent.includes('Ventas totales')) {
-    salesValue.textContent = `$${parseFloat(stats.totalSales).toLocaleString('es-MX', { minimumFractionDigits: 2 })}`;
-  }
-
-  // Pedidos
-  const ordersValue = document.querySelectorAll('.mc-stat-card__value')[1];
-  if (ordersValue && ordersValue.parentElement.querySelector('.mc-stat-card__label')?.textContent.includes('Pedidos')) {
-    ordersValue.textContent = stats.totalOrders;
-  }
-
-  // Items vendidos
+  const orders = getPaidOrders();
+  const totalSales = orders.reduce((sum, order) => sum + Number(order.total || 0), 0);
+  const totalOrders = orders.length;
   const itemsSold = orders.reduce((sum, order) => {
-    return sum + order.items.reduce((itemSum, item) => itemSum + item.quantity, 0);
+    return sum + order.items.reduce((itemSum, item) => itemSum + Number(item.quantity || 0), 0);
   }, 0);
-  const itemsValue = document.querySelectorAll('.mc-stat-card__value')[2];
-  if (itemsValue && itemsValue.parentElement.querySelector('.mc-stat-card__label')?.textContent.includes('Items vendidos')) {
-    itemsValue.textContent = itemsSold;
-  }
+  const avg = totalOrders > 0 ? totalSales / totalOrders : 0;
 
-  // Promedio por pedido
-  const avgValue = document.querySelectorAll('.mc-stat-card__value')[3];
-  if (avgValue && avgValue.parentElement.querySelector('.mc-stat-card__label')?.textContent.includes('Promedio')) {
-    const avg = stats.totalOrders > 0 ? (parseFloat(stats.totalSales) / stats.totalOrders).toFixed(2) : '0.00';
-    avgValue.textContent = `$${parseFloat(avg).toLocaleString('es-MX', { minimumFractionDigits: 2 })}`;
-  }
+  const salesValue = document.getElementById('report-total-sales');
+  const ordersValue = document.getElementById('report-total-orders');
+  const itemsValue = document.getElementById('report-items-sold');
+  const avgValue = document.getElementById('report-avg-order');
+
+  if (salesValue) salesValue.textContent = formatCurrency(totalSales);
+  if (ordersValue) ordersValue.textContent = totalOrders;
+  if (itemsValue) itemsValue.textContent = itemsSold;
+  if (avgValue) avgValue.textContent = formatCurrency(avg);
 }
 
 function updateTopDishes() {
-  const orders = Orders.getAll();
+  const orders = getPaidOrders();
   const dishCounts = {};
 
   orders.forEach(order => {
     order.items.forEach(item => {
       const dish = Dishes.getByCode(item.code);
       if (dish) {
-        dishCounts[dish.name] = (dishCounts[dish.name] || 0) + item.quantity;
+        dishCounts[dish.name] = (dishCounts[dish.name] || 0) + Number(item.quantity || 0);
       }
     });
   });
@@ -65,10 +61,15 @@ function updateTopDishes() {
     .sort((a, b) => b[1] - a[1])
     .slice(0, 4);
 
-  const chartContainer = document.querySelector('.mc-chart-bar');
+  const chartContainer = document.getElementById('report-top-dishes');
   if (!chartContainer) return;
 
-  const max = sorted.length > 0 ? sorted[0][1] : 1;
+  if (sorted.length === 0) {
+    chartContainer.innerHTML = '<div class="mc-empty-state">Sin ventas pagadas aún.</div>';
+    return;
+  }
+
+  const max = sorted[0][1];
 
   chartContainer.innerHTML = sorted.map(([name, count]) => {
     const height = (count / max) * 100;
@@ -83,7 +84,7 @@ function updateTopDishes() {
 }
 
 function updateIngredientUsage() {
-  const orders = Orders.getAll();
+  const orders = getPaidOrders();
   const ingredientUsage = {};
 
   orders.forEach(order => {
@@ -91,7 +92,7 @@ function updateIngredientUsage() {
       const dish = Dishes.getByCode(item.code);
       if (dish && dish.ingredients) {
         Object.entries(dish.ingredients).forEach(([code, amount]) => {
-          const totalAmount = amount * item.quantity;
+          const totalAmount = Number(amount || 0) * Number(item.quantity || 0);
           ingredientUsage[code] = (ingredientUsage[code] || 0) + totalAmount;
         });
       }
@@ -102,15 +103,15 @@ function updateIngredientUsage() {
     .sort((a, b) => b[1] - a[1])
     .slice(0, 4);
 
-  const tbody = document.querySelector('.mc-table tbody');
+  const tbody = document.getElementById('report-ingredient-usage');
   if (!tbody) return;
 
   if (sorted.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="3" class="mc-empty-state">Sin datos de consumo aún.</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="3" class="mc-empty-state">Sin consumo por ventas pagadas aún.</td></tr>';
     return;
   }
 
-  const max = sorted.length > 0 ? sorted[0][1] : 1;
+  const max = sorted[0][1];
 
   tbody.innerHTML = sorted.map(([code, amount]) => {
     const ingredient = Inventory.getByCode(code);

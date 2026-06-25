@@ -353,6 +353,7 @@
         Tables.updateStatus(tableNumber, 'free');
         
         renderTablesGrid();
+        window.dispatchEvent(new CustomEvent('reportsChanged'));
         delete paymentModal.dataset.orderId;
         delete paymentModal.dataset.tableNumber;
         paymentModal.classList.remove('is-open');
