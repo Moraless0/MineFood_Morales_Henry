@@ -139,6 +139,7 @@
   // Inicializar
   document.addEventListener('DOMContentLoaded', function() {
     renderDishesGrid();
+    updateOrderSummary();
 
     // Conectar botón confirmar pedido
     const confirmButton = document.querySelector('.mc-order-summary .mc-button');

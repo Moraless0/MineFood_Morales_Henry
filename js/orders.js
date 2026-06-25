@@ -12,12 +12,34 @@ const Orders = {
       const demoOrders = window.mcData?.orders || [];
       localStorage.setItem(this.ORDERS_KEY, JSON.stringify(demoOrders));
       console.log('Pedidos inicializados con datos de demo');
+      return;
     }
+
+    const normalizedOrders = this.normalizeOrders(JSON.parse(existingOrders));
+    localStorage.setItem(this.ORDERS_KEY, JSON.stringify(normalizedOrders));
+  },
+
+  // Convertir pedidos antiguos al formato actual
+  normalizeOrders(orders) {
+    const dishes = window.mcData?.dishes || [];
+    return orders.map(order => ({
+      ...order,
+      items: (order.items || []).map(item => {
+        if (item.code && item.quantity !== undefined) return item;
+
+        const dish = dishes.find(demoDish => demoDish.name === item.name);
+        return {
+          code: dish ? dish.code : item.code,
+          quantity: item.quantity || item.qty || 1
+        };
+      }).filter(item => item.code)
+    }));
   },
 
   // Obtener todos los pedidos
   getAll() {
-    return JSON.parse(localStorage.getItem(this.ORDERS_KEY)) || [];
+    const orders = JSON.parse(localStorage.getItem(this.ORDERS_KEY)) || [];
+    return this.normalizeOrders(orders);
   },
 
   // Obtener pedido por ID
@@ -150,7 +172,7 @@ const Orders = {
   // Obtener estadísticas de pedidos
   getStats() {
     const orders = this.getAll();
-    const totalSales = orders.reduce((sum, order) => sum + order.total, 0);
+    const totalSales = orders.reduce((sum, order) => sum + Number(order.total || 0), 0);
     const statusCounts = {
       pending: 0,
       preparing: 0,

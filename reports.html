@@ -1,19 +1,35 @@
 <!DOCTYPE html>
+
 <html lang="es">
+
 <head>
+
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Reportes — MineFood</title>
+
   <link rel="icon" type="image/x-icon" href="assets/icons/minecraft_title.ico">
+
   <link rel="stylesheet" href="styles/base.css">
+
   <link rel="stylesheet" href="styles/layout.css">
+
   <link rel="stylesheet" href="styles/components.css">
+
   <link rel="stylesheet" href="styles/minecraft-theme.css">
+
   <link rel="stylesheet" href="styles/responsive.css">
+
 </head>
+
 <body>
+
   <div class="app-container">
+
     <aside class="sidebar">
+
       <div class="sidebar__logo">
         <img src="assets/images/minefood_title.png" alt="MineFood" class="sidebar__logo-img">
       </div>
@@ -55,17 +71,29 @@
           Salir
         </a>
       </div>
+
     </aside>
+
+
 
     <div class="sidebar-overlay"></div>
 
+
+
     <div class="main-wrapper">
+
       <header class="topbar">
+
         <div style="display:flex; align-items:center; gap:12px;">
+
           <button class="hamburger"><span></span><span></span><span></span></button>
+
           <span class="topbar__title">Reportes</span>
+
         </div>
+
         <div class="topbar__actions">
+
           <div class="mc-hearts">
             <img src="assets/1.21.11/gui/sprites/hud/heart/full.png" alt="" class="mc-hearts__heart">
             <img src="assets/1.21.11/gui/sprites/hud/heart/full.png" alt="" class="mc-hearts__heart">
@@ -81,125 +109,241 @@
             <img src="assets/1.21.11/gui/sprites/hud/food_full.png" alt="" class="mc-hunger__food">
           </div>
           <select class="mc-input mc-select">
+
             <option>Últimos 7 días</option>
+
             <option>Últimos 30 días</option>
+
             <option>Este mes</option>
+
           </select>
+
         </div>
+
       </header>
 
+
+
       <main class="main-content">
+
         <div class="grid-4" style="margin-bottom: 24px;">
+
           <div class="mc-card">
+
             <div class="mc-stat-card">
+
               <div class="mc-slot">
                 <img src="assets/1.21.11/items/gold_ingot.png" alt="" class="mc-slot__img">
               </div>
+
               <div>
+
                 <div class="mc-stat-card__value">$1,245.50</div>
+
                 <div class="mc-stat-card__label">Ventas totales</div>
+
               </div>
+
             </div>
+
           </div>
+
           <div class="mc-card">
+
             <div class="mc-stat-card">
+
               <div class="mc-slot">
                 <img src="assets/1.21.11/items/book.png" alt="" class="mc-slot__img">
               </div>
+
               <div>
+
                 <div class="mc-stat-card__value">45</div>
+
                 <div class="mc-stat-card__label">Pedidos</div>
+
               </div>
+
             </div>
+
           </div>
+
           <div class="mc-card">
+
             <div class="mc-stat-card">
+
               <div class="mc-slot">
                 <img src="assets/1.21.11/items/cake.png" alt="" class="mc-slot__img">
               </div>
+
               <div>
+
                 <div class="mc-stat-card__value">120</div>
+
                 <div class="mc-stat-card__label">Items vendidos</div>
+
               </div>
+
             </div>
+
           </div>
+
           <div class="mc-card">
+
             <div class="mc-stat-card">
+
               <div class="mc-slot">
                 <img src="assets/1.21.11/items/emerald.png" alt="" class="mc-slot__img">
               </div>
+
               <div>
+
                 <div class="mc-stat-card__value">$27.68</div>
+
                 <div class="mc-stat-card__label">Promedio / pedido</div>
+
               </div>
+
             </div>
+
           </div>
+
         </div>
+
+
 
         <div class="grid-2">
-          <div class="mc-card">
-            <div class="mc-card__title">🔥 Platillos más vendidos</div>
-            <div class="mc-chart-bar">
-              <div class="mc-chart-bar__item">
-                <div class="mc-chart-bar__bar" data-value="32" style="height: 80%;"></div>
-                <div class="mc-chart-bar__label">Jugo</div>
-              </div>
-              <div class="mc-chart-bar__item">
-                <div class="mc-chart-bar__bar" data-value="24" style="height: 60%;"></div>
-                <div class="mc-chart-bar__label">Estofado</div>
-              </div>
-              <div class="mc-chart-bar__item">
-                <div class="mc-chart-bar__bar" data-value="18" style="height: 45%;"></div>
-                <div class="mc-chart-bar__label">Pastel</div>
-              </div>
-              <div class="mc-chart-bar__item">
-                <div class="mc-chart-bar__bar" data-value="12" style="height: 30%;"></div>
-                <div class="mc-chart-bar__label">Ensalada</div>
-              </div>
-            </div>
-          </div>
 
           <div class="mc-card">
-            <div class="mc-card__title">📦 Consumo de insumos</div>
-            <table class="mc-table">
-              <thead>
-                <tr>
-                  <th>Insumo</th>
-                  <th>Usado</th>
-                  <th>%</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td data-label="Insumo">Zanahoria</td>
-                  <td data-label="Usado">15 kg</td>
-                  <td data-label="%">45%</td>
-                </tr>
-                <tr>
-                  <td data-label="Insumo">Champiñones</td>
-                  <td data-label="Usado">12 kg</td>
-                  <td data-label="%">60%</td>
-                </tr>
-                <tr>
-                  <td data-label="Insumo">Trigo</td>
-                  <td data-label="Usado">8 kg</td>
-                  <td data-label="%">25%</td>
-                </tr>
-                <tr>
-                  <td data-label="Insumo">Remolacha</td>
-                  <td data-label="Usado">10 kg</td>
-                  <td data-label="%">50%</td>
-                </tr>
-              </tbody>
-            </table>
+
+            <div class="mc-card__title">🔥 Platillos más vendidos</div>
+
+            <div class="mc-chart-bar">
+
+              <div class="mc-chart-bar__item">
+
+                <div class="mc-chart-bar__bar" data-value="32" style="height: 80%;"></div>
+
+                <div class="mc-chart-bar__label">Jugo</div>
+
+              </div>
+
+              <div class="mc-chart-bar__item">
+
+                <div class="mc-chart-bar__bar" data-value="24" style="height: 60%;"></div>
+
+                <div class="mc-chart-bar__label">Estofado</div>
+
+              </div>
+
+              <div class="mc-chart-bar__item">
+
+                <div class="mc-chart-bar__bar" data-value="18" style="height: 45%;"></div>
+
+                <div class="mc-chart-bar__label">Pastel</div>
+
+              </div>
+
+              <div class="mc-chart-bar__item">
+
+                <div class="mc-chart-bar__bar" data-value="12" style="height: 30%;"></div>
+
+                <div class="mc-chart-bar__label">Ensalada</div>
+
+              </div>
+
+            </div>
+
           </div>
+
+
+
+          <div class="mc-card">
+
+            <div class="mc-card__title">📦 Consumo de insumos</div>
+
+            <table class="mc-table">
+
+              <thead>
+
+                <tr>
+
+                  <th>Insumo</th>
+
+                  <th>Usado</th>
+
+                  <th>%</th>
+
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+                <tr>
+
+                  <td data-label="Insumo">Zanahoria</td>
+
+                  <td data-label="Usado">15 kg</td>
+
+                  <td data-label="%">45%</td>
+
+                </tr>
+
+                <tr>
+
+                  <td data-label="Insumo">Champiñones</td>
+
+                  <td data-label="Usado">12 kg</td>
+
+                  <td data-label="%">60%</td>
+
+                </tr>
+
+                <tr>
+
+                  <td data-label="Insumo">Trigo</td>
+
+                  <td data-label="Usado">8 kg</td>
+
+                  <td data-label="%">25%</td>
+
+                </tr>
+
+                <tr>
+
+                  <td data-label="Insumo">Remolacha</td>
+
+                  <td data-label="Usado">10 kg</td>
+
+                  <td data-label="%">50%</td>
+
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
         </div>
+
       </main>
+
     </div>
+
   </div>
 
+
+
+  <script src="js/data-demo.js"></script>
+  <script src="js/inventory.js"></script>
+  <script src="js/dishes.js"></script>
+  <script src="js/orders.js"></script>
   <script src="js/navigation.js"></script>
   <script src="js/modals.js"></script>
-  <script src="js/data-demo.js"></script>
+
 </body>
+
 </html>
+

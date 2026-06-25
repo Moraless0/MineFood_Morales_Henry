@@ -56,6 +56,12 @@
   border: 4px solid var(--wood-dark);
   box-shadow: var(--shadow-block);
   padding: 16px;
+  transition: transform 0.08s ease, filter 0.08s ease;
+}
+
+.mc-card:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.02);
 }
 
 .mc-card__title {
@@ -63,6 +69,11 @@
   font-size: 12px;
   margin-bottom: 12px;
   color: var(--coal-black);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.12);
 }
 
 .mc-slot {
@@ -77,6 +88,12 @@
   font-size: 28px;
   position: relative;
   flex-shrink: 0;
+  transition: transform 0.08s ease;
+}
+
+.mc-card:hover .mc-slot,
+.mc-inventory-item:hover .mc-slot {
+  transform: scale(1.04);
 }
 
 .mc-slot__count {
@@ -265,8 +282,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   padding: 10px 0;
   border-bottom: 2px dashed var(--stone-gray);
+}
+
+.mc-list__item:hover {
+  background: rgba(93, 158, 67, 0.08);
 }
 
 .mc-list__item:last-child {
@@ -286,4 +308,27 @@
   background: #fff;
   border: 4px solid var(--wood-dark);
   box-shadow: var(--shadow-block);
+}
+
+.mc-stat-card {
+  min-height: 72px;
+}
+
+.mc-stat-card__value {
+  line-height: 1.1;
+}
+
+.mc-inventory-item {
+  transition: transform 0.08s ease, filter 0.08s ease;
+}
+
+.mc-inventory-item:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.03);
+}
+
+.mc-button:focus-visible,
+.mc-input:focus-visible {
+  outline: 3px solid var(--sun-yellow);
+  outline-offset: 2px;
 }

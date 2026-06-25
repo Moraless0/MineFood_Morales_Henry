@@ -33,27 +33,26 @@
     const orders = Orders.getAll();
     const stats = Orders.getStats();
 
-    // Insumos en stock
-    const stockValue = document.querySelector('.mc-stat-card__label:contains("Insumos en stock")');
+    const labels = Array.from(document.querySelectorAll('.mc-stat-card__label'));
+    const findLabel = (text) => labels.find(label => label.textContent.trim() === text);
+
+    const stockValue = findLabel('Insumos en stock');
     if (stockValue) {
       stockValue.previousElementSibling.textContent = ingredients.length;
     }
 
-    // Pedidos pendientes
     const pendingOrders = orders.filter(o => o.status === 'pending').length;
-    const pendingValue = document.querySelector('.mc-stat-card__label:contains("Pedidos pendientes")');
+    const pendingValue = findLabel('Pedidos pendientes');
     if (pendingValue) {
       pendingValue.previousElementSibling.textContent = pendingOrders;
     }
 
-    // Platillos activos
-    const dishesValue = document.querySelector('.mc-stat-card__label:contains("Platillos activos")');
+    const dishesValue = findLabel('Platillos activos');
     if (dishesValue) {
       dishesValue.previousElementSibling.textContent = dishes.length;
     }
 
-    // Ventas hoy
-    const salesValue = document.querySelector('.mc-stat-card__label:contains("Ventas hoy")');
+    const salesValue = findLabel('Ventas hoy');
     if (salesValue) {
       salesValue.previousElementSibling.textContent = `$${stats.totalSales}`;
     }
@@ -79,7 +78,9 @@
       .sort((a, b) => b[1] - a[1])
       .slice(0, 5);
 
-    const list = document.querySelector('.mc-card__title:contains("Platillos más vendidos")')?.nextElementSibling;
+    const title = Array.from(document.querySelectorAll('.mc-card__title'))
+      .find(element => element.textContent.includes('Platillos más vendidos'));
+    const list = title?.nextElementSibling;
     if (!list) return;
 
     list.innerHTML = sorted.map(([name, count]) => `
@@ -97,7 +98,9 @@
   function updateLowStock() {
     const lowStock = Inventory.getLowStock();
     const alertBox = document.querySelector('.mc-alert--warning');
-    const list = document.querySelector('.mc-card__title:contains("Insumos bajos")')?.nextElementSibling;
+    const title = Array.from(document.querySelectorAll('.mc-card__title'))
+      .find(element => element.textContent.includes('Insumos bajos'));
+    const list = title?.nextElementSibling;
 
     // Mostrar/ocultar alerta
     if (alertBox) {

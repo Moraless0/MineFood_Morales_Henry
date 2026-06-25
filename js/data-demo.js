@@ -18,10 +18,10 @@ window.mcData = {
     { code: 'PLT-006', name: 'Jugo de Melón Pixelado', description: 'Jugo refrescante de melón con bayas dulces.', price: 7.00, icon: '🍹', ingredients: { 'MEL-005': 0.4, 'BAY-004': 0.1 } }
   ],
   orders: [
-    { id: 'PED-001', table: 'Mesa 3', status: 'preparing', total: 35.50, items: [{ name: 'Estofado de Champiñones', qty: 2 }, { name: 'Jugo de Melón Pixelado', qty: 1 }] },
-    { id: 'PED-002', table: 'Mesa 7', status: 'pending', total: 20.50, items: [{ name: 'Ensalada de Zanahoria Dorada', qty: 1 }, { name: 'Pan del Aldeano', qty: 1 }] },
-    { id: 'PED-003', table: 'Mesa 2', status: 'delivered', total: 51.00, items: [{ name: 'Pastel de Bayas Dulces', qty: 2 }, { name: 'Sopa del Bosque Encantado', qty: 1 }, { name: 'Jugo de Melón Pixelado', qty: 1 }] },
-    { id: 'PED-004', table: 'Mesa 5', status: 'pending', total: 31.50, items: [{ name: 'Sopa del Bosque Encantado', qty: 1 }, { name: 'Pan del Aldeano', qty: 2 }, { name: 'Jugo de Melón Pixelado', qty: 1 }] }
+    { id: 'PED-001', table: 'Mesa 3', customer: 'Steve', phone: '3001112233', status: 'preparing', total: 37.00, createdAt: '2026-06-25T08:00:00.000Z', items: [{ code: 'PLT-002', quantity: 2 }, { code: 'PLT-006', quantity: 1 }] },
+    { id: 'PED-002', table: 'Mesa 7', customer: 'Alex', phone: '3002223344', status: 'pending', total: 20.50, createdAt: '2026-06-25T08:20:00.000Z', items: [{ code: 'PLT-001', quantity: 1 }, { code: 'PLT-003', quantity: 1 }] },
+    { id: 'PED-003', table: 'Mesa 2', customer: 'Aldeano', phone: '3003334455', status: 'delivered', total: 56.50, createdAt: '2026-06-25T08:40:00.000Z', items: [{ code: 'PLT-004', quantity: 2 }, { code: 'PLT-005', quantity: 1 }, { code: 'PLT-006', quantity: 1 }] },
+    { id: 'PED-004', table: 'Mesa 5', customer: 'Minero', phone: '3004445566', status: 'pending', total: 36.50, createdAt: '2026-06-25T09:00:00.000Z', items: [{ code: 'PLT-005', quantity: 1 }, { code: 'PLT-003', quantity: 2 }, { code: 'PLT-006', quantity: 1 }] }
   ],
   stats: {
     totalSales: 138.50,
