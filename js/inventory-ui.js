@@ -56,26 +56,15 @@
     }
 
     grid.innerHTML = ingredients.map(ingredient => {
-      const isLowStock = ingredient.quantity <= ingredient.min;
-      const statusBadge = isLowStock 
-        ? '<span class="mc-badge mc-badge--alert">Bajo</span>'
-        : '<span class="mc-badge mc-badge--delivered">OK</span>';
-
       return `
         <div class="mc-inventory-item">
           <div class="mc-slot">
             <img src="${getIcon(ingredient.name)}" alt="" class="mc-slot__img">
           </div>
           <div class="mc-inventory-item__name">${ingredient.name}</div>
-          <div class="mc-inventory-item__meta">${ingredient.code}</div>
           <div class="mc-inventory-item__meta">${ingredient.quantity} ${ingredient.unit}</div>
-          <div style="display: flex; align-items: center; gap: 6px; margin: 4px 0;">
-            ${statusBadge}
-          </div>
-          <div style="display: flex; gap: 8px; margin-top: 8px;">
-            <button class="mc-button mc-button--secondary" onclick="editIngredient('${ingredient.code}')">Editar</button>
-            <button class="mc-button mc-button--danger" onclick="deleteIngredient('${ingredient.code}')">Eliminar</button>
-          </div>
+          <button class="mc-button mc-button--secondary" onclick="editIngredient('${ingredient.code}')">Editar</button>
+          <button class="mc-button mc-button--danger" onclick="deleteIngredient('${ingredient.code}')" style="margin-top: 8px;">Eliminar</button>
         </div>
       `;
     }).join('');
@@ -184,28 +173,17 @@
       }
 
       grid.innerHTML = filtered.map(ingredient => {
-        const isLowStock = ingredient.quantity <= ingredient.min;
-        const statusBadge = isLowStock 
-          ? '<span class="mc-badge mc-badge--alert">Bajo</span>'
-          : '<span class="mc-badge mc-badge--delivered">OK</span>';
-
         return `
-        <div class="mc-inventory-item">
-          <div class="mc-slot">
-            <img src="${getIcon(ingredient.name)}" alt="" class="mc-slot__img">
-          </div>
-          <div class="mc-inventory-item__name">${ingredient.name}</div>
-          <div class="mc-inventory-item__meta">${ingredient.code}</div>
-          <div class="mc-inventory-item__meta">${ingredient.quantity} ${ingredient.unit}</div>
-          <div style="display: flex; align-items: center; gap: 6px; margin: 4px 0;">
-            ${statusBadge}
-          </div>
-          <div style="display: flex; gap: 8px; margin-top: 8px;">
+          <div class="mc-inventory-item">
+            <div class="mc-slot">
+              <img src="${getIcon(ingredient.name)}" alt="" class="mc-slot__img">
+            </div>
+            <div class="mc-inventory-item__name">${ingredient.name}</div>
+            <div class="mc-inventory-item__meta">${ingredient.quantity} ${ingredient.unit}</div>
             <button class="mc-button mc-button--secondary" onclick="editIngredient('${ingredient.code}')">Editar</button>
-            <button class="mc-button mc-button--danger" onclick="deleteIngredient('${ingredient.code}')">Eliminar</button>
+            <button class="mc-button mc-button--danger" onclick="deleteIngredient('${ingredient.code}')" style="margin-top: 8px;">Eliminar</button>
           </div>
-        </div>
-      `;
+        `;
       }).join('');
     });
   }
