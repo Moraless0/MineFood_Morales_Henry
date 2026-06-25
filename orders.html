@@ -92,14 +92,16 @@
               <option value="">Todos</option>
               <option value="pending">Pendientes</option>
               <option value="preparing">Preparando</option>
-              <option value="delivered">Entregados</option>
+              <option value="ready">Listo</option>
+              <option value="served">Servido</option>
+              <option value="paid">Pagado</option>
             </select>
             <input type="text" class="mc-input" placeholder="Buscar pedido..." style="width: 220px;">
           </div>
         </div>
 
         <div class="mc-helper">
-          <strong>Flujo:</strong> usa Actualizar para avanzar un pedido de Pendiente → Preparando → Entregado. Usa Crear pedido para registrar una nueva mesa.
+          <strong>Flujo:</strong> Pendiente → Preparando → Listo → Servido → Pagado. Usa Actualizar para avanzar el estado. El método de pago se define al crear el pedido.
         </div>
 
         <div class="mc-table-wrapper">
@@ -109,6 +111,7 @@
                 <th>ID</th>
                 <th>Mesa</th>
                 <th>Estado</th>
+                <th>Pago</th>
                 <th>Total</th>
                 <th>Detalle</th>
                 <th>Acciones</th>

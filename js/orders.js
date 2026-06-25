@@ -176,7 +176,9 @@ const Orders = {
     const statusCounts = {
       pending: 0,
       preparing: 0,
-      delivered: 0
+      ready: 0,
+      served: 0,
+      paid: 0
     };
 
     orders.forEach(order => {

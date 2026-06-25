@@ -136,8 +136,10 @@
   function createOrder() {
     const tableInput = document.querySelector('.mc-order-summary input[type="number"]');
     const customerInput = document.querySelector('.mc-order-summary input[type="text"]');
+    const paymentMethodInput = document.getElementById('payment-method');
     const table = tableInput ? tableInput.value : '1';
     const customer = customerInput ? customerInput.value.trim() : '';
+    const paymentMethod = paymentMethodInput ? paymentMethodInput.value : 'cash';
 
     // Validar que haya items en el carrito
     if (Object.keys(cart).length === 0) {
@@ -160,6 +162,7 @@
         customer: customer || 'Cliente de mesa',
         phone: '',
         status: 'pending',
+        paymentMethod: paymentMethod,
         items: items
       });
 

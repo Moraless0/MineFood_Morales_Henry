@@ -7,7 +7,9 @@
   const statusMap = {
     'pending': { text: 'Pendiente', class: 'mc-badge--pending' },
     'preparing': { text: 'Preparando', class: 'mc-badge--preparing' },
-    'delivered': { text: 'Entregado', class: 'mc-badge--delivered' }
+    'ready': { text: 'Listo', class: 'mc-badge--ready' },
+    'served': { text: 'Servido', class: 'mc-badge--served' },
+    'paid': { text: 'Pagado', class: 'mc-badge--paid' }
   };
 
   // Renderizar tabla de pedidos
@@ -23,7 +25,7 @@
     }
 
     if (orders.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="6" class="mc-empty-state">No hay pedidos con este filtro. Crea un pedido nuevo para empezar.</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="7" class="mc-empty-state">No hay pedidos con este filtro. Crea un pedido nuevo para empezar.</td></tr>';
       return;
     }
 
@@ -43,6 +45,7 @@
           <td data-label="ID">${order.id}</td>
           <td data-label="Mesa">${order.table || order.customer || 'N/A'}</td>
           <td data-label="Estado">${statusBadge}</td>
+          <td data-label="Pago">${getPaymentMethodLabel(order.paymentMethod)}</td>
           <td data-label="Total">$${order.total.toFixed(2)}</td>
           <td data-label="Detalle">${itemsDetail}</td>
           <td data-label="Acciones">
@@ -59,7 +62,7 @@
     const order = Orders.getById(id);
     if (!order) return;
 
-    const statusOptions = ['pending', 'preparing', 'delivered'];
+    const statusOptions = ['pending', 'preparing', 'ready', 'served', 'paid'];
     const currentIndex = statusOptions.indexOf(order.status);
     const nextStatus = statusOptions[(currentIndex + 1) % statusOptions.length];
 
@@ -118,7 +121,7 @@
       if (!tbody) return;
 
       if (filtered.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="6" class="mc-empty-state">No se encontraron pedidos con ese criterio.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="7" class="mc-empty-state">No se encontraron pedidos con ese criterio.</td></tr>';
         return;
       }
 
@@ -137,6 +140,7 @@
             <td data-label="ID">${order.id}</td>
             <td data-label="Mesa">${order.table || order.customer || 'N/A'}</td>
             <td data-label="Estado">${statusBadge}</td>
+            <td data-label="Pago">${getPaymentMethodLabel(order.paymentMethod)}</td>
             <td data-label="Total">$${order.total.toFixed(2)}</td>
             <td data-label="Detalle">${itemsDetail}</td>
             <td data-label="Acciones">
@@ -155,4 +159,14 @@
     setupFilters();
     setupSearch();
   });
+  // Obtener etiqueta de método de pago
+  function getPaymentMethodLabel(method) {
+    const labels = {
+      'cash': 'Efectivo',
+      'card': 'Tarjeta',
+      'transfer': 'Transferencia'
+    };
+    return labels[method] || method || 'N/A';
+  }
+
 })();

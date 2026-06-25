@@ -215,6 +215,18 @@
   background: var(--success-green);
 }
 
+.mc-badge--ready {
+  background: #8B4513;
+}
+
+.mc-badge--served {
+  background: #4169E1;
+}
+
+.mc-badge--paid {
+  background: #228B22;
+}
+
 .mc-badge--alert {
   background: var(--danger-red);
 }
