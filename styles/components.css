@@ -54,14 +54,21 @@
 .mc-card {
   background: var(--cloud-white);
   border: 4px solid var(--wood-dark);
-  box-shadow: var(--shadow-block);
+  box-shadow:
+    var(--shadow-block),
+    0 0 0 2px rgba(0, 0, 0, 0.15),
+    6px 6px 0 rgba(0, 0, 0, 0.25);
   padding: 16px;
-  transition: transform 0.08s ease, filter 0.08s ease;
+  transition: transform 0.08s ease, filter 0.08s ease, box-shadow 0.08s ease;
 }
 
 .mc-card:hover {
   transform: translateY(-2px);
   filter: brightness(1.02);
+  box-shadow:
+    var(--shadow-block),
+    0 0 0 2px rgba(0, 0, 0, 0.15),
+    8px 8px 0 rgba(0, 0, 0, 0.28);
 }
 
 .mc-card__title {

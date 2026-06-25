@@ -179,7 +179,12 @@
 .main-content {
   flex: 1;
   padding: 24px;
-  background: var(--cloud-white);
+  background-color: var(--cloud-white);
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 31px, rgba(0, 0, 0, 0.04) 31px, rgba(0, 0, 0, 0.04) 32px),
+    repeating-linear-gradient(90deg, transparent, transparent 31px, rgba(0, 0, 0, 0.04) 31px, rgba(0, 0, 0, 0.04) 32px),
+    linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+  background-size: 32px 32px, 32px 32px, 100% 100%;
   min-height: calc(100vh - 64px);
 }
 
