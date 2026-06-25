@@ -135,6 +135,30 @@
   gap: 12px;
 }
 
+.mc-hearts {
+  display: flex;
+  gap: 2px;
+}
+
+.mc-hearts__heart {
+  width: 16px;
+  height: 16px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.mc-hunger {
+  display: flex;
+  gap: 2px;
+}
+
+.mc-hunger__food {
+  width: 16px;
+  height: 16px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
 .hamburger {
   display: none;
   background: var(--wood-brown);
