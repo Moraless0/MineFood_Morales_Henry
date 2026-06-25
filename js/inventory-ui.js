@@ -50,6 +50,11 @@
 
     const ingredients = Inventory.getAll();
     
+    if (ingredients.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="7" class="mc-empty-state">No hay insumos registrados. Usa “Agregar insumo” para crear el primero.</td></tr>';
+      return;
+    }
+
     tbody.innerHTML = ingredients.map(ingredient => {
       const isLowStock = ingredient.quantity <= ingredient.min;
       const statusBadge = isLowStock 
@@ -93,7 +98,7 @@
 
     // Validaciones
     if (!code || !name || !description || isNaN(quantity)) {
-      alert('Por favor complete todos los campos');
+      MineFoodFeedback.showToast('Completa código, nombre, descripción y cantidad.', 'warning');
       return;
     }
 
@@ -116,6 +121,7 @@
       
       closeModal('modal-ingredient');
       renderInventoryTable();
+      MineFoodFeedback.showToast(existing ? 'Insumo actualizado correctamente.' : 'Insumo agregado correctamente.');
       
       // Limpiar formulario
       inputs.forEach(input => {
@@ -123,7 +129,7 @@
       });
       
     } catch (error) {
-      alert(error.message);
+      MineFoodFeedback.showToast(error.message, 'error');
     }
   }
 
@@ -146,12 +152,13 @@
 
   // Eliminar insumo
   window.deleteIngredient = function(code) {
-    if (confirm('¿Está seguro de eliminar este insumo?')) {
+    if (MineFoodFeedback.confirmAction('¿Eliminar este insumo del inventario?')) {
       try {
         Inventory.delete(code);
         renderInventoryTable();
+        MineFoodFeedback.showToast('Insumo eliminado correctamente.');
       } catch (error) {
-        alert(error.message);
+        MineFoodFeedback.showToast(error.message, 'error');
       }
     }
   };
@@ -172,6 +179,11 @@
 
       const tbody = document.querySelector('.mc-table tbody');
       if (!tbody) return;
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" class="mc-empty-state">No se encontraron insumos con ese criterio.</td></tr>';
+        return;
+      }
 
       tbody.innerHTML = filtered.map(ingredient => {
         const isLowStock = ingredient.quantity <= ingredient.min;

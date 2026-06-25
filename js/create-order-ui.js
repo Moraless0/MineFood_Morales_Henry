@@ -53,6 +53,11 @@
 
     const dishes = Dishes.getAll();
     
+    if (dishes.length === 0) {
+      grid.innerHTML = '<div class="mc-empty-state">No hay platillos disponibles. Crea platillos antes de registrar pedidos.</div>';
+      return;
+    }
+
     grid.innerHTML = dishes.map(dish => {
       const quantity = cart[dish.code] || 0;
       
@@ -112,24 +117,31 @@
     });
 
     // Actualizar el resumen
-    const existingItems = summaryItems.querySelectorAll('.mc-order-item');
+    const existingItems = summaryItems.querySelectorAll('.mc-order-item, .mc-empty-state');
     existingItems.forEach(item => item.remove());
 
     const totalElement = summaryItems.querySelector('.mc-order-summary__total');
     if (totalElement) {
-      totalElement.insertAdjacentHTML('beforebegin', itemsHtml);
+      totalElement.insertAdjacentHTML('beforebegin', itemsHtml || '<div class="mc-empty-state">Aún no has seleccionado platillos.</div>');
       totalElement.textContent = `Total: $${total.toFixed(2)}`;
+    }
+
+    const confirmButton = summaryItems.querySelector('.mc-button');
+    if (confirmButton) {
+      confirmButton.disabled = Object.keys(cart).length === 0;
     }
   }
 
   // Crear pedido
   function createOrder() {
     const tableInput = document.querySelector('.mc-order-summary input[type="number"]');
+    const customerInput = document.querySelector('.mc-order-summary input[type="text"]');
     const table = tableInput ? tableInput.value : '1';
+    const customer = customerInput ? customerInput.value.trim() : '';
 
     // Validar que haya items en el carrito
     if (Object.keys(cart).length === 0) {
-      alert('Por favor seleccione al menos un platillo');
+      MineFoodFeedback.showToast('Selecciona al menos un platillo con el botón +.', 'warning');
       return;
     }
 
@@ -145,18 +157,20 @@
       Orders.add({
         id: orderId,
         table: `Mesa ${table}`,
-        customer: '',
+        customer: customer || 'Cliente de mesa',
         phone: '',
         status: 'pending',
         items: items
       });
 
-      alert(`Pedido ${orderId} creado exitosamente`);
+      MineFoodFeedback.showToast(`Pedido ${orderId} creado exitosamente.`);
       cart = {};
-      window.location.href = 'orders.html';
+      window.setTimeout(() => {
+        window.location.href = 'orders.html';
+      }, 700);
       
     } catch (error) {
-      alert(error.message);
+      MineFoodFeedback.showToast(error.message, 'error');
     }
   }
 

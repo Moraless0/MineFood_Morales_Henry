@@ -89,6 +89,10 @@
           <h1>🧾 Nuevo pedido</h1>
         </div>
 
+        <div class="mc-helper">
+          <strong>Pasos:</strong> elige una mesa, suma platillos con +, revisa el total y confirma. El inventario se descuenta automáticamente.
+        </div>
+
         <div class="grid-2" style="align-items: flex-start;">
           <div>
             <h2 class="mc-card__title">Seleccionar platillos</h2>
@@ -150,6 +154,10 @@
               <label class="mc-label">Mesa</label>
               <input type="number" class="mc-input" value="3" min="1">
             </div>
+            <div class="mc-form-group">
+              <label class="mc-label">Cliente</label>
+              <input type="text" class="mc-input" placeholder="Nombre opcional">
+            </div>
             <div class="mc-order-item">
               <div class="mc-order-item__info">Estofado de Champiñones</div>
               <div class="mc-order-item__qty">x2</div>
@@ -172,6 +180,7 @@
   <script src="js/orders.js"></script>
   <script src="js/navigation.js"></script>
   <script src="js/modals.js"></script>
+  <script src="js/app-feedback.js"></script>
   <script src="js/create-order-ui.js"></script>
 </body>
 </html>

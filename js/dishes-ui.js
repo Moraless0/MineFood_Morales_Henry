@@ -50,6 +50,11 @@
 
     const dishes = Dishes.getAll();
     
+    if (dishes.length === 0) {
+      grid.innerHTML = '<div class="mc-empty-state">No hay platillos registrados. Usa “Agregar platillo” para crear el primero.</div>';
+      return;
+    }
+
     grid.innerHTML = dishes.map(dish => `
       <div class="mc-inventory-item">
         <div class="mc-slot">
@@ -77,7 +82,7 @@
 
     // Validaciones
     if (!name || !description || isNaN(price)) {
-      alert('Por favor complete todos los campos obligatorios');
+      MineFoodFeedback.showToast('Completa nombre, descripción y precio.', 'warning');
       return;
     }
 
@@ -103,13 +108,14 @@
       
       closeModal('modal-dish');
       renderDishesGrid();
+      MineFoodFeedback.showToast(existing ? 'Platillo actualizado correctamente.' : 'Platillo agregado correctamente.');
       
       // Limpiar formulario y editar código
       delete modal.dataset.editingCode;
       inputs.forEach(input => input.value = '');
       
     } catch (error) {
-      alert(error.message);
+      MineFoodFeedback.showToast(error.message, 'error');
     }
   }
 
@@ -132,12 +138,13 @@
 
   // Eliminar platillo
   window.deleteDish = function(code) {
-    if (confirm('¿Está seguro de eliminar este platillo?')) {
+    if (MineFoodFeedback.confirmAction('¿Eliminar este platillo del menú?')) {
       try {
         Dishes.delete(code);
         renderDishesGrid();
+        MineFoodFeedback.showToast('Platillo eliminado correctamente.');
       } catch (error) {
-        alert(error.message);
+        MineFoodFeedback.showToast(error.message, 'error');
       }
     }
   };

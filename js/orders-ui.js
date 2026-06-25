@@ -22,6 +22,11 @@
       orders = orders.filter(order => order.status === filter);
     }
 
+    if (orders.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="6" class="mc-empty-state">No hay pedidos con este filtro. Crea un pedido nuevo para empezar.</td></tr>';
+      return;
+    }
+
     tbody.innerHTML = orders.map(order => {
       const statusInfo = statusMap[order.status] || { text: order.status, class: '' };
       const statusBadge = `<span class="mc-badge ${statusInfo.class}">${statusInfo.text}</span>`;
@@ -61,19 +66,21 @@
     try {
       Orders.updateStatus(id, nextStatus);
       renderOrdersTable();
+      MineFoodFeedback.showToast(`Pedido ${id} actualizado a ${statusMap[nextStatus].text}.`);
     } catch (error) {
-      alert(error.message);
+      MineFoodFeedback.showToast(error.message, 'error');
     }
   };
 
   // Eliminar pedido
   window.deleteOrder = function(id) {
-    if (confirm('¿Está seguro de eliminar este pedido?')) {
+    if (MineFoodFeedback.confirmAction('¿Eliminar este pedido?')) {
       try {
         Orders.delete(id);
         renderOrdersTable();
+        MineFoodFeedback.showToast('Pedido eliminado correctamente.');
       } catch (error) {
-        alert(error.message);
+        MineFoodFeedback.showToast(error.message, 'error');
       }
     }
   };
@@ -95,7 +102,12 @@
 
     searchInput.addEventListener('input', function() {
       const searchTerm = this.value.toLowerCase();
-      const orders = Orders.getAll();
+      const activeFilter = document.querySelector('.page-header select')?.value || '';
+      let orders = Orders.getAll();
+
+      if (activeFilter) {
+        orders = orders.filter(order => order.status === activeFilter);
+      }
       const filtered = orders.filter(order => 
         order.id.toLowerCase().includes(searchTerm) ||
         (order.table && order.table.toLowerCase().includes(searchTerm)) ||
@@ -104,6 +116,11 @@
 
       const tbody = document.querySelector('.mc-table tbody');
       if (!tbody) return;
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" class="mc-empty-state">No se encontraron pedidos con ese criterio.</td></tr>';
+        return;
+      }
 
       tbody.innerHTML = filtered.map(order => {
         const statusInfo = statusMap[order.status] || { text: order.status, class: '' };

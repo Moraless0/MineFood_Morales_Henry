@@ -87,7 +87,14 @@
       <main class="main-content">
         <div class="page-header">
           <h1>🏠 Dashboard Principal</h1>
-          <a href="create-order.html" class="mc-button">+ Nuevo Pedido</a>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <a href="create-order.html" class="mc-button">+ Nuevo Pedido</a>
+            <button class="mc-button mc-button--stone" data-reset-demo>Restaurar demo</button>
+          </div>
+        </div>
+
+        <div class="mc-helper">
+          <strong>Ruta sugerida:</strong> revisa el inventario, confirma los platillos disponibles, crea un pedido y controla su estado desde Pedidos.
         </div>
 
         <div class="mc-alert mc-alert--warning">
@@ -224,6 +231,7 @@
   <script src="js/orders.js"></script>
   <script src="js/navigation.js"></script>
   <script src="js/modals.js"></script>
+  <script src="js/app-feedback.js"></script>
   <script src="js/dashboard-ui.js"></script>
 </body>
 </html>
