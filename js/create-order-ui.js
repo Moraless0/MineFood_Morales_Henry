@@ -1,9 +1,9 @@
-// UI de crear pedido - Conexión con el módulo Orders
+// UI de crear pedido
 
 (function() {
   'use strict';
 
-  // Mapeo de nombres de platillos a iconos de Minecraft
+  // Iconos de Minecraft para platillos
   const iconMap = {
     'Ensalada de Zanahoria Dorada': 'carrot.png',
     'Estofado de Champiñones': 'mushroom_stew.png',
@@ -37,16 +37,13 @@
     'Carne de Conejo Frita': 'cooked_rabbit.png'
   };
 
-  // Obtener icono para un platillo
   function getIcon(name) {
     const icon = iconMap[name];
     return icon ? `assets/1.21.11/items/${icon}` : 'assets/1.21.11/items/cake.png';
   }
 
-  // Carrito de platillos seleccionados
   let cart = {};
 
-  // Renderizar grid de platillos
   function renderDishesGrid() {
     const grid = document.querySelector('.mc-inventory-grid');
     if (!grid) return;

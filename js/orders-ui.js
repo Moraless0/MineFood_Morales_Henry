@@ -1,9 +1,9 @@
-// UI de pedidos - Conexión con el módulo Orders
+// UI de pedidos
 
 (function() {
   'use strict';
 
-  // Mapeo de estados a badges
+  // Estados y sus badges
   const statusMap = {
     'pending': { text: 'Pendiente', class: 'mc-badge--pending' },
     'preparing': { text: 'Preparando', class: 'mc-badge--preparing' },
@@ -12,7 +12,6 @@
     'paid': { text: 'Pagado', class: 'mc-badge--paid' }
   };
 
-  // Renderizar tabla de pedidos
   function renderOrdersTable(filter = '') {
     const tbody = document.getElementById('orders-table-body');
     if (!tbody) return;

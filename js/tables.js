@@ -1,11 +1,9 @@
-// Módulo de gestión de mesas con LocalStorage
+// Gestión de mesas con LocalStorage
 
 const Tables = {
-  // Clave para guardar mesas en localStorage
   TABLES_KEY: 'minefood_tables',
   TABLE_COUNT: 12,
 
-  // Inicializar mesas
   init() {
     const existingTables = localStorage.getItem(this.TABLES_KEY);
     if (!existingTables) {
@@ -15,13 +13,12 @@ const Tables = {
     }
   },
 
-  // Crear mesas por defecto
   createDefaultTables() {
     const tables = [];
     for (let i = 1; i <= this.TABLE_COUNT; i++) {
       tables.push({
         number: i,
-        status: 'free', // free, occupied, paying
+        status: 'free',
         currentOrder: null,
         occupiedSince: null,
         total: 0
@@ -30,19 +27,16 @@ const Tables = {
     return tables;
   },
 
-  // Obtener todas las mesas
   getAll() {
     const tables = localStorage.getItem(this.TABLES_KEY);
     return tables ? JSON.parse(tables) : this.createDefaultTables();
   },
 
-  // Obtener mesa por número
   getByNumber(number) {
     const tables = this.getAll();
     return tables.find(table => table.number === number);
   },
 
-  // Actualizar estado de mesa
   updateStatus(number, status, orderId = null) {
     const tables = this.getAll();
     const index = tables.findIndex(table => table.number === number);
@@ -71,7 +65,6 @@ const Tables = {
     return tables[index];
   },
 
-  // Actualizar total de mesa
   updateTotal(number, total) {
     const tables = this.getAll();
     const index = tables.findIndex(table => table.number === number);
@@ -85,7 +78,6 @@ const Tables = {
     return tables[index];
   },
 
-  // Obtener tiempo ocupado de una mesa
   getOccupiedTime(number) {
     const table = this.getByNumber(number);
     if (!table || !table.occupiedSince) return null;
@@ -107,7 +99,6 @@ const Tables = {
     return `${seconds}s`;
   },
 
-  // Obtener estadísticas de mesas
   getStats() {
     const tables = this.getAll();
     const stats = {
@@ -124,7 +115,6 @@ const Tables = {
     return stats;
   },
 
-  // Restaurar mesas a estado inicial
   reset() {
     const tables = this.createDefaultTables();
     localStorage.setItem(this.TABLES_KEY, JSON.stringify(tables));
@@ -132,5 +122,4 @@ const Tables = {
   }
 };
 
-// Inicializar al cargar
 Tables.init();

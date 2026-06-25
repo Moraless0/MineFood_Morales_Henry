@@ -25,7 +25,7 @@
     overlay.addEventListener('click', closeSidebar);
   }
 
-  // Marcar link activo basado en hash (SPA)
+  // Marcar link activo según hash actual
   const currentHash = window.location.hash.slice(1) || 'dashboard';
   document.querySelectorAll('.nav-item').forEach(item => {
     const link = item.querySelector('a');

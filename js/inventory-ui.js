@@ -1,9 +1,9 @@
-// UI del inventario - Conexión con el módulo Inventory
+// UI del inventario
 
 (function() {
   'use strict';
 
-  // Mapeo de nombres de insumos a iconos de Minecraft
+  // Iconos de Minecraft para insumos
   const iconMap = {
     'Zanahoria': 'carrot.png',
     'Trigo': 'wheat.png',
@@ -37,13 +37,11 @@
     'Pimienta': 'blaze_powder.png'
   };
 
-  // Obtener icono para un insumo
   function getIcon(name) {
     const icon = iconMap[name];
     return icon ? `assets/1.21.11/items/${icon}` : 'assets/1.21.11/items/apple.png';
   }
 
-  // Renderizar grid de inventario
   function renderInventoryTable() {
     const grid = document.getElementById('inventory-grid');
     if (!grid) return;

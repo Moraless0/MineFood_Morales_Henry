@@ -1,9 +1,8 @@
-// UI de mesas - Conexión con el módulo Tables
+// UI de mesas
 
 (function() {
   'use strict';
 
-  // Renderizar grid de mesas
   function renderTablesGrid() {
     const grid = document.getElementById('tables-grid');
     if (!grid) return;

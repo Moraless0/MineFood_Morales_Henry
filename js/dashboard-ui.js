@@ -1,9 +1,9 @@
-// UI del dashboard - Conexión con módulos para estadísticas dinámicas
+// UI del dashboard
 
 (function() {
   'use strict';
 
-  // Mapeo de nombres a iconos
+  // Iconos de Minecraft
   const iconMap = {
     'Zanahoria': 'carrot.png',
     'Trigo': 'wheat.png',

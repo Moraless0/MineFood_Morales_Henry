@@ -1,9 +1,9 @@
-// UI de platillos - Conexión con el módulo Dishes
+// UI de platillos
 
 (function() {
   'use strict';
 
-  // Mapeo de nombres de platillos a iconos de Minecraft
+  // Iconos de Minecraft para platillos
   const iconMap = {
     'Ensalada de Zanahoria Dorada': 'carrot.png',
     'Estofado de Champiñones': 'mushroom_stew.png',
@@ -37,13 +37,11 @@
     'Carne de Conejo Frita': 'cooked_rabbit.png'
   };
 
-  // Obtener icono para un platillo
   function getIcon(name) {
     const icon = iconMap[name];
     return icon ? `assets/1.21.11/items/${icon}` : 'assets/1.21.11/items/cake.png';
   }
 
-  // Renderizar grid de platillos
   function renderDishesGrid() {
     const grid = document.getElementById('dishes-grid');
     if (!grid) return;

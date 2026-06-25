@@ -1,4 +1,4 @@
-// UI para reportes dinámicos basados en datos reales
+// UI de reportes
 
 function getPaidOrders() {
   return Orders.getAll().filter(order => order.status === 'paid');

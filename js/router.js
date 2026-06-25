@@ -1,7 +1,6 @@
-// Router SPA para MineFood - Navegación sin recargas
+// Router SPA - Navegación sin recargas
 
 const Router = {
-  // Rutas disponibles
   routes: {
     'dashboard': 'view-dashboard',
     'tables': 'view-tables',
@@ -11,17 +10,14 @@ const Router = {
     'reports': 'view-reports'
   },
 
-  // Ruta por defecto
   defaultRoute: 'dashboard',
 
-  // Inicializar router
   init() {
     window.addEventListener('hashchange', () => this.handleRoute());
     window.addEventListener('load', () => this.handleRoute());
     this.handleRoute();
   },
 
-  // Manejar cambio de ruta
   handleRoute() {
     const requestedHash = window.location.hash.slice(1) || this.defaultRoute;
     const hash = this.routes[requestedHash] ? requestedHash : this.defaultRoute;
@@ -31,7 +27,6 @@ const Router = {
     this.updateActiveLink(hash);
   },
 
-  // Navegar a una vista
   navigate(viewId) {
     // Ocultar todas las vistas
     document.querySelectorAll('.view').forEach(view => {
@@ -50,7 +45,6 @@ const Router = {
     window.dispatchEvent(new CustomEvent('viewChange', { detail: { viewId } }));
   },
 
-  // Actualizar link activo en sidebar
   updateActiveLink(hash) {
     document.querySelectorAll('.nav-item').forEach(item => {
       const link = item.querySelector('a');
@@ -64,13 +58,11 @@ const Router = {
     });
   },
 
-  // Navegar programáticamente
   goTo(route) {
     window.location.hash = route;
   }
 };
 
-// Inicializar router
 document.addEventListener('DOMContentLoaded', () => {
   Router.init();
 });
