@@ -10,7 +10,19 @@
     'Pan del Aldeano': 'bread.png',
     'Pastel de Bayas Dulces': 'pumpkin_pie.png',
     'Sopa del Bosque Encantado': 'beetroot_soup.png',
-    'Jugo de Melón Pixelado': 'melon_slice.png'
+    'Jugo de Melón Pixelado': 'melon_slice.png',
+    'Tarta de Manzana': 'apple.png',
+    'Galletas de Trigo': 'cookie.png',
+    'Papas Horneadas': 'baked_potato.png',
+    'Batido de Manzana Dorada': 'golden_apple.png',
+    'Ensalada del Bosque Oscuro': 'chorus_fruit.png',
+    'Miel de Abeja': 'honey_bottle.png',
+    'Pan de Semillas': 'wheat.png',
+    'Brownie de Cacao': 'cocoa_beans.png',
+    'Sopa de Remolacha': 'beetroot_soup.png',
+    'Ensalada de Frutas del Bosque': 'sweet_berries.png',
+    'Panqueques de Trigo': 'bread.png',
+    'Ensalada de Bambú': 'bamboo.png'
   };
 
   // Obtener icono para un platillo

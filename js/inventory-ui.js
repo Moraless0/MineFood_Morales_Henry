@@ -12,7 +12,19 @@
     'Melón': 'melon_slice.png',
     'Champiñones': 'mushroom_stew.png',
     'Algas': 'kelp.png',
-    'Bambú': 'bamboo.png'
+    'Bambú': 'bamboo.png',
+    'Manzana': 'apple.png',
+    'Papa': 'baked_potato.png',
+    'Azúcar': 'sugar.png',
+    'Glow Berries': 'glow_berries.png',
+    'Chorus Fruit': 'chorus_fruit.png',
+    'Miel': 'honey_bottle.png',
+    'Semillas de Trigo': 'wheat_seeds.png',
+    'Semillas de Remolacha': 'beetroot_seeds.png',
+    'Semillas de Melón': 'melon_seeds.png',
+    'Cacao': 'cocoa_beans.png',
+    'Levadura': 'slime_ball.png',
+    'Aceite': 'glass_bottle.png'
   };
 
   // Obtener icono para un insumo
