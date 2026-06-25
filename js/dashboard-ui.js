@@ -179,4 +179,13 @@
     updateTopDishes();
     updateLowStock();
   });
+
+  // Actualizar cuando la vista de dashboard se active
+  window.addEventListener('viewChange', function(e) {
+    if (e.detail.viewId === 'view-dashboard') {
+      updateStats();
+      updateTopDishes();
+      updateLowStock();
+    }
+  });
 })();

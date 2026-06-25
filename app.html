@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MineFood - App</title>
+  <link rel="icon" type="image/x-icon" href="assets/icons/minecraft_title.ico">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="styles/minecraft-theme.css">
+  <link rel="stylesheet" href="styles/responsive.css">
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="sidebar__logo">
+        <img src="assets/images/minefood_title.png" alt="MineFood" class="sidebar__logo-img">
+      </div>
+      <ul class="sidebar__nav">
+        <li class="nav-item">
+          <a href="#dashboard">
+            <img src="assets/1.21.11/items/apple.png" alt="" class="nav-item__icon">
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#tables">
+            <img src="assets/1.21.11/items/oak_sign.png" alt="" class="nav-item__icon">
+            <span>Mesas</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#inventory">
+            <img src="assets/1.21.11/items/black_bundle.png" alt="" class="nav-item__icon">
+            <span>Inventario</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#dishes">
+            <img src="assets/1.21.11/items/mushroom_stew.png" alt="" class="nav-item__icon">
+            <span>Platillos</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#orders">
+            <img src="assets/1.21.11/items/book.png" alt="" class="nav-item__icon">
+            <span>Pedidos</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#reports">
+            <img src="assets/1.21.11/items/enchanted_book.png" alt="" class="nav-item__icon">
+            <span>Reportes</span>
+          </a>
+        </li>
+      </ul>
+      <div class="sidebar__footer">
+        <a href="index.html" class="mc-button mc-button--stone" style="width: 100%;">
+          <img src="assets/1.21.11/gui/sprites/widget/locked_button.png" alt="" class="mc-button-icon">
+          Salir
+        </a>
+      </div>
+    </aside>
+
+    <div class="sidebar-overlay"></div>
+
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <button class="hamburger"><span></span><span></span><span></span></button>
+          <span class="topbar__title" id="page-title">Dashboard Principal</span>
+        </div>
+        <div class="topbar__actions">
+          <div class="mc-hearts">
+            <img src="assets/1.21.11/gui/sprites/hud/heart/full.png" alt="" class="mc-hearts__heart">
+            <img src="assets/1.21.11/gui/sprites/hud/heart/full.png" alt="" class="mc-hearts__heart">
+            <img src="assets/1.21.11/gui/sprites/hud/heart/full.png" alt="" class="mc-hearts__heart">
+            <img src="assets/1.21.11/gui/sprites/hud/heart/full.png" alt="" class="mc-hearts__heart">
+            <img src="assets/1.21.11/gui/sprites/hud/heart/full.png" alt="" class="mc-hearts__heart">
+          </div>
+          <div class="mc-hunger">
+            <img src="assets/1.21.11/gui/sprites/hud/food_full.png" alt="" class="mc-hunger__food">
+            <img src="assets/1.21.11/gui/sprites/hud/food_full.png" alt="" class="mc-hunger__food">
+            <img src="assets/1.21.11/gui/sprites/hud/food_full.png" alt="" class="mc-hunger__food">
+            <img src="assets/1.21.11/gui/sprites/hud/food_full.png" alt="" class="mc-hunger__food">
+            <img src="assets/1.21.11/gui/sprites/hud/food_full.png" alt="" class="mc-hunger__food">
+          </div>
+          <span class="mc-badge">Chef Aldeano</span>
+        </div>
+      </header>
+
+      <main class="main-content">
+        <!-- Vista Dashboard -->
+        <section id="view-dashboard" class="view active">
+          <div class="page-header">
+            <h1><img src="assets/1.21.11/items/apple.png" alt="" class="mc-list__icon"> Dashboard Principal</h1>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <button class="mc-button" onclick="Router.goTo('tables')">+ Nuevo Pedido</button>
+              <button class="mc-button mc-button--stone" data-reset-demo>Restaurar demo</button>
+            </div>
+          </div>
+
+          <div class="mc-helper">
+            <strong>Ruta sugerida:</strong> revisa el inventario, confirma los platillos disponibles, crea un pedido desde Mesas y controla su estado.
+          </div>
+
+          <div class="mc-alert mc-alert--warning" id="dashboard-alert">
+            <strong><img src="assets/1.21.11/items/redstone.png" alt="" class="mc-list__icon"> Alerta:</strong> La remolacha y los champiñones están por debajo del stock mínimo.
+          </div>
+
+          <div class="grid-4" style="margin-bottom: 24px;">
+            <div class="mc-card">
+              <div class="mc-stat-card">
+                <div class="mc-slot">
+                  <img src="assets/1.21.11/items/black_bundle.png" alt="" class="mc-slot__img">
+                </div>
+                <div>
+                  <div class="mc-stat-card__value" id="stat-inventory">102</div>
+                  <div class="mc-stat-card__label">Insumos en stock</div>
+                </div>
+              </div>
+            </div>
+            <div class="mc-card">
+              <div class="mc-stat-card">
+                <div class="mc-slot">
+                  <img src="assets/1.21.11/items/book.png" alt="" class="mc-slot__img">
+                </div>
+                <div>
+                  <div class="mc-stat-card__value" id="stat-pending">2</div>
+                  <div class="mc-stat-card__label">Pedidos pendientes</div>
+                </div>
+              </div>
+            </div>
+            <div class="mc-card">
+              <div class="mc-stat-card">
+                <div class="mc-slot">
+                  <img src="assets/1.21.11/items/cake.png" alt="" class="mc-slot__img">
+                </div>
+                <div>
+                  <div class="mc-stat-card__value" id="stat-dishes">6</div>
+                  <div class="mc-stat-card__label">Platillos activos</div>
+                </div>
+              </div>
+            </div>
+            <div class="mc-card">
+              <div class="mc-stat-card">
+                <div class="mc-slot">
+                  <img src="assets/1.21.11/items/gold_ingot.png" alt="" class="mc-slot__img">
+                </div>
+                <div>
+                  <div class="mc-stat-card__value" id="stat-sales">$138.50</div>
+                  <div class="mc-stat-card__label">Ventas hoy</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-2" style="margin-bottom: 24px;">
+            <div class="mc-card">
+              <div class="mc-card__title"><img src="assets/1.21.11/items/blaze_powder.png" alt="" class="mc-list__icon"> Platillos más vendidos</div>
+              <ul class="mc-list" id="top-dishes-list">
+                <li class="mc-list__item">
+                  <span style="display: flex; align-items: center; gap: 8px;">
+                    <img src="assets/1.21.11/items/melon_slice.png" alt="" class="mc-list__icon">
+                    Jugo de Melón Pixelado
+                  </span>
+                  <span class="mc-badge">3</span>
+                </li>
+                <li class="mc-list__item">
+                  <span style="display: flex; align-items: center; gap: 8px;">
+                    <img src="assets/1.21.11/items/mushroom_stew.png" alt="" class="mc-list__icon">
+                    Estofado de Champiñones
+                  </span>
+                  <span class="mc-badge">2</span>
+                </li>
+                <li class="mc-list__item">
+                  <span style="display: flex; align-items: center; gap: 8px;">
+                    <img src="assets/1.21.11/items/sweet_berries.png" alt="" class="mc-list__icon">
+                    Pastel de Bayas Dulces
+                  </span>
+                  <span class="mc-badge">2</span>
+                </li>
+                <li class="mc-list__item">
+                  <span style="display: flex; align-items: center; gap: 8px;">
+                    <img src="assets/1.21.11/items/beetroot_soup.png" alt="" class="mc-list__icon">
+                    Sopa del Bosque Encantado
+                  </span>
+                  <span class="mc-badge">2</span>
+                </li>
+                <li class="mc-list__item">
+                  <span style="display: flex; align-items: center; gap: 8px;">
+                    <img src="assets/1.21.11/items/bread.png" alt="" class="mc-list__icon">
+                    Pan del Aldeano
+                  </span>
+                  <span class="mc-badge">2</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="mc-card">
+              <div class="mc-card__title"><img src="assets/1.21.11/items/redstone.png" alt="" class="mc-list__icon"> Insumos bajos</div>
+              <ul class="mc-list" id="low-inventory-list">
+                <li class="mc-list__item">
+                  <span style="display: flex; align-items: center; gap: 8px;">
+                    <img src="assets/1.21.11/items/mushroom_stew.png" alt="" class="mc-list__icon">
+                    Champiñones — 5 kg
+                  </span>
+                  <span class="mc-badge mc-badge--alert">Bajo</span>
+                </li>
+                <li class="mc-list__item">
+                  <span style="display: flex; align-items: center; gap: 8px;">
+                    <img src="assets/1.21.11/items/beetroot.png" alt="" class="mc-list__icon">
+                    Remolacha — 6 kg
+                  </span>
+                  <span class="mc-badge mc-badge--alert">Bajo</span>
+                </li>
+              </ul>
+              <button class="mc-button mc-button--secondary" style="margin-top: 12px;" onclick="Router.goTo('inventory')">Ver inventario</button>
+            </div>
+          </div>
+
+          <div class="mc-card">
+            <div class="mc-card__title"><img src="assets/1.21.11/items/lightning_rod.png" alt="" class="mc-list__icon"> Accesos rápidos</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+              <button class="mc-button mc-button--secondary" onclick="Router.goTo('inventory')">Inventario</button>
+              <button class="mc-button mc-button--secondary" onclick="Router.goTo('dishes')">Platillos</button>
+              <button class="mc-button mc-button--secondary" onclick="Router.goTo('orders')">Pedidos</button>
+              <button class="mc-button mc-button--secondary" onclick="Router.goTo('reports')">Reportes</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Vista Mesas -->
+        <section id="view-tables" class="view hidden">
+          <div class="page-header">
+            <h1><img src="assets/1.21.11/items/oak_sign.png" alt="" class="mc-list__icon"> Control de Mesas</h1>
+          </div>
+
+          <div class="mc-helper">
+            <strong>Flujo:</strong> Haz clic en una mesa libre para crear pedido, o en una ocupada para ver detalle y avanzar estado. Los colores indican: Verde=Libre, Rojo=Ocupada, Amarillo=Pagando.
+          </div>
+
+          <div class="mc-tables-grid" id="tables-grid">
+            <!-- Las mesas se generan dinámicamente -->
+          </div>
+        </section>
+
+        <!-- Vista Inventario -->
+        <section id="view-inventory" class="view hidden">
+          <div class="page-header">
+            <h1><img src="assets/1.21.11/items/black_bundle.png" alt="" class="mc-list__icon"> Inventario</h1>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <input type="text" class="mc-input" placeholder="Buscar insumo..." style="width: 220px;" id="inventory-search">
+              <button class="mc-button" data-modal-open="modal-ingredient">+ Agregar insumo</button>
+            </div>
+          </div>
+
+          <div class="mc-helper">
+            <strong>Qué hacer aquí:</strong> controla las existencias. Si un insumo queda en estado Bajo, repón inventario antes de crear más pedidos.
+          </div>
+
+          <div class="mc-table-wrapper">
+            <table class="mc-table">
+              <thead>
+                <tr>
+                  <th>Código</th>
+                  <th>Nombre</th>
+                  <th>Descripción</th>
+                  <th>Cantidad</th>
+                  <th>Unidad</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="inventory-table-body">
+                <!-- Se llena dinámicamente -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Vista Platillos -->
+        <section id="view-dishes" class="view hidden">
+          <div class="page-header">
+            <h1><img src="assets/1.21.11/items/mushroom_stew.png" alt="" class="mc-list__icon"> Platillos</h1>
+            <button class="mc-button" data-modal-open="modal-dish">+ Agregar platillo</button>
+          </div>
+
+          <div class="mc-helper">
+            <strong>Qué hacer aquí:</strong> administra el menú. Cada platillo se usa después en Crear pedido y calcula el total automáticamente.
+          </div>
+
+          <div class="mc-inventory-grid" id="dishes-grid">
+            <!-- Se llena dinámicamente -->
+          </div>
+        </section>
+
+        <!-- Vista Pedidos -->
+        <section id="view-orders" class="view hidden">
+          <div class="page-header">
+            <h1><img src="assets/1.21.11/items/book.png" alt="" class="mc-list__icon"> Pedidos</h1>
+            <div style="display:flex; gap:10px; flex-wrap: wrap;">
+              <select class="mc-input mc-select" style="width: 160px;" id="orders-filter">
+                <option value="">Todos</option>
+                <option value="pending">Pendientes</option>
+                <option value="preparing">Preparando</option>
+                <option value="ready">Listo</option>
+                <option value="served">Servido</option>
+                <option value="paid">Pagado</option>
+              </select>
+              <input type="text" class="mc-input" placeholder="Buscar pedido..." style="width: 220px;" id="orders-search">
+            </div>
+          </div>
+
+          <div class="mc-helper">
+            <strong>Flujo:</strong> Pendiente → Preparando → Listo → Servido → Pagado. Usa Actualizar para avanzar el estado. El método de pago se define al crear el pedido.
+          </div>
+
+          <div class="mc-table-wrapper">
+            <table class="mc-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Mesa</th>
+                  <th>Estado</th>
+                  <th>Pago</th>
+                  <th>Total</th>
+                  <th>Detalle</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="orders-table-body">
+                <!-- Se llena dinámicamente -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Vista Reportes -->
+        <section id="view-reports" class="view hidden">
+          <div class="page-header">
+            <h1><img src="assets/1.21.11/items/enchanted_book.png" alt="" class="mc-list__icon"> Reportes</h1>
+          </div>
+
+          <div class="mc-helper">
+            <strong>Lectura rápida:</strong> revisa ventas, cantidad de pedidos, platillos más vendidos y consumo de insumos para decidir qué reponer.
+          </div>
+
+          <div class="grid-4" style="margin-bottom: 24px;">
+            <div class="mc-card">
+              <div class="mc-stat-card">
+                <div class="mc-slot">
+                  <img src="assets/1.21.11/items/gold_ingot.png" alt="" class="mc-slot__img">
+                </div>
+                <div>
+                  <div class="mc-stat-card__value" id="report-total-sales">$1,245.50</div>
+                  <div class="mc-stat-card__label">Ventas totales</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mc-card">
+              <div class="mc-stat-card">
+                <div class="mc-slot">
+                  <img src="assets/1.21.11/items/book.png" alt="" class="mc-slot__img">
+                </div>
+                <div>
+                  <div class="mc-stat-card__value" id="report-total-orders">45</div>
+                  <div class="mc-stat-card__label">Pedidos</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mc-card">
+              <div class="mc-stat-card">
+                <div class="mc-slot">
+                  <img src="assets/1.21.11/items/cake.png" alt="" class="mc-slot__img">
+                </div>
+                <div>
+                  <div class="mc-stat-card__value" id="report-items-sold">120</div>
+                  <div class="mc-stat-card__label">Items vendidos</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mc-card">
+              <div class="mc-stat-card">
+                <div class="mc-slot">
+                  <img src="assets/1.21.11/items/emerald.png" alt="" class="mc-slot__img">
+                </div>
+                <div>
+                  <div class="mc-stat-card__value" id="report-avg-order">$27.68</div>
+                  <div class="mc-stat-card__label">Promedio / pedido</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="mc-card">
+              <div class="mc-card__title"><img src="assets/1.21.11/items/blaze_powder.png" alt="" class="mc-list__icon"> Platillos más vendidos</div>
+              <div class="mc-chart-bar" id="report-top-dishes">
+                <!-- Se llena dinámicamente -->
+              </div>
+            </div>
+
+            <div class="mc-card">
+              <div class="mc-card__title"><img src="assets/1.21.11/items/black_bundle.png" alt="" class="mc-list__icon"> Consumo de insumos</div>
+              <table class="mc-table">
+                <thead>
+                  <tr>
+                    <th>Insumo</th>
+                    <th>Usado</th>
+                    <th>%</th>
+                  </tr>
+                </thead>
+                <tbody id="report-ingredient-usage">
+                  <!-- Se llena dinámicamente -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Modales Globales -->
+  <div class="mc-modal" id="modal-table">
+    <div class="mc-modal__box">
+      <div class="mc-modal__header"><img src="assets/1.21.11/items/oak_sign.png" alt="" class="mc-list__icon"> Mesa <span id="modal-table-number">1</span></div>
+      <div class="mc-modal__body" id="modal-table-content">
+        <!-- Contenido dinámico -->
+      </div>
+      <div class="mc-modal__footer">
+        <button class="mc-button mc-button--secondary" data-modal-close="modal-table">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mc-modal" id="modal-payment">
+    <div class="mc-modal__box">
+      <div class="mc-modal__header"><img src="assets/1.21.11/items/gold_ingot.png" alt="" class="mc-list__icon"> Procesar Pago</div>
+      <div class="mc-modal__body" id="modal-payment-content">
+        <!-- Contenido dinámico -->
+      </div>
+      <div class="mc-modal__footer">
+        <button class="mc-button mc-button--secondary" data-modal-close="modal-payment">Cancelar</button>
+        <button class="mc-button" id="btn-confirm-payment">Confirmar Pago</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mc-modal" id="modal-ingredient">
+    <div class="mc-modal__box">
+      <div class="mc-modal__header"><img src="assets/1.21.11/items/black_bundle.png" alt="" class="mc-list__icon"> Agregar / Editar Insumo</div>
+      <div class="mc-modal__body">
+        <div class="mc-form-group">
+          <label class="mc-label">Código</label>
+          <input type="text" class="mc-input" id="ingredient-code" placeholder="Ej: ZAN-001">
+        </div>
+        <div class="mc-form-group">
+          <label class="mc-label">Nombre</label>
+          <input type="text" class="mc-input" id="ingredient-name" placeholder="Ej: Zanahoria">
+        </div>
+        <div class="mc-form-group">
+          <label class="mc-label">Descripción</label>
+          <input type="text" class="mc-input" id="ingredient-description" placeholder="Breve descripción">
+        </div>
+        <div class="grid-2">
+          <div class="mc-form-group">
+            <label class="mc-label">Cantidad</label>
+            <input type="number" class="mc-input" id="ingredient-quantity" placeholder="0">
+          </div>
+          <div class="mc-form-group">
+            <label class="mc-label">Unidad</label>
+            <select class="mc-input mc-select" id="ingredient-unit">
+              <option>kg</option>
+              <option>g</option>
+              <option>unidad</option>
+              <option>litros</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="mc-modal__footer">
+        <button class="mc-button mc-button--secondary" data-modal-close="modal-ingredient">Cancelar</button>
+        <button class="mc-button" id="btn-save-ingredient">Guardar insumo</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mc-modal" id="modal-dish">
+    <div class="mc-modal__box">
+      <div class="mc-modal__header"><img src="assets/1.21.11/items/mushroom_stew.png" alt="" class="mc-list__icon"> Agregar / Editar Platillo</div>
+      <div class="mc-modal__body">
+        <div class="mc-form-group">
+          <label class="mc-label">Nombre del platillo</label>
+          <input type="text" class="mc-input" id="dish-name" placeholder="Nombre pixelado">
+        </div>
+        <div class="mc-form-group">
+          <label class="mc-label">Descripción</label>
+          <input type="text" class="mc-input" id="dish-description" placeholder="Descripción breve">
+        </div>
+        <div class="grid-2">
+          <div class="mc-form-group">
+            <label class="mc-label">Precio</label>
+            <input type="number" class="mc-input" id="dish-price" placeholder="0.00" step="0.01">
+          </div>
+          <div class="mc-form-group">
+            <label class="mc-label">Icono</label>
+            <input type="text" class="mc-input" id="dish-icon" placeholder="Ej: carrot.png">
+          </div>
+        </div>
+      </div>
+      <div class="mc-modal__footer">
+        <button class="mc-button mc-button--secondary" data-modal-close="modal-dish">Cancelar</button>
+        <button class="mc-button" id="btn-save-dish">Guardar platillo</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data-demo.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/inventory.js"></script>
+  <script src="js/dishes.js"></script>
+  <script src="js/orders.js"></script>
+  <script src="js/tables.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/modals.js"></script>
+  <script src="js/app-feedback.js"></script>
+  <script src="js/dashboard-ui.js"></script>
+  <script src="js/inventory-ui.js"></script>
+  <script src="js/dishes-ui.js"></script>
+  <script src="js/orders-ui.js"></script>
+  <script src="js/reports-ui.js"></script>
+  <script src="js/tables-ui.js"></script>
+  <script>
+    // Verificar autenticación
+    Auth.checkAuth();
+  </script>
+</body>
+</html>

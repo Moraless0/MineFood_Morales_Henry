@@ -105,11 +105,6 @@ const Orders = {
       throw new Error('Ya existe un pedido con ese ID');
     }
 
-    // Validar inventario
-    if (!this.validateInventory(orderData.items)) {
-      throw new Error('Inventario insuficiente para preparar los platillos');
-    }
-
     // Calcular total
     const total = this.calculateTotal(orderData.items);
 
@@ -119,14 +114,13 @@ const Orders = {
       phone: orderData.phone,
       table: orderData.table,
       status: orderData.status || 'pending',
+      paymentMethod: orderData.paymentMethod || 'cash',
       items: orderData.items,
       total: parseFloat(total),
       createdAt: new Date().toISOString()
     };
 
-    // Descontar inventario
-    this.deductInventory(orderData.items);
-
+    // NO descontar inventario al crear (se descuenta al pasar a preparing)
     orders.push(newOrder);
     localStorage.setItem(this.ORDERS_KEY, JSON.stringify(orders));
     return newOrder;

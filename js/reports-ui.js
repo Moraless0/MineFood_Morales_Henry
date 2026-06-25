@@ -6,6 +6,15 @@ document.addEventListener('DOMContentLoaded', function() {
   updateIngredientUsage();
 });
 
+// Actualizar cuando la vista de reportes se active
+window.addEventListener('viewChange', function(e) {
+  if (e.detail.viewId === 'view-reports') {
+    updateReportStats();
+    updateTopDishes();
+    updateIngredientUsage();
+  }
+});
+
 function updateReportStats() {
   const stats = Orders.getStats();
   const orders = Orders.getAll();

@@ -154,7 +154,7 @@
     renderDishesGrid();
 
     // Conectar botón guardar del modal
-    const saveButton = document.querySelector('#modal-dish .mc-button:not(.mc-button--secondary)');
+    const saveButton = document.getElementById('btn-save-dish');
     if (saveButton) {
       saveButton.addEventListener('click', saveDish);
     }
@@ -168,6 +168,20 @@
         const inputs = modal.querySelectorAll('input');
         inputs.forEach(input => input.value = '');
       });
+    }
+  });
+
+  // Actualizar cuando la vista de platillos se active
+  window.addEventListener('viewChange', function(e) {
+    if (e.detail.viewId === 'view-dishes') {
+      renderDishesGrid();
+      
+      // Conectar botón guardar del modal
+      const saveButton = document.getElementById('btn-save-dish');
+      if (saveButton) {
+        saveButton.removeEventListener('click', saveDish);
+        saveButton.addEventListener('click', saveDish);
+      }
     }
   });
 })();

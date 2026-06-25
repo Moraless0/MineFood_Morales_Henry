@@ -159,6 +159,15 @@
     setupFilters();
     setupSearch();
   });
+
+  // Actualizar cuando la vista de pedidos se active
+  window.addEventListener('viewChange', function(e) {
+    if (e.detail.viewId === 'view-orders') {
+      renderOrdersTable();
+      setupFilters();
+      setupSearch();
+    }
+  });
   // Obtener etiqueta de método de pago
   function getPaymentMethodLabel(method) {
     const labels = {

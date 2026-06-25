@@ -39,6 +39,22 @@ const Auth = {
   // Obtener usuario actual
   getCurrentUser() {
     return JSON.parse(localStorage.getItem(this.USER_KEY));
+  },
+
+  // Verificar si está logueado y redirigir si es necesario
+  checkAuth() {
+    const user = this.getCurrentUser();
+    const currentPath = window.location.pathname;
+    
+    // Si no está en index.html y no hay usuario, redirigir a login
+    if (!user && !currentPath.includes('index.html')) {
+      window.location.href = 'index.html';
+    }
+    
+    // Si está en index.html y hay usuario, redirigir a app
+    if (user && currentPath.includes('index.html')) {
+      window.location.href = 'app.html';
+    }
   }
 };
 

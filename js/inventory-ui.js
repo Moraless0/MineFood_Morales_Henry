@@ -220,9 +220,24 @@
     setupSearch();
 
     // Conectar botón guardar del modal
-    const saveButton = document.querySelector('#modal-ingredient .mc-button:not(.mc-button--secondary)');
+    const saveButton = document.getElementById('btn-save-ingredient');
     if (saveButton) {
       saveButton.addEventListener('click', saveIngredient);
+    }
+  });
+
+  // Actualizar cuando la vista de inventario se active
+  window.addEventListener('viewChange', function(e) {
+    if (e.detail.viewId === 'view-inventory') {
+      renderInventoryTable();
+      setupSearch();
+      
+      // Conectar botón guardar del modal
+      const saveButton = document.getElementById('btn-save-ingredient');
+      if (saveButton) {
+        saveButton.removeEventListener('click', saveIngredient);
+        saveButton.addEventListener('click', saveIngredient);
+      }
     }
   });
 })();

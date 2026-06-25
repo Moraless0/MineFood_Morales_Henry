@@ -25,12 +25,13 @@
     overlay.addEventListener('click', closeSidebar);
   }
 
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  // Marcar link activo basado en hash (SPA)
+  const currentHash = window.location.hash.slice(1) || 'dashboard';
   document.querySelectorAll('.nav-item').forEach(item => {
     const link = item.querySelector('a');
     if (!link) return;
-    const href = link.getAttribute('href').split('/').pop();
-    if (href === currentPage) {
+    const href = link.getAttribute('href').slice(1); // Remover #
+    if (href === currentHash) {
       item.classList.add('active');
     }
   });
