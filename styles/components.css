@@ -89,6 +89,13 @@
   text-shadow: 1px 1px 0 #000;
 }
 
+.mc-slot__img {
+  width: 32px;
+  height: 32px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
 .mc-table {
   width: 100%;
   border-collapse: separate;
