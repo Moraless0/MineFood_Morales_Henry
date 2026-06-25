@@ -43,42 +43,44 @@
     return icon ? `assets/1.21.11/items/${icon}` : 'assets/1.21.11/items/apple.png';
   }
 
-  // Renderizar tabla de inventario
+  // Renderizar grid de inventario
   function renderInventoryTable() {
-    const tbody = document.querySelector('.mc-table tbody');
-    if (!tbody) return;
+    const grid = document.getElementById('inventory-grid');
+    if (!grid) return;
 
     const ingredients = Inventory.getAll();
     
     if (ingredients.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="7" class="mc-empty-state">No hay insumos registrados. Usa “Agregar insumo” para crear el primero.</td></tr>';
+      grid.innerHTML = '<tr><td colspan="7" class="mc-empty-state">No hay insumos registrados. Usa “Agregar insumo” para crear el primero.</td></tr>';
       return;
     }
 
-    tbody.innerHTML = ingredients.map(ingredient => {
+    grid.innerHTML = ingredients.map(ingredient => {
       const isLowStock = ingredient.quantity <= ingredient.min;
       const statusBadge = isLowStock 
         ? '<span class="mc-badge mc-badge--alert">Bajo</span>'
         : '<span class="mc-badge mc-badge--delivered">OK</span>';
 
       return `
-        <tr>
-          <td data-label="Código">${ingredient.code}</td>
-          <td data-label="Nombre">
-            <span style="display: flex; align-items: center; gap: 8px;">
-              <img src="${getIcon(ingredient.name)}" alt="" class="mc-list__icon">
-              ${ingredient.name}
-            </span>
-          </td>
-          <td data-label="Descripción">${ingredient.description}</td>
-          <td data-label="Cantidad">${ingredient.quantity}</td>
-          <td data-label="Unidad">${ingredient.unit}</td>
-          <td data-label="Estado">${statusBadge}</td>
-          <td data-label="Acciones">
-            <button class="mc-button mc-button--small mc-button--secondary" onclick="editIngredient('${ingredient.code}')">Editar</button>
-            <button class="mc-button mc-button--small mc-button--danger" onclick="deleteIngredient('${ingredient.code}')">Eliminar</button>
-          </td>
-        </tr>
+        <div class="mc-inventory-item">
+          <div class="mc-slot">
+            <img src="${getIcon(ingredient.name)}" alt="" class="mc-slot__img">
+          </div>
+          <div class="mc-inventory-item__name">${ingredient.name}</div>
+          <div class="mc-inventory-item__meta">${ingredient.code}</div>
+          <div class="mc-inventory-item__meta">${ingredient.quantity} ${ingredient.unit}</div>
+          <div style="display: flex; align-items: center; gap: 6px; margin: 4px 0;">
+            ${statusBadge}
+          </div>
+          <div style="display: flex; gap: 8px; margin-top: 8px;">
+            <button class="mc-button mc-button--small mc-button--secondary" onclick="editIngredient('${ingredient.code}')" title="Editar">
+              <img src="assets/1.21.11/items/oak_sign.png" alt="" style="width: 16px; height: 16px;">
+            </button>
+            <button class="mc-button mc-button--small mc-button--danger" onclick="deleteIngredient('${ingredient.code}')" title="Eliminar">
+              <img src="assets/1.21.11/items/barrier.png" alt="" style="width: 16px; height: 16px;">
+            </button>
+          </div>
+        </div>
       `;
     }).join('');
   }
@@ -177,39 +179,41 @@
         ing.description.toLowerCase().includes(searchTerm)
       );
 
-      const tbody = document.querySelector('.mc-table tbody');
-      if (!tbody) return;
+      const grid = document.getElementById('inventory-grid');
+      if (!grid) return;
 
       if (filtered.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="7" class="mc-empty-state">No se encontraron insumos con ese criterio.</td></tr>';
+        grid.innerHTML = '<div class="mc-empty-state">No se encontraron insumos con ese criterio.</div>';
         return;
       }
 
-      tbody.innerHTML = filtered.map(ingredient => {
+      grid.innerHTML = filtered.map(ingredient => {
         const isLowStock = ingredient.quantity <= ingredient.min;
         const statusBadge = isLowStock 
           ? '<span class="mc-badge mc-badge--alert">Bajo</span>'
           : '<span class="mc-badge mc-badge--delivered">OK</span>';
 
         return `
-          <tr>
-            <td data-label="Código">${ingredient.code}</td>
-            <td data-label="Nombre">
-              <span style="display: flex; align-items: center; gap: 8px;">
-                <img src="${getIcon(ingredient.name)}" alt="" class="mc-list__icon">
-                ${ingredient.name}
-              </span>
-            </td>
-            <td data-label="Descripción">${ingredient.description}</td>
-            <td data-label="Cantidad">${ingredient.quantity}</td>
-            <td data-label="Unidad">${ingredient.unit}</td>
-            <td data-label="Estado">${statusBadge}</td>
-            <td data-label="Acciones">
-              <button class="mc-button mc-button--small mc-button--secondary" onclick="editIngredient('${ingredient.code}')">Editar</button>
-              <button class="mc-button mc-button--small mc-button--danger" onclick="deleteIngredient('${ingredient.code}')">Eliminar</button>
-            </td>
-          </tr>
-        `;
+        <div class="mc-inventory-item">
+          <div class="mc-slot">
+            <img src="${getIcon(ingredient.name)}" alt="" class="mc-slot__img">
+          </div>
+          <div class="mc-inventory-item__name">${ingredient.name}</div>
+          <div class="mc-inventory-item__meta">${ingredient.code}</div>
+          <div class="mc-inventory-item__meta">${ingredient.quantity} ${ingredient.unit}</div>
+          <div style="display: flex; align-items: center; gap: 6px; margin: 4px 0;">
+            ${statusBadge}
+          </div>
+          <div style="display: flex; gap: 8px; margin-top: 8px;">
+            <button class="mc-button mc-button--small mc-button--secondary" onclick="editIngredient('${ingredient.code}')" title="Editar">
+              <img src="assets/1.21.11/items/oak_sign.png" alt="" style="width: 16px; height: 16px;">
+            </button>
+            <button class="mc-button mc-button--small mc-button--danger" onclick="deleteIngredient('${ingredient.code}')" title="Eliminar">
+              <img src="assets/1.21.11/items/barrier.png" alt="" style="width: 16px; height: 16px;">
+            </button>
+          </div>
+        </div>
+      `;
       }).join('');
     });
   }
@@ -241,3 +245,6 @@
     }
   });
 })();
+
+
+

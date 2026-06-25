@@ -45,7 +45,7 @@
 
   // Renderizar grid de platillos
   function renderDishesGrid() {
-    const grid = document.querySelector('.mc-inventory-grid');
+    const grid = document.getElementById('dishes-grid');
     if (!grid) return;
 
     const dishes = Dishes.getAll();
