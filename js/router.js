@@ -23,8 +23,9 @@ const Router = {
 
   // Manejar cambio de ruta
   handleRoute() {
-    const hash = window.location.hash.slice(1) || this.defaultRoute;
-    const viewId = this.routes[hash] || this.routes[this.defaultRoute];
+    const requestedHash = window.location.hash.slice(1) || this.defaultRoute;
+    const hash = this.routes[requestedHash] ? requestedHash : this.defaultRoute;
+    const viewId = this.routes[hash];
     
     this.navigate(viewId);
     this.updateActiveLink(hash);
@@ -51,11 +52,14 @@ const Router = {
 
   // Actualizar link activo en sidebar
   updateActiveLink(hash) {
-    document.querySelectorAll('.nav-item a').forEach(link => {
-      link.classList.remove('active');
+    document.querySelectorAll('.nav-item').forEach(item => {
+      const link = item.querySelector('a');
+      item.classList.remove('active');
+      if (!link) return;
+
       const href = link.getAttribute('href');
-      if (href === `#${hash}` || (hash === '' && href === '#dashboard')) {
-        link.classList.add('active');
+      if (href === `#${hash}`) {
+        item.classList.add('active');
       }
     });
   },

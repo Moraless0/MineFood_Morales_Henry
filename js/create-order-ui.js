@@ -169,7 +169,7 @@
       MineFoodFeedback.showToast(`Pedido ${orderId} creado exitosamente.`);
       cart = {};
       window.setTimeout(() => {
-        window.location.href = 'orders.html';
+        window.location.href = 'app.html#orders';
       }, 700);
       
     } catch (error) {

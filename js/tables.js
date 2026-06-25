@@ -58,8 +58,9 @@ const Tables = {
     tables[index].status = status;
     
     if (status === 'occupied') {
+      const isSameActiveOrder = tables[index].currentOrder === orderId && tables[index].occupiedSince;
       tables[index].currentOrder = orderId;
-      tables[index].occupiedSince = new Date().toISOString();
+      tables[index].occupiedSince = isSameActiveOrder ? tables[index].occupiedSince : new Date().toISOString();
     } else if (status === 'free') {
       tables[index].currentOrder = null;
       tables[index].occupiedSince = null;
@@ -93,13 +94,17 @@ const Tables = {
     const now = new Date();
     const diff = now - occupied;
     
-    const minutes = Math.floor(diff / 60000);
+    const seconds = Math.floor(diff / 1000);
+    const minutes = Math.floor(seconds / 60);
     const hours = Math.floor(minutes / 60);
     
     if (hours > 0) {
-      return `${hours}h ${minutes % 60}m`;
+      return `${hours}h ${minutes % 60}m ${seconds % 60}s`;
     }
-    return `${minutes}m`;
+    if (minutes > 0) {
+      return `${minutes}m ${seconds % 60}s`;
+    }
+    return `${seconds}s`;
   },
 
   // Obtener estadísticas de mesas

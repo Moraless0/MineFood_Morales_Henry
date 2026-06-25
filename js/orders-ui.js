@@ -14,7 +14,7 @@
 
   // Renderizar tabla de pedidos
   function renderOrdersTable(filter = '') {
-    const tbody = document.querySelector('.mc-table tbody');
+    const tbody = document.getElementById('orders-table-body');
     if (!tbody) return;
 
     let orders = Orders.getAll();
@@ -62,13 +62,27 @@
     const order = Orders.getById(id);
     if (!order) return;
 
-    const statusOptions = ['pending', 'preparing', 'ready', 'served', 'paid'];
+    const statusOptions = ['pending', 'preparing', 'ready', 'served'];
     const currentIndex = statusOptions.indexOf(order.status);
-    const nextStatus = statusOptions[(currentIndex + 1) % statusOptions.length];
+    const nextStatus = statusOptions[currentIndex + 1];
+
+    if (!nextStatus) {
+      MineFoodFeedback.showToast('El pedido ya está servido. Para cambiarlo a pagado usa el proceso de pago desde Mesas.', 'warning');
+      return;
+    }
 
     try {
+      if (nextStatus === 'preparing' && order.status === 'pending') {
+        if (!Orders.validateInventory(order.items)) {
+          MineFoodFeedback.showToast('Inventario insuficiente para preparar los platillos.', 'error');
+          return;
+        }
+        Orders.deductInventory(order.items);
+      }
+
       Orders.updateStatus(id, nextStatus);
       renderOrdersTable();
+      window.dispatchEvent(new CustomEvent('tablesChanged'));
       MineFoodFeedback.showToast(`Pedido ${id} actualizado a ${statusMap[nextStatus].text}.`);
     } catch (error) {
       MineFoodFeedback.showToast(error.message, 'error');
@@ -79,8 +93,16 @@
   window.deleteOrder = function(id) {
     if (MineFoodFeedback.confirmAction('¿Eliminar este pedido?')) {
       try {
+        const order = Orders.getById(id);
         Orders.delete(id);
+
+        if (order?.table?.startsWith('Mesa ')) {
+          const tableNumber = parseInt(order.table.replace('Mesa ', ''));
+          Tables.updateStatus(tableNumber, 'free');
+        }
+
         renderOrdersTable();
+        window.dispatchEvent(new CustomEvent('tablesChanged'));
         MineFoodFeedback.showToast('Pedido eliminado correctamente.');
       } catch (error) {
         MineFoodFeedback.showToast(error.message, 'error');
@@ -90,7 +112,7 @@
 
   // Filtrar por estado
   function setupFilters() {
-    const statusSelect = document.querySelector('.page-header select');
+    const statusSelect = document.getElementById('orders-filter');
     if (!statusSelect) return;
 
     statusSelect.addEventListener('change', function() {
@@ -100,12 +122,12 @@
 
   // Buscar pedido
   function setupSearch() {
-    const searchInput = document.querySelector('.page-header input[type="text"]');
+    const searchInput = document.getElementById('orders-search');
     if (!searchInput) return;
 
     searchInput.addEventListener('input', function() {
       const searchTerm = this.value.toLowerCase();
-      const activeFilter = document.querySelector('.page-header select')?.value || '';
+      const activeFilter = document.getElementById('orders-filter')?.value || '';
       let orders = Orders.getAll();
 
       if (activeFilter) {
@@ -117,7 +139,7 @@
         (order.customer && order.customer.toLowerCase().includes(searchTerm))
       );
 
-      const tbody = document.querySelector('.mc-table tbody');
+      const tbody = document.getElementById('orders-table-body');
       if (!tbody) return;
 
       if (filtered.length === 0) {

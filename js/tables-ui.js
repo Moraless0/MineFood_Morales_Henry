@@ -13,8 +13,9 @@
 
     grid.innerHTML = tables.map(table => {
       const order = table.currentOrder ? orders.find(o => o.id === table.currentOrder) : null;
-      const statusClass = `mc-table-card--${table.status}`;
-      const statusText = getStatusText(table.status);
+      const visualStatus = getTableVisualStatus(table, order);
+      const statusClass = `mc-table-card--${visualStatus}`;
+      const statusText = getStatusText(visualStatus);
       const time = table.status !== 'free' ? Tables.getOccupiedTime(table.number) : '';
       const total = order ? `$${order.total.toFixed(2)}` : '';
 
@@ -29,12 +30,23 @@
     }).join('');
   }
 
+  function getTableVisualStatus(table, order) {
+    if (table.status === 'free') return 'free';
+    if (table.status === 'paying') return 'paying';
+    return order?.status || 'occupied';
+  }
+
   // Obtener texto de estado
   function getStatusText(status) {
     const texts = {
       'free': 'Libre',
       'occupied': 'Ocupada',
-      'paying': 'Pagando'
+      'pending': 'Pendiente',
+      'preparing': 'Preparando',
+      'ready': 'Listo',
+      'served': 'Servido',
+      'paying': 'Pagando',
+      'paid': 'Pagado'
     };
     return texts[status] || status;
   }
@@ -227,9 +239,14 @@
     const order = Orders.getById(orderId);
     if (!order) return;
 
-    const statusOptions = ['pending', 'preparing', 'ready', 'served', 'paid'];
+    const statusOptions = ['pending', 'preparing', 'ready', 'served'];
     const currentIndex = statusOptions.indexOf(order.status);
-    const nextStatus = statusOptions[(currentIndex + 1) % statusOptions.length];
+    const nextStatus = statusOptions[currentIndex + 1];
+
+    if (!nextStatus) {
+      MineFoodFeedback.showToast('El pedido ya está servido. Para liberar la mesa debes procesar el pago.', 'warning');
+      return;
+    }
 
     try {
       // Si pasa a preparing, descontar inventario
@@ -242,12 +259,6 @@
       }
 
       Orders.updateStatus(orderId, nextStatus);
-      
-      // Si pasa a paid, liberar mesa
-      if (nextStatus === 'paid') {
-        const tableNumber = parseInt(order.table.replace('Mesa ', ''));
-        Tables.updateStatus(tableNumber, 'free');
-      }
 
       renderTablesGrid();
       document.querySelector('[data-modal-close="modal-table"]').click();
@@ -262,10 +273,20 @@
     const order = Orders.getById(orderId);
     if (!order) return;
 
+    if (order.status !== 'served') {
+      MineFoodFeedback.showToast('Solo puedes cobrar cuando el pedido ya fue servido.', 'warning');
+      return;
+    }
+
+    Tables.updateStatus(tableNumber, 'paying', orderId);
+    renderTablesGrid();
+
     const tableModal = document.getElementById('modal-table');
     tableModal.classList.remove('is-open');
 
     const paymentModal = document.getElementById('modal-payment');
+    paymentModal.dataset.orderId = orderId;
+    paymentModal.dataset.tableNumber = tableNumber;
     const paymentContent = document.getElementById('modal-payment-content');
 
     const itemsDetail = order.items.map(item => {
@@ -332,6 +353,8 @@
         Tables.updateStatus(tableNumber, 'free');
         
         renderTablesGrid();
+        delete paymentModal.dataset.orderId;
+        delete paymentModal.dataset.tableNumber;
         paymentModal.classList.remove('is-open');
         MineFoodFeedback.showToast(`Pago completado para pedido ${orderId}.`);
       } catch (error) {
@@ -371,11 +394,37 @@
       updatePageTitle(e.detail.viewId);
     });
 
+    window.addEventListener('tablesChanged', renderTablesGrid);
+
+    const paymentModal = document.getElementById('modal-payment');
+    const restorePaymentTable = function() {
+      const orderId = paymentModal?.dataset.orderId;
+      const tableNumber = parseInt(paymentModal?.dataset.tableNumber || '', 10);
+      const order = orderId ? Orders.getById(orderId) : null;
+
+      if (order && order.status !== 'paid' && tableNumber) {
+        Tables.updateStatus(tableNumber, 'occupied', orderId);
+        renderTablesGrid();
+      }
+
+      if (paymentModal) {
+        delete paymentModal.dataset.orderId;
+        delete paymentModal.dataset.tableNumber;
+      }
+    };
+
+    document.querySelector('[data-modal-close="modal-payment"]')?.addEventListener('click', restorePaymentTable);
+    paymentModal?.addEventListener('click', function(e) {
+      if (e.target === paymentModal) {
+        restorePaymentTable();
+      }
+    });
+
     // Actualizar periódicamente el tiempo de mesas ocupadas
     setInterval(() => {
       if (document.getElementById('view-tables').classList.contains('active')) {
         renderTablesGrid();
       }
-    }, 60000); // Cada minuto
+    }, 1000);
   });
 })();

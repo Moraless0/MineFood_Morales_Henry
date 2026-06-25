@@ -489,8 +489,21 @@
   border-color: #4CAF50;
 }
 
-.mc-table-card--occupied {
+.mc-table-card--occupied,
+.mc-table-card--pending {
   border-color: #f44336;
+}
+
+.mc-table-card--preparing {
+  border-color: #ff9800;
+}
+
+.mc-table-card--ready {
+  border-color: #2196f3;
+}
+
+.mc-table-card--served {
+  border-color: #9c27b0;
 }
 
 .mc-table-card--paying {
