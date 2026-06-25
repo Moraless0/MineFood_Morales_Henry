@@ -24,7 +24,17 @@
     'Semillas de Melón': 'melon_seeds.png',
     'Cacao': 'cocoa_beans.png',
     'Levadura': 'slime_ball.png',
-    'Aceite': 'glass_bottle.png'
+    'Aceite': 'glass_bottle.png',
+    'Carne de Res': 'beef.png',
+    'Carne de Cerdo': 'porkchop.png',
+    'Pollo': 'chicken.png',
+    'Pescado': 'cod.png',
+    'Carne de Conejo': 'rabbit.png',
+    'Carne de Carnero': 'mutton.png',
+    'Huevos': 'egg.png',
+    'Leche': 'milk_bucket.png',
+    'Sal': 'sugar.png',
+    'Pimienta': 'blaze_powder.png'
   };
 
   // Obtener icono para un insumo

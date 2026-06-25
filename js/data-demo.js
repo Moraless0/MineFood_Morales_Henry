@@ -19,7 +19,17 @@ window.mcData = {
     { code: 'SEM-017', name: 'Semillas de Melón', description: 'Semillas para cultivar melones.', quantity: 3, unit: 'kg', min: 1 },
     { code: 'CAC-018', name: 'Cacao', description: 'Cacao en grano para postres.', quantity: 8, unit: 'kg', min: 3 },
     { code: 'LEV-019', name: 'Levadura', description: 'Levadura para panadería.', quantity: 2, unit: 'kg', min: 1 },
-    { code: 'ACE-020', name: 'Aceite', description: 'Aceite vegetal para cocinar.', quantity: 12, unit: 'l', min: 3 }
+    { code: 'ACE-020', name: 'Aceite', description: 'Aceite vegetal para cocinar.', quantity: 12, unit: 'l', min: 3 },
+    { code: 'CAR-021', name: 'Carne de Res', description: 'Carne de res fresca para hamburguesas y asados.', quantity: 20, unit: 'kg', min: 5 },
+    { code: 'CER-022', name: 'Carne de Cerdo', description: 'Carne de cerdo para chuletas y salchichas.', quantity: 15, unit: 'kg', min: 4 },
+    { code: 'POL-023', name: 'Pollo', description: 'Pollo fresco para asados y guisos.', quantity: 18, unit: 'kg', min: 5 },
+    { code: 'PES-024', name: 'Pescado', description: 'Pescado fresco del río para frituras.', quantity: 12, unit: 'kg', min: 3 },
+    { code: 'CONEJO-025', name: 'Carne de Conejo', description: 'Carne de conejo tierna para estofados.', quantity: 8, unit: 'kg', min: 2 },
+    { code: 'CARNE-026', name: 'Carne de Carnero', description: 'Carne de carnero para platos especiales.', quantity: 10, unit: 'kg', min: 3 },
+    { code: 'HUEVO-027', name: 'Huevos', description: 'Huevos frescos para desayunos y repostería.', quantity: 40, unit: 'unid', min: 10 },
+    { code: 'LECHE-028', name: 'Leche', description: 'Leche fresca para bebidas y cocina.', quantity: 15, unit: 'l', min: 4 },
+    { code: 'SAL-029', name: 'Sal', description: 'Sal marina para sazonar.', quantity: 8, unit: 'kg', min: 2 },
+    { code: 'PIM-030', name: 'Pimienta', description: 'Pimienta negra molida.', quantity: 2, unit: 'kg', min: 0.5 }
   ],
   dishes: [
     { code: 'PLT-001', name: 'Ensalada de Zanahoria Dorada', description: 'Ensalada crujiente con zanahoria, algas y aderezo.', price: 12.50, icon: '🥕', ingredients: { 'ZAN-001': 0.3, 'ALG-007': 0.1 } },
@@ -39,7 +49,19 @@ window.mcData = {
     { code: 'PLT-015', name: 'Sopa de Remolacha', description: 'Sopa tradicional de remolacha.', price: 11.00, icon: '🫙', ingredients: { 'REM-003': 0.4, 'SEM-016': 0.05 } },
     { code: 'PLT-016', name: 'Ensalada de Frutas del Bosque', description: 'Mix de bayas dulces y glow berries.', price: 13.00, icon: '🍇', ingredients: { 'BAY-004': 0.2, 'GLO-012': 0.15, 'MEL-005': 0.15 } },
     { code: 'PLT-017', name: 'Panqueques de Trigo', description: 'Panqueques esponjosos con miel.', price: 12.00, icon: '🥞', ingredients: { 'TRI-002': 0.3, 'LEV-019': 0.05, 'MIE-014': 0.1 } },
-    { code: 'PLT-018', name: 'Ensalada de Bambú', description: 'Ensalada fresca de bambú y algas.', price: 10.50, icon: '🎋', ingredients: { 'BAM-008': 0.4, 'ALG-007': 0.2 } }
+    { code: 'PLT-018', name: 'Ensalada de Bambú', description: 'Ensalada fresca de bambú y algas.', price: 10.50, icon: '🎋', ingredients: { 'BAM-008': 0.4, 'ALG-007': 0.2 } },
+    { code: 'PLT-019', name: 'Hamburguesa de Res', description: 'Hamburguesa jugosa de res fresca con pan.', price: 18.50, icon: '🍔', ingredients: { 'CAR-021': 0.3, 'TRI-002': 0.2, 'PAP-010': 0.15 } },
+    { code: 'PLT-020', name: 'Chuleta de Cerdo', description: 'Chuleta de cerdo dorada a la parrilla.', price: 16.00, icon: '🥩', ingredients: { 'CER-022': 0.35, 'SAL-029': 0.05 } },
+    { code: 'PLT-021', name: 'Pollo Asado', description: 'Pollo asado con hierbas y especias.', price: 19.00, icon: '🍗', ingredients: { 'POL-023': 0.4, 'PIM-030': 0.05, 'ACE-020': 0.1 } },
+    { code: 'PLT-022', name: 'Pescado Frito', description: 'Pescado fresco frito con papas.', price: 15.50, icon: '🐟', ingredients: { 'PES-024': 0.35, 'PAP-010': 0.2, 'ACE-020': 0.15 } },
+    { code: 'PLT-023', name: 'Estofado de Conejo', description: 'Estofado tradicional de carne de conejo.', price: 17.00, icon: '🐰', ingredients: { 'CONEJO-025': 0.4, 'ZAN-001': 0.2, 'REM-003': 0.1 } },
+    { code: 'PLT-024', name: 'Carne de Carnero Asada', description: 'Carne de carnero asada a la parrilla.', price: 20.00, icon: '🐑', ingredients: { 'CARNE-026': 0.4, 'SAL-029': 0.05, 'PIM-030': 0.05 } },
+    { code: 'PLT-025', name: 'Huevos con Pan', description: 'Huevos frescos servidos con pan tostado.', price: 9.50, icon: '🥚', ingredients: { 'HUEVO-027': 2, 'TRI-002': 0.2, 'ACE-020': 0.05 } },
+    { code: 'PLT-026', name: 'Leche Fresca', description: 'Vaso de leche fresca y fría.', price: 4.00, icon: '🥛', ingredients: { 'LECHE-028': 0.3 } },
+    { code: 'PLT-027', name: 'Carne de Res Asada', description: 'Corte premium de res asado.', price: 22.00, icon: '🥓', ingredients: { 'CAR-021': 0.5, 'SAL-029': 0.05, 'PIM-030': 0.05 } },
+    { code: 'PLT-028', name: 'Salchicha de Cerdo', description: 'Salchicha tradicional de cerdo.', price: 11.00, icon: '🌭', ingredients: { 'CER-022': 0.3, 'TRI-002': 0.15 } },
+    { code: 'PLT-029', name: 'Filete de Pescado', description: 'Filete de pescado fresco a la plancha.', price: 16.50, icon: '🐠', ingredients: { 'PES-024': 0.35, 'SAL-029': 0.05, 'ACE-020': 0.1 } },
+    { code: 'PLT-030', name: 'Carne de Conejo Frita', description: 'Conejo frito crujiente con hierbas.', price: 18.00, icon: '🍗', ingredients: { 'CONEJO-025': 0.35, 'PAP-010': 0.2, 'ACE-020': 0.15 } }
   ],
   orders: [
     { id: 'PED-001', table: 'Mesa 3', customer: 'Steve', phone: '3001112233', status: 'preparing', total: 37.00, createdAt: '2026-06-25T08:00:00.000Z', items: [{ code: 'PLT-002', quantity: 2 }, { code: 'PLT-006', quantity: 1 }] },

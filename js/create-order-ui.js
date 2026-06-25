@@ -22,7 +22,19 @@
     'Sopa de Remolacha': 'beetroot_soup.png',
     'Ensalada de Frutas del Bosque': 'sweet_berries.png',
     'Panqueques de Trigo': 'bread.png',
-    'Ensalada de Bambú': 'bamboo.png'
+    'Ensalada de Bambú': 'bamboo.png',
+    'Hamburguesa de Res': 'beef.png',
+    'Chuleta de Cerdo': 'porkchop.png',
+    'Pollo Asado': 'cooked_chicken.png',
+    'Pescado Frito': 'cooked_cod.png',
+    'Estofado de Conejo': 'cooked_rabbit.png',
+    'Carne de Carnero Asada': 'cooked_mutton.png',
+    'Huevos con Pan': 'egg.png',
+    'Leche Fresca': 'milk_bucket.png',
+    'Carne de Res Asada': 'cooked_beef.png',
+    'Salchicha de Cerdo': 'porkchop.png',
+    'Filete de Pescado': 'cooked_cod.png',
+    'Carne de Conejo Frita': 'cooked_rabbit.png'
   };
 
   // Obtener icono para un platillo
