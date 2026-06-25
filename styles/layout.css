@@ -28,7 +28,15 @@
   border-bottom: 4px solid var(--wood-dark);
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
+}
+
+.sidebar__logo-img {
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
 }
 
 .sidebar__nav {
@@ -80,6 +88,8 @@
   border: 3px solid var(--inventory-border);
   box-shadow: var(--shadow-inset);
   font-size: 14px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
 }
 
 .sidebar__footer {
@@ -123,6 +133,30 @@
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+.mc-hearts {
+  display: flex;
+  gap: 2px;
+}
+
+.mc-hearts__heart {
+  width: 16px;
+  height: 16px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.mc-hunger {
+  display: flex;
+  gap: 2px;
+}
+
+.mc-hunger__food {
+  width: 16px;
+  height: 16px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
 }
 
 .hamburger {

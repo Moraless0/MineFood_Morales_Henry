@@ -14,16 +14,46 @@
 <body>
   <div class="app-container">
     <aside class="sidebar">
-      <div class="sidebar__logo">🍽️ MineFood</div>
+      <div class="sidebar__logo">
+        <img src="assets/images/minefood_title.png" alt="MineFood" class="sidebar__logo-img">
+      </div>
       <ul class="sidebar__nav">
-        <li class="nav-item"><a href="dashboard.html"><span class="nav-item__icon">🏠</span> Dashboard</a></li>
-        <li class="nav-item"><a href="inventory.html"><span class="nav-item__icon">📦</span> Inventario</a></li>
-        <li class="nav-item"><a href="dishes.html"><span class="nav-item__icon">🍽️</span> Platillos</a></li>
-        <li class="nav-item"><a href="orders.html"><span class="nav-item__icon">🧾</span> Pedidos</a></li>
-        <li class="nav-item"><a href="reports.html"><span class="nav-item__icon">📊</span> Reportes</a></li>
+        <li class="nav-item">
+          <a href="dashboard.html">
+            <img src="assets/1.21.11/items/apple.png" alt="" class="nav-item__icon">
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="inventory.html">
+            <img src="assets/1.21.11/items/black_bundle.png" alt="" class="nav-item__icon">
+            <span>Inventario</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="dishes.html">
+            <img src="assets/1.21.11/items/mushroom_stew.png" alt="" class="nav-item__icon">
+            <span>Platillos</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="orders.html">
+            <img src="assets/1.21.11/items/book.png" alt="" class="nav-item__icon">
+            <span>Pedidos</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="reports.html">
+            <img src="assets/1.21.11/items/enchanted_book.png" alt="" class="nav-item__icon">
+            <span>Reportes</span>
+          </a>
+        </li>
       </ul>
       <div class="sidebar__footer">
-        <a href="index.html" class="mc-button mc-button--stone" style="width: 100%;">Salir</a>
+        <a href="index.html" class="mc-button mc-button--stone" style="width: 100%;">
+          <img src="assets/1.21.11/gui/sprites/widget/locked_button.png" alt="" class="mc-button-icon">
+          Salir
+        </a>
       </div>
     </aside>
 
@@ -36,6 +66,20 @@
           <span class="topbar__title">Crear pedido</span>
         </div>
         <div class="topbar__actions">
+          <div class="mc-hearts">
+            <img src="assets/1.21.11/gui/sprites/hud/heart/full.png" alt="" class="mc-hearts__heart">
+            <img src="assets/1.21.11/gui/sprites/hud/heart/full.png" alt="" class="mc-hearts__heart">
+            <img src="assets/1.21.11/gui/sprites/hud/heart/full.png" alt="" class="mc-hearts__heart">
+            <img src="assets/1.21.11/gui/sprites/hud/heart/full.png" alt="" class="mc-hearts__heart">
+            <img src="assets/1.21.11/gui/sprites/hud/heart/full.png" alt="" class="mc-hearts__heart">
+          </div>
+          <div class="mc-hunger">
+            <img src="assets/1.21.11/gui/sprites/hud/food_full.png" alt="" class="mc-hunger__food">
+            <img src="assets/1.21.11/gui/sprites/hud/food_full.png" alt="" class="mc-hunger__food">
+            <img src="assets/1.21.11/gui/sprites/hud/food_full.png" alt="" class="mc-hunger__food">
+            <img src="assets/1.21.11/gui/sprites/hud/food_full.png" alt="" class="mc-hunger__food">
+            <img src="assets/1.21.11/gui/sprites/hud/food_full.png" alt="" class="mc-hunger__food">
+          </div>
           <a href="orders.html" class="mc-button mc-button--secondary">Volver a pedidos</a>
         </div>
       </header>
@@ -50,7 +94,9 @@
             <h2 class="mc-card__title">Seleccionar platillos</h2>
             <div class="mc-inventory-grid">
               <div class="mc-inventory-item">
-                <div class="mc-slot">🥕</div>
+                <div class="mc-slot">
+                  <img src="assets/1.21.11/items/carrot.png" alt="" class="mc-slot__img">
+                </div>
                 <div class="mc-inventory-item__name">Ensalada de Zanahoria</div>
                 <div class="mc-inventory-item__meta">$12.50</div>
                 <div class="mc-quantity">
@@ -60,7 +106,9 @@
                 </div>
               </div>
               <div class="mc-inventory-item">
-                <div class="mc-slot">🍄</div>
+                <div class="mc-slot">
+                  <img src="assets/1.21.11/items/mushroom_stew.png" alt="" class="mc-slot__img">
+                </div>
                 <div class="mc-inventory-item__name">Estofado de Champiñones</div>
                 <div class="mc-inventory-item__meta">$15.00</div>
                 <div class="mc-quantity">
@@ -70,7 +118,9 @@
                 </div>
               </div>
               <div class="mc-inventory-item">
-                <div class="mc-slot">🍞</div>
+                <div class="mc-slot">
+                  <img src="assets/1.21.11/items/bread.png" alt="" class="mc-slot__img">
+                </div>
                 <div class="mc-inventory-item__name">Pan del Aldeano</div>
                 <div class="mc-inventory-item__meta">$8.00</div>
                 <div class="mc-quantity">
@@ -80,7 +130,9 @@
                 </div>
               </div>
               <div class="mc-inventory-item">
-                <div class="mc-slot">🍰</div>
+                <div class="mc-slot">
+                  <img src="assets/1.21.11/items/pumpkin_pie.png" alt="" class="mc-slot__img">
+                </div>
                 <div class="mc-inventory-item__name">Pastel de Bayas Dulces</div>
                 <div class="mc-inventory-item__meta">$18.00</div>
                 <div class="mc-quantity">

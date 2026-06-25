@@ -14,16 +14,46 @@
 <body>
   <div class="app-container">
     <aside class="sidebar">
-      <div class="sidebar__logo">🍽️ MineFood</div>
+      <div class="sidebar__logo">
+        <img src="assets/images/minefood_title.png" alt="MineFood" class="sidebar__logo-img">
+      </div>
       <ul class="sidebar__nav">
-        <li class="nav-item"><a href="dashboard.html"><span class="nav-item__icon">🏠</span> Dashboard</a></li>
-        <li class="nav-item"><a href="inventory.html"><span class="nav-item__icon">📦</span> Inventario</a></li>
-        <li class="nav-item"><a href="dishes.html"><span class="nav-item__icon">🍽️</span> Platillos</a></li>
-        <li class="nav-item"><a href="orders.html"><span class="nav-item__icon">🧾</span> Pedidos</a></li>
-        <li class="nav-item"><a href="reports.html"><span class="nav-item__icon">📊</span> Reportes</a></li>
+        <li class="nav-item">
+          <a href="dashboard.html">
+            <img src="assets/1.21.11/items/apple.png" alt="" class="nav-item__icon">
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="inventory.html">
+            <img src="assets/1.21.11/items/black_bundle.png" alt="" class="nav-item__icon">
+            <span>Inventario</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="dishes.html">
+            <img src="assets/1.21.11/items/mushroom_stew.png" alt="" class="nav-item__icon">
+            <span>Platillos</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="orders.html">
+            <img src="assets/1.21.11/items/book.png" alt="" class="nav-item__icon">
+            <span>Pedidos</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="reports.html">
+            <img src="assets/1.21.11/items/enchanted_book.png" alt="" class="nav-item__icon">
+            <span>Reportes</span>
+          </a>
+        </li>
       </ul>
       <div class="sidebar__footer">
-        <a href="index.html" class="mc-button mc-button--stone" style="width: 100%;">Salir</a>
+        <a href="index.html" class="mc-button mc-button--stone" style="width: 100%;">
+          <img src="assets/1.21.11/gui/sprites/widget/locked_button.png" alt="" class="mc-button-icon">
+          Salir
+        </a>
       </div>
     </aside>
 
@@ -36,7 +66,21 @@
           <span class="topbar__title">Dashboard Principal</span>
         </div>
         <div class="topbar__actions">
-          <span class="mc-badge">👤 Chef Aldeano</span>
+          <div class="mc-hearts">
+            <img src="assets/1.21.11/gui/sprites/hud/heart/full.png" alt="" class="mc-hearts__heart">
+            <img src="assets/1.21.11/gui/sprites/hud/heart/full.png" alt="" class="mc-hearts__heart">
+            <img src="assets/1.21.11/gui/sprites/hud/heart/full.png" alt="" class="mc-hearts__heart">
+            <img src="assets/1.21.11/gui/sprites/hud/heart/full.png" alt="" class="mc-hearts__heart">
+            <img src="assets/1.21.11/gui/sprites/hud/heart/full.png" alt="" class="mc-hearts__heart">
+          </div>
+          <div class="mc-hunger">
+            <img src="assets/1.21.11/gui/sprites/hud/food_full.png" alt="" class="mc-hunger__food">
+            <img src="assets/1.21.11/gui/sprites/hud/food_full.png" alt="" class="mc-hunger__food">
+            <img src="assets/1.21.11/gui/sprites/hud/food_full.png" alt="" class="mc-hunger__food">
+            <img src="assets/1.21.11/gui/sprites/hud/food_full.png" alt="" class="mc-hunger__food">
+            <img src="assets/1.21.11/gui/sprites/hud/food_full.png" alt="" class="mc-hunger__food">
+          </div>
+          <span class="mc-badge">Chef Aldeano</span>
         </div>
       </header>
 
@@ -53,7 +97,9 @@
         <div class="grid-4" style="margin-bottom: 24px;">
           <div class="mc-card">
             <div class="mc-stat-card">
-              <div class="mc-slot">📦</div>
+              <div class="mc-slot">
+                <img src="assets/1.21.11/items/black_bundle.png" alt="" class="mc-slot__img">
+              </div>
               <div>
                 <div class="mc-stat-card__value">102</div>
                 <div class="mc-stat-card__label">Insumos en stock</div>
@@ -62,7 +108,9 @@
           </div>
           <div class="mc-card">
             <div class="mc-stat-card">
-              <div class="mc-slot">🧾</div>
+              <div class="mc-slot">
+                <img src="assets/1.21.11/items/book.png" alt="" class="mc-slot__img">
+              </div>
               <div>
                 <div class="mc-stat-card__value">2</div>
                 <div class="mc-stat-card__label">Pedidos pendientes</div>
@@ -71,7 +119,9 @@
           </div>
           <div class="mc-card">
             <div class="mc-stat-card">
-              <div class="mc-slot">🍽️</div>
+              <div class="mc-slot">
+                <img src="assets/1.21.11/items/cake.png" alt="" class="mc-slot__img">
+              </div>
               <div>
                 <div class="mc-stat-card__value">6</div>
                 <div class="mc-stat-card__label">Platillos activos</div>
@@ -80,7 +130,9 @@
           </div>
           <div class="mc-card">
             <div class="mc-stat-card">
-              <div class="mc-slot">💰</div>
+              <div class="mc-slot">
+                <img src="assets/1.21.11/items/gold_ingot.png" alt="" class="mc-slot__img">
+              </div>
               <div>
                 <div class="mc-stat-card__value">$138.50</div>
                 <div class="mc-stat-card__label">Ventas hoy</div>
@@ -93,19 +145,61 @@
           <div class="mc-card">
             <div class="mc-card__title">🔥 Platillos más vendidos</div>
             <ul class="mc-list">
-              <li class="mc-list__item"><span>🍹 Jugo de Melón Pixelado</span><span class="mc-badge">3</span></li>
-              <li class="mc-list__item"><span>🍄 Estofado de Champiñones</span><span class="mc-badge">2</span></li>
-              <li class="mc-list__item"><span>🍰 Pastel de Bayas Dulces</span><span class="mc-badge">2</span></li>
-              <li class="mc-list__item"><span>🍲 Sopa del Bosque Encantado</span><span class="mc-badge">2</span></li>
-              <li class="mc-list__item"><span>🍞 Pan del Aldeano</span><span class="mc-badge">2</span></li>
+              <li class="mc-list__item">
+                <span style="display: flex; align-items: center; gap: 8px;">
+                  <img src="assets/1.21.11/items/melon_slice.png" alt="" class="mc-list__icon">
+                  Jugo de Melón Pixelado
+                </span>
+                <span class="mc-badge">3</span>
+              </li>
+              <li class="mc-list__item">
+                <span style="display: flex; align-items: center; gap: 8px;">
+                  <img src="assets/1.21.11/items/mushroom_stew.png" alt="" class="mc-list__icon">
+                  Estofado de Champiñones
+                </span>
+                <span class="mc-badge">2</span>
+              </li>
+              <li class="mc-list__item">
+                <span style="display: flex; align-items: center; gap: 8px;">
+                  <img src="assets/1.21.11/items/sweet_berries.png" alt="" class="mc-list__icon">
+                  Pastel de Bayas Dulces
+                </span>
+                <span class="mc-badge">2</span>
+              </li>
+              <li class="mc-list__item">
+                <span style="display: flex; align-items: center; gap: 8px;">
+                  <img src="assets/1.21.11/items/beetroot_soup.png" alt="" class="mc-list__icon">
+                  Sopa del Bosque Encantado
+                </span>
+                <span class="mc-badge">2</span>
+              </li>
+              <li class="mc-list__item">
+                <span style="display: flex; align-items: center; gap: 8px;">
+                  <img src="assets/1.21.11/items/bread.png" alt="" class="mc-list__icon">
+                  Pan del Aldeano
+                </span>
+                <span class="mc-badge">2</span>
+              </li>
             </ul>
           </div>
 
           <div class="mc-card">
             <div class="mc-card__title">🚨 Insumos bajos</div>
             <ul class="mc-list">
-              <li class="mc-list__item"><span>🍄 Champiñones — 5 kg</span><span class="mc-badge mc-badge--alert">Bajo</span></li>
-              <li class="mc-list__item"><span>🍠 Remolacha — 6 kg</span><span class="mc-badge mc-badge--alert">Bajo</span></li>
+              <li class="mc-list__item">
+                <span style="display: flex; align-items: center; gap: 8px;">
+                  <img src="assets/1.21.11/items/mushroom_stew.png" alt="" class="mc-list__icon">
+                  Champiñones — 5 kg
+                </span>
+                <span class="mc-badge mc-badge--alert">Bajo</span>
+              </li>
+              <li class="mc-list__item">
+                <span style="display: flex; align-items: center; gap: 8px;">
+                  <img src="assets/1.21.11/items/beetroot.png" alt="" class="mc-list__icon">
+                  Remolacha — 6 kg
+                </span>
+                <span class="mc-badge mc-badge--alert">Bajo</span>
+              </li>
             </ul>
             <a href="inventory.html" class="mc-button mc-button--secondary" style="margin-top: 12px;">Ver inventario</a>
           </div>
