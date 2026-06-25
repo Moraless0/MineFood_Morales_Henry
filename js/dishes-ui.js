@@ -94,7 +94,7 @@
       name,
       description,
       price,
-      icon: icon || '🍽️',
+      icon: icon || 'mushroom_stew.png',
       ingredients: {} // Por defecto sin ingredientes
     };
 

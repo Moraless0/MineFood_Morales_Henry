@@ -153,7 +153,7 @@
       if (lowStock.length > 0) {
         alertBox.style.display = 'block';
         const names = lowStock.map(i => i.name).join(', ');
-        alertBox.innerHTML = `<strong>⚠ Alerta:</strong> ${names} están por debajo del stock mínimo.`;
+        alertBox.innerHTML = `<strong><img src="assets/1.21.11/items/redstone.png" alt="" class="mc-list__icon"> Alerta:</strong> ${names} están por debajo del stock mínimo.`;
       } else {
         alertBox.style.display = 'none';
       }
