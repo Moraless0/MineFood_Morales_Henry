@@ -303,18 +303,33 @@
 }
 
 .mc-helper {
-  background: rgba(93, 158, 67, 0.12);
+  background: linear-gradient(135deg, rgba(93, 158, 67, 0.15) 0%, rgba(93, 158, 67, 0.08) 100%);
   border: 3px solid var(--grass-green);
-  box-shadow: var(--shadow-block);
-  padding: 12px 14px;
+  border-left: 6px solid var(--grass-green);
+  box-shadow: var(--shadow-block), 0 4px 12px rgba(93, 158, 67, 0.2);
+  padding: 14px 16px;
   margin-bottom: 16px;
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.6;
+  border-radius: 4px;
+  position: relative;
 }
 
 .mc-helper strong {
   font-family: var(--font-heading);
-  font-size: 10px;
+  font-size: 11px;
+  color: var(--grass-green);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.mc-helper::before {
+  content: '💡';
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 16px;
+  opacity: 0.7;
 }
 
 .mc-empty-state {

@@ -107,7 +107,14 @@ MineFood/
 
 Los wireframes del proyecto están disponibles en: [Link de Canva - https://canva.link/o9m7vypleal6e34]
 
-## 🚀 Desarrollo
+## � Screenshots
+
+![Dashboard](assets/screenshots/example_01.png)
+![Mesas](assets/screenshots/example_02.png)
+![Inventario](assets/screenshots/example_03.png)
+![Platillos](assets/screenshots/example_04.png)
+
+## �🚀 Desarrollo
 
 El proyecto usa:
 - **SPA (Single Page Application)** - Navegación sin recargas con hash routing
