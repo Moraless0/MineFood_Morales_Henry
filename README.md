@@ -105,7 +105,7 @@ MineFood/
 
 ## 🎨 Wireframes
 
-Los wireframes del proyecto están disponibles en: [Link de Canva - AGREGAR AQUÍ]
+Los wireframes del proyecto están disponibles en: [Link de Canva - https://canva.link/o9m7vypleal6e34]
 
 ## 🚀 Desarrollo
 
@@ -134,4 +134,4 @@ Este proyecto es para fines educativos.
 
 ---
 
-**Desarrollado con ❤️ y Minecraft**
+**Desarrollado por Henry Morales**
