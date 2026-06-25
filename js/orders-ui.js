@@ -1,0 +1,141 @@
+// UI de pedidos - Conexión con el módulo Orders
+
+(function() {
+  'use strict';
+
+  // Mapeo de estados a badges
+  const statusMap = {
+    'pending': { text: 'Pendiente', class: 'mc-badge--pending' },
+    'preparing': { text: 'Preparando', class: 'mc-badge--preparing' },
+    'delivered': { text: 'Entregado', class: 'mc-badge--delivered' }
+  };
+
+  // Renderizar tabla de pedidos
+  function renderOrdersTable(filter = '') {
+    const tbody = document.querySelector('.mc-table tbody');
+    if (!tbody) return;
+
+    let orders = Orders.getAll();
+
+    // Filtrar por estado si se selecciona
+    if (filter) {
+      orders = orders.filter(order => order.status === filter);
+    }
+
+    tbody.innerHTML = orders.map(order => {
+      const statusInfo = statusMap[order.status] || { text: order.status, class: '' };
+      const statusBadge = `<span class="mc-badge ${statusInfo.class}">${statusInfo.text}</span>`;
+      
+      // Generar detalle de items
+      const itemsDetail = order.items.map(item => {
+        const dish = Dishes.getByCode(item.code);
+        const dishName = dish ? dish.name : item.code;
+        return `${dishName} (${item.quantity})`;
+      }).join(', ');
+
+      return `
+        <tr>
+          <td data-label="ID">${order.id}</td>
+          <td data-label="Mesa">${order.table || order.customer || 'N/A'}</td>
+          <td data-label="Estado">${statusBadge}</td>
+          <td data-label="Total">$${order.total.toFixed(2)}</td>
+          <td data-label="Detalle">${itemsDetail}</td>
+          <td data-label="Acciones">
+            <button class="mc-button mc-button--small mc-button--secondary" onclick="updateOrderStatus('${order.id}')">Actualizar</button>
+            <button class="mc-button mc-button--small mc-button--danger" onclick="deleteOrder('${order.id}')">Eliminar</button>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  // Actualizar estado de pedido
+  window.updateOrderStatus = function(id) {
+    const order = Orders.getById(id);
+    if (!order) return;
+
+    const statusOptions = ['pending', 'preparing', 'delivered'];
+    const currentIndex = statusOptions.indexOf(order.status);
+    const nextStatus = statusOptions[(currentIndex + 1) % statusOptions.length];
+
+    try {
+      Orders.updateStatus(id, nextStatus);
+      renderOrdersTable();
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  // Eliminar pedido
+  window.deleteOrder = function(id) {
+    if (confirm('¿Está seguro de eliminar este pedido?')) {
+      try {
+        Orders.delete(id);
+        renderOrdersTable();
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+  };
+
+  // Filtrar por estado
+  function setupFilters() {
+    const statusSelect = document.querySelector('.page-header select');
+    if (!statusSelect) return;
+
+    statusSelect.addEventListener('change', function() {
+      renderOrdersTable(this.value);
+    });
+  }
+
+  // Buscar pedido
+  function setupSearch() {
+    const searchInput = document.querySelector('.page-header input[type="text"]');
+    if (!searchInput) return;
+
+    searchInput.addEventListener('input', function() {
+      const searchTerm = this.value.toLowerCase();
+      const orders = Orders.getAll();
+      const filtered = orders.filter(order => 
+        order.id.toLowerCase().includes(searchTerm) ||
+        (order.table && order.table.toLowerCase().includes(searchTerm)) ||
+        (order.customer && order.customer.toLowerCase().includes(searchTerm))
+      );
+
+      const tbody = document.querySelector('.mc-table tbody');
+      if (!tbody) return;
+
+      tbody.innerHTML = filtered.map(order => {
+        const statusInfo = statusMap[order.status] || { text: order.status, class: '' };
+        const statusBadge = `<span class="mc-badge ${statusInfo.class}">${statusInfo.text}</span>`;
+        
+        const itemsDetail = order.items.map(item => {
+          const dish = Dishes.getByCode(item.code);
+          const dishName = dish ? dish.name : item.code;
+          return `${dishName} (${item.quantity})`;
+        }).join(', ');
+
+        return `
+          <tr>
+            <td data-label="ID">${order.id}</td>
+            <td data-label="Mesa">${order.table || order.customer || 'N/A'}</td>
+            <td data-label="Estado">${statusBadge}</td>
+            <td data-label="Total">$${order.total.toFixed(2)}</td>
+            <td data-label="Detalle">${itemsDetail}</td>
+            <td data-label="Acciones">
+              <button class="mc-button mc-button--small mc-button--secondary" onclick="updateOrderStatus('${order.id}')">Actualizar</button>
+              <button class="mc-button mc-button--small mc-button--danger" onclick="deleteOrder('${order.id}')">Eliminar</button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    });
+  }
+
+  // Inicializar
+  document.addEventListener('DOMContentLoaded', function() {
+    renderOrdersTable();
+    setupFilters();
+    setupSearch();
+  });
+})();
