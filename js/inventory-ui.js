@@ -73,12 +73,8 @@
             ${statusBadge}
           </div>
           <div style="display: flex; gap: 8px; margin-top: 8px;">
-            <button class="mc-button mc-button--small mc-button--secondary" onclick="editIngredient('${ingredient.code}')" title="Editar">
-              <img src="assets/1.21.11/items/oak_sign.png" alt="" style="width: 16px; height: 16px;">
-            </button>
-            <button class="mc-button mc-button--small mc-button--danger" onclick="deleteIngredient('${ingredient.code}')" title="Eliminar">
-              <img src="assets/1.21.11/items/barrier.png" alt="" style="width: 16px; height: 16px;">
-            </button>
+            <button class="mc-button mc-button--secondary" onclick="editIngredient('${ingredient.code}')">Editar</button>
+            <button class="mc-button mc-button--danger" onclick="deleteIngredient('${ingredient.code}')">Eliminar</button>
           </div>
         </div>
       `;
@@ -205,12 +201,8 @@
             ${statusBadge}
           </div>
           <div style="display: flex; gap: 8px; margin-top: 8px;">
-            <button class="mc-button mc-button--small mc-button--secondary" onclick="editIngredient('${ingredient.code}')" title="Editar">
-              <img src="assets/1.21.11/items/oak_sign.png" alt="" style="width: 16px; height: 16px;">
-            </button>
-            <button class="mc-button mc-button--small mc-button--danger" onclick="deleteIngredient('${ingredient.code}')" title="Eliminar">
-              <img src="assets/1.21.11/items/barrier.png" alt="" style="width: 16px; height: 16px;">
-            </button>
+            <button class="mc-button mc-button--secondary" onclick="editIngredient('${ingredient.code}')">Editar</button>
+            <button class="mc-button mc-button--danger" onclick="deleteIngredient('${ingredient.code}')">Eliminar</button>
           </div>
         </div>
       `;
