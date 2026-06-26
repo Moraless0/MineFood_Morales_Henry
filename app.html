@@ -236,6 +236,7 @@
         <section id="view-tables" class="view hidden">
           <div class="page-header">
             <h1><img src="assets/1.21.11/items/oak_sign.png" alt="" class="mc-list__icon"> Control de Mesas</h1>
+            <button class="mc-button mc-button--secondary" onclick="showInvoiceHistory()">Historial de Facturas</button>
           </div>
 
           <div class="mc-helper">
@@ -423,6 +424,70 @@
     </div>
   </div>
 
+  <div class="mc-modal" id="modal-statement">
+    <div class="mc-modal__box">
+      <div class="mc-modal__header"><img src="assets/1.21.11/items/paper.png" alt="" class="mc-list__icon"> Estado de Cuenta</div>
+      <div class="mc-modal__body" id="modal-statement-content">
+        <!-- Contenido dinámico -->
+      </div>
+      <div class="mc-modal__footer">
+        <button class="mc-button mc-button--secondary" data-modal-close="modal-statement">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mc-modal" id="modal-invoice">
+    <div class="mc-modal__box">
+      <div class="mc-modal__header"><img src="assets/1.21.11/items/filled_map.png" alt="" class="mc-list__icon"> Factura</div>
+      <div class="mc-modal__body" id="modal-invoice-content">
+        <!-- Contenido dinámico -->
+      </div>
+      <div class="mc-modal__footer">
+        <button class="mc-button mc-button--secondary" onclick="printInvoice()">🖨️ Imprimir factura</button>
+        <button class="mc-button mc-button--secondary" data-modal-close="modal-invoice">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mc-modal" id="modal-invoice-history">
+    <div class="mc-modal__box">
+      <div class="mc-modal__header"><img src="assets/1.21.11/items/filled_map.png" alt="" class="mc-list__icon"> Historial de Facturas</div>
+      <div class="mc-modal__body" id="modal-invoice-history-content">
+        <!-- Contenido dinámico -->
+      </div>
+      <div class="mc-modal__footer">
+        <button class="mc-button mc-button--secondary" data-modal-close="modal-invoice-history">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mc-modal" id="modal-cancel-order">
+    <div class="mc-modal__box">
+      <div class="mc-modal__header"><img src="assets/1.21.11/items/barrier.png" alt="" class="mc-list__icon"> Cancelar Pedido</div>
+      <div class="mc-modal__body">
+        <div class="mc-form-group">
+          <label class="mc-label">Seleccione la razón de cancelación:</label>
+          <select class="mc-input" id="cancel-reason">
+            <option value="">-- Seleccione una razón --</option>
+            <option value="cliente_no_asistio">Cliente no asistió</option>
+            <option value="error_pedido">Error en el pedido</option>
+            <option value="cambio_mesa">Cambio de mesa</option>
+            <option value="problema_pago">Problema con el pago</option>
+            <option value="otro">Otro</option>
+          </select>
+        </div>
+        <div class="mc-form-group" id="cancel-reason-other-group" style="display: none;">
+          <label class="mc-label">Especifique la razón:</label>
+          <input type="text" class="mc-input" id="cancel-reason-other" placeholder="Describa la razón">
+        </div>
+      </div>
+      <div class="mc-modal__footer">
+        <button class="mc-button mc-button--secondary" data-modal-close="modal-cancel-order">Cancelar</button>
+        <button class="mc-button mc-button--danger" onclick="confirmCancelOrder()">Confirmar Cancelación</button>
+      </div>
+    </div>
+  </div>
+
   <div class="mc-modal" id="modal-ingredient">
     <div class="mc-modal__box">
       <div class="mc-modal__header"><img src="assets/1.21.11/items/black_bundle.png" alt="" class="mc-list__icon"> Agregar / Editar Insumo</div>
@@ -498,6 +563,8 @@
   <script src="js/dishes.js"></script>
   <script src="js/orders.js"></script>
   <script src="js/tables.js"></script>
+  <script src="js/invoices.js"></script>
+  <script src="js/utils.js"></script>
   <script src="js/router.js"></script>
   <script src="js/navigation.js"></script>
   <script src="js/modals.js"></script>

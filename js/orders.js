@@ -16,7 +16,6 @@ const Orders = {
     localStorage.setItem(this.ORDERS_KEY, JSON.stringify(normalizedOrders));
   },
 
-  // Convertir pedidos antiguos al formato actual
   normalizeOrders(orders) {
     const dishes = window.mcData?.dishes || [];
     return orders.map(order => ({
@@ -57,10 +56,11 @@ const Orders = {
     for (const item of items) {
       const dish = Dishes.getByCode(item.code);
       if (dish) {
-        total += dish.price * item.quantity;
+        const subtotal = Utils.calculateSubtotal(dish.price, item.quantity);
+        total = Utils.roundToDecimals(total + subtotal);
       }
     }
-    return total.toFixed(2);
+    return Utils.formatPrice(total);
   },
 
   validateInventory(items) {
@@ -140,6 +140,22 @@ const Orders = {
     }
 
     localStorage.setItem(this.ORDERS_KEY, JSON.stringify(filtered));
+  },
+
+  cancel(id, reason) {
+    const orders = this.getAll();
+    const index = orders.findIndex(order => order.id === id);
+    
+    if (index === -1) {
+      throw new Error('Pedido no encontrado');
+    }
+
+    orders[index].status = 'cancelled';
+    orders[index].cancellationReason = reason;
+    orders[index].cancelledAt = new Date().toISOString();
+    
+    localStorage.setItem(this.ORDERS_KEY, JSON.stringify(orders));
+    return orders[index];
   },
 
   getByStatus(status) {

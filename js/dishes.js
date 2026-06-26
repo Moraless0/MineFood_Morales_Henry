@@ -29,6 +29,8 @@ const Dishes = {
       throw new Error('Ya existe un platillo con ese código');
     }
 
+    dish.price = Utils.roundToDecimals(dish.price);
+
     dishes.push(dish);
     localStorage.setItem(this.DISHES_KEY, JSON.stringify(dishes));
     return dish;
@@ -40,6 +42,10 @@ const Dishes = {
     
     if (index === -1) {
       throw new Error('Platillo no encontrado');
+    }
+
+    if (updatedData.price !== undefined) {
+      updatedData.price = Utils.roundToDecimals(updatedData.price);
     }
 
     dishes[index] = { ...dishes[index], ...updatedData };

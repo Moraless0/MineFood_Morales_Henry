@@ -4,15 +4,6 @@ const Tables = {
   TABLES_KEY: 'minefood_tables',
   TABLE_COUNT: 12,
 
-  init() {
-    const existingTables = localStorage.getItem(this.TABLES_KEY);
-    if (!existingTables) {
-      const tables = this.createDefaultTables();
-      localStorage.setItem(this.TABLES_KEY, JSON.stringify(tables));
-      console.log('Mesas inicializadas');
-    }
-  },
-
   createDefaultTables() {
     const tables = [];
     for (let i = 1; i <= this.TABLE_COUNT; i++) {
@@ -25,6 +16,29 @@ const Tables = {
       });
     }
     return tables;
+  },
+
+  init() {
+    const existingTables = localStorage.getItem(this.TABLES_KEY);
+    if (!existingTables) {
+      const tables = this.createDefaultTables();
+      
+      // Ocupar mesas según datos de demo
+      const demoOrders = window.mcData?.orders || [];
+      demoOrders.forEach(order => {
+        const tableNum = parseInt(order.table.replace('Mesa ', ''));
+        const tableIndex = tables.findIndex(t => t.number === tableNum);
+        if (tableIndex !== -1) {
+          tables[tableIndex].status = 'occupied';
+          tables[tableIndex].currentOrder = order.id;
+          tables[tableIndex].occupiedSince = order.createdAt;
+          tables[tableIndex].total = order.total;
+        }
+      });
+      
+      localStorage.setItem(this.TABLES_KEY, JSON.stringify(tables));
+      console.log('Mesas inicializadas');
+    }
   },
 
   getAll() {

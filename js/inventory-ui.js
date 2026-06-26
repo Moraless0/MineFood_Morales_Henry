@@ -81,9 +81,33 @@
     const quantity = parseFloat(inputs[3].value);
     const unit = inputs[4].value;
 
-    // Validaciones
-    if (!code || !name || !description || isNaN(quantity)) {
-      MineFoodFeedback.showToast('Completa código, nombre, descripción y cantidad.', 'warning');
+    if (!code) {
+      MineFoodFeedback.showToast('El código es obligatorio.', 'error');
+      return;
+    }
+
+    if (!name) {
+      MineFoodFeedback.showToast('El nombre es obligatorio.', 'error');
+      return;
+    }
+
+    if (!description) {
+      MineFoodFeedback.showToast('La descripción es obligatoria.', 'error');
+      return;
+    }
+
+    if (isNaN(quantity)) {
+      MineFoodFeedback.showToast('La cantidad debe ser un número válido.', 'error');
+      return;
+    }
+
+    if (quantity < 0) {
+      MineFoodFeedback.showToast('La cantidad no puede ser negativa.', 'error');
+      return;
+    }
+
+    if (!unit) {
+      MineFoodFeedback.showToast('La unidad es obligatoria.', 'error');
       return;
     }
 

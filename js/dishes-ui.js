@@ -78,9 +78,23 @@
     const price = parseFloat(inputs[2].value);
     const icon = inputs[3].value.trim();
 
-    // Validaciones
-    if (!name || !description || isNaN(price)) {
-      MineFoodFeedback.showToast('Completa nombre, descripción y precio.', 'warning');
+    if (!name) {
+      MineFoodFeedback.showToast('El nombre es obligatorio.', 'error');
+      return;
+    }
+
+    if (!description) {
+      MineFoodFeedback.showToast('La descripción es obligatoria.', 'error');
+      return;
+    }
+
+    if (isNaN(price)) {
+      MineFoodFeedback.showToast('El precio debe ser un número válido.', 'error');
+      return;
+    }
+
+    if (price < 0) {
+      MineFoodFeedback.showToast('El precio no puede ser negativo.', 'error');
       return;
     }
 

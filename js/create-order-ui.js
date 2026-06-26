@@ -138,7 +138,16 @@
     const customer = customerInput ? customerInput.value.trim() : '';
     const paymentMethod = paymentMethodInput ? paymentMethodInput.value : 'cash';
 
-    // Validar que haya items en el carrito
+    if (!customer) {
+      MineFoodFeedback.showToast('El nombre del cliente es obligatorio.', 'error');
+      return;
+    }
+
+    if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(customer)) {
+      MineFoodFeedback.showToast('El nombre solo debe contener letras.', 'error');
+      return;
+    }
+
     if (Object.keys(cart).length === 0) {
       MineFoodFeedback.showToast('Selecciona al menos un platillo con el botón +.', 'warning');
       return;
@@ -156,7 +165,7 @@
       Orders.add({
         id: orderId,
         table: `Mesa ${table}`,
-        customer: customer || 'Cliente de mesa',
+        customer: customer,
         phone: '',
         status: 'pending',
         paymentMethod: paymentMethod,

@@ -85,24 +85,66 @@
     }
   };
 
-  // Eliminar pedido
+  // Variable para almacenar el ID del pedido a cancelar
+  let orderToCancel = null;
+
+  // Eliminar pedido (ahora abre modal de cancelación)
   window.deleteOrder = function(id) {
-    if (MineFoodFeedback.confirmAction('¿Eliminar este pedido?')) {
-      try {
-        const order = Orders.getById(id);
-        Orders.delete(id);
-
-        if (order?.table?.startsWith('Mesa ')) {
-          const tableNumber = parseInt(order.table.replace('Mesa ', ''));
-          Tables.updateStatus(tableNumber, 'free');
-        }
-
-        renderOrdersTable();
-        window.dispatchEvent(new CustomEvent('tablesChanged'));
-        MineFoodFeedback.showToast('Pedido eliminado correctamente.');
-      } catch (error) {
-        MineFoodFeedback.showToast(error.message, 'error');
+    orderToCancel = id;
+    openModal('modal-cancel-order');
+    
+    // Mostrar campo de "Otro" cuando se selecciona esa opción
+    const reasonSelect = document.getElementById('cancel-reason');
+    const otherGroup = document.getElementById('cancel-reason-other-group');
+    
+    reasonSelect.onchange = function() {
+      if (this.value === 'otro') {
+        otherGroup.style.display = 'block';
+      } else {
+        otherGroup.style.display = 'none';
       }
+    };
+  };
+
+  // Confirmar cancelación de pedido
+  window.confirmCancelOrder = function() {
+    const reasonSelect = document.getElementById('cancel-reason');
+    const reason = reasonSelect.value;
+    const otherReason = document.getElementById('cancel-reason-other').value;
+    
+    if (!reason) {
+      MineFoodFeedback.showToast('Seleccione una razón de cancelación', 'error');
+      return;
+    }
+    
+    if (reason === 'otro' && !otherReason.trim()) {
+      MineFoodFeedback.showToast('Especifique la razón de cancelación', 'error');
+      return;
+    }
+    
+    const finalReason = reason === 'otro' ? otherReason : reason;
+    
+    try {
+      const order = Orders.getById(orderToCancel);
+      Orders.cancel(orderToCancel, finalReason);
+
+      if (order?.table?.startsWith('Mesa ')) {
+        const tableNumber = parseInt(order.table.replace('Mesa ', ''));
+        Tables.updateStatus(tableNumber, 'free');
+      }
+
+      closeModal('modal-cancel-order');
+      renderOrdersTable();
+      window.dispatchEvent(new CustomEvent('tablesChanged'));
+      MineFoodFeedback.showToast('Pedido cancelado correctamente.');
+      
+      // Limpiar formulario
+      reasonSelect.value = '';
+      document.getElementById('cancel-reason-other').value = '';
+      document.getElementById('cancel-reason-other-group').style.display = 'none';
+      orderToCancel = null;
+    } catch (error) {
+      MineFoodFeedback.showToast(error.message, 'error');
     }
   };
 
